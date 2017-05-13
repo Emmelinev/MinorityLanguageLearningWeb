@@ -1,21 +1,3 @@
-function ajaxFunc(param,servlet){
-    var json = null;
-    $.ajax({
-        async : false,
-        cache : false,
-        type : 'POST',
-        url : servlet,
-        data: param,
-        dataType:"json",
-        error : function(data) {
-        },
-        success : function(data){
-            console.log(data);
-            json = data;
-        }
-    });
-    return json;
-}
 $(document).ready(function() {
 	 if (window.history && window.history.pushState) {
 		$(window).on('popstate', function () {
@@ -68,13 +50,29 @@ function getMsgCount(){
 	var ret = ajaxFunc(param,servlet);
 	console.log("ret-"+ret);
 	if(ret.valid == true){
-//		$(".div-alert").attr("opacity","1");
 		$(".div-alert").animate({"opacity":"1"},100); 
 		$(".new-count").show();
 	}else{
 		$(".new-count").hide();
-//		$(".div-alert").attr("opacity","0.5");
 		$(".div-alert").animate({"opacity":"0.5"},100); 
 	}
 	setTimeout("getMsgCount()",60000);  
 }  
+function ajaxFunc(param,servlet){
+    var json = null;
+    $.ajax({
+        async : false,
+        cache : false,
+        type : 'POST',
+        url : servlet,
+        data: param,
+        dataType:"json",
+        error : function(data) {
+        },
+        success : function(data){
+            console.log(data);
+            json = data;
+        }
+    });
+    return json;
+}

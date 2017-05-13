@@ -6,7 +6,9 @@ public class Lesson {
 	private String lessonImg;
 	private String ofLanguage;
 	private int allowPic;
+	private double progress;
 	
+
 	public Lesson() {
 //		this.lessonName = lessonName;
 		this.lessonId = 0;
@@ -44,5 +46,11 @@ public class Lesson {
 	}
 	public void setAllowPic(int allowPic) {
 		this.allowPic = allowPic;
+	}
+	public double getProgress() {
+		return progress;
+	}
+	public void setProgress(double progress) {
+		this.progress = progress;
 	}
 }

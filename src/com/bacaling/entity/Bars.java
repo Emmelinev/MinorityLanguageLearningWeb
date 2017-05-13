@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Bars extends Lesson{
 	private String barId;
 	private String barName;
-	private ArrayList<String> barMember;
+	private String barMember;
 	private boolean status;
 	
 	public Bars() {
@@ -26,10 +26,10 @@ public class Bars extends Lesson{
 	public void setBarName(String barName) {
 		this.barName = barName;
 	}
-	public ArrayList getBarMember() {
+	public String getBarMember() {
 		return barMember;
 	}
-	public void setBarMember(ArrayList barMember) {
+	public void setBarMember(String barMember) {
 		this.barMember = barMember;
 	}
 	public boolean isStatus() {

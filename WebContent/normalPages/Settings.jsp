@@ -20,8 +20,11 @@
   			<span class="sr-only">Error:</span>
   			You're supposed to login before starting your study. Page will redirect to login page after 3 seconds.<a href="login.jsp" class="alert-link">Click here if the broswer didn't redirect.</a>
 		</div>
+		<script language="javascript">
+   			setInterval("window.history.go(-1)",3000) //300表3秒
+		</script>
     	<%
-        response.setHeader("refresh","3;URL=login.jsp");
+       // response.setHeader("refresh","3;URL=login.jsp");
         return;
    		}
    	%>
@@ -76,13 +79,13 @@
                 <span class="days">${sessionScope.user_state}</span>
                 <h5><span>${sessionScope.user_state}</span> day(s) streak</h5>
             </div>
-            <div class="div-gems">
-                <img src="../images/berry.png">
-                <span>90</span>
-                <h5>Berries</h5>
-            </div>
             <div class="div-alert">
+            	<span class="new-count">new</span>
             </div>
+            <div class="message">
+                    <div class="close"></div>
+                    <ul id="srcoll-message"></ul>
+           </div>
         </div>
     </div>
 </header>
@@ -92,34 +95,27 @@
 <div class="div-main">
     <div class="left-main">
         <!--账户设置-->
-        <form id="frm-change-account" method="post" action="../SettingsServlet">
-           
+        <form id="frm-change-account" method="post" action="../SettingsServlet">           
         <div class="settings-left" id="account-settings">
             <div class="head">
                 <h1>Account Settings</h1>
-                <input type="submit" id="submit-account" class="save-changes" value="Save changes">
+                <input type="submit" id="submit_account" class="save-changes" value="Save changes">
             </div>
             
             <table>
                 <tr>
                     <td>Username</td>
-                    <td><input id="user_name" type="text" class="text-input" value=${sessionScope.user_name} Oninput="txtchange(event)"></td>
+                    <td><input id="user_name" type="text" class="text-input"  Oninput="txtchange(event)" value=${sessionScope.user_name}></td>
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td><input id="email" type="text" class="text-input" value=${sessionScope.user_email}></td>
+                    <td><input id="email" type="text" class="text-input" Oninput="txtchange(event)" value=${sessionScope.user_email}></td>
                 </tr>
                 <tr>
                     <td>Microphone</td>
                     <td>
                         <span class="radio-out"><input type="radio" class="radio-input" name="microphone" value="on">on&nbsp;&nbsp;</span>
                         <span class="radio-out"><input type="radio" class="radio-input" name="microphone" value="off">off</span></td>
-                </tr>
-                <tr>
-                    <td>Speaker</td>
-                    <td>
-                        <span class="radio-out"><input type="radio" class="radio-input" name="speaker" value="on">on&nbsp;&nbsp;</span>
-                        <span class="radio-out"><input type="radio" class="radio-input" name="speaker" value="off">off</span></td>
                 </tr>
                 <tr>
                     <td>Voice autoplay</td>
@@ -152,37 +148,36 @@
          </form>
         <!--end of 账户设置-->
         <!--用户名密码-->
+        <form id="frm-profile" method="post" action="../SettingsServlet?method=2">     
         <div class="settings-left" id="profile">
             <div class="head">
                 <h1>Profile</h1>
-                <div id="submit-profile" class="save-changes">Save changes</div>
+                <input id="submit_profile" type="button" class="save-changes" value="Save changes">
             </div>
             <table>
                 <tr>
-                    <td >Name</td>
-                    <td><input type="text" class="text-input" name="modifyName"></td>
-                </tr>
-                <tr>
                     <td>Current Password</td>
-                    <td><input type="text" class="text-input" name="oldPassword"></td>
+                    <td><input id="current_pwd" type="text" class="text-input" Oninput="txtchange(event)" name="oldPassword"></td>
                 </tr>
                 <tr>
                     <td>New Password</td>
-                    <td><input type="text" class="text-input"  name="modifyPassword"></td>
+                    <td><input id="new_pwd" type="text" class="text-input" Oninput="txtchange(event)"  name="modifyPassword"></td>
                 </tr>
                 <tr>
                     <td>Confirm Password</td>
-                    <td><input type="text" class="text-input" name="confirmPassword"></td>
+                    <td><input id="confirm_pwd" type="text" class="text-input" Oninput="txtchange(event)" name="confirmPassword"></td>
                 </tr>
             </table>
             <hr>
         </div>
+        </form>
         <!-- end of用户名密码-->
         <!--通知-->
+        <form id="frm-notice" method="post" action="../SettingsServlet?method=3">     
         <div class="settings-left" id="notification">
             <div class="head">
                 <h1>Notification</h1>
-                <div id="submit-notice" class="save-changes">Save changes</div>
+                <input id="submit-notice" type="button" class="save-changes" value="Save changes">
             </div>
             <table>
                 <tr>
@@ -195,12 +190,14 @@
             </table>
             <hr>
         </div>
+        </form>
         <!--end of 通知-->
         <!--每日目标-->
+        <form id="frm-goal" method="post" action="../SettingsServlet?method=4"> 
         <div class="settings-left" id="dailyGoal">
             <div class="head">
                 <h1>Daily Goal</h1>
-                <div id="submit-goal" class="save-changes">Save changes</div>
+                <input id="submit-goal" type="button" class="save-changes" value="Save changes">
             </div>
             <div class="content">
                 <span class="image"></span>
@@ -213,6 +210,7 @@
             </div>
             <hr>
         </div>
+        </form>
         <!--end of 每日目标-->
     </div>
 

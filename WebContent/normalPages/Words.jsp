@@ -78,13 +78,13 @@
                 <span>${sessionScope.user_state}</span>
                 <h5><span>${sessionScope.user_state}</span> day(s) streak</h5>
             </div>
-            <div class="div-gems">
-                <img src="../images/berry.png">
-                <span>90</span>
-                <h5>Berries</h5>
-            </div>
             <div class="div-alert">
+            	<span class="new-count">new</span>
             </div>
+            <div class="message">
+                    <div class="close"></div>
+                    <ul id="srcoll-message"></ul>
+           </div>
         </div>
     </div>
 </header>
