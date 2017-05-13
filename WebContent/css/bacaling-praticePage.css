@@ -1,0 +1,566 @@
+@charset "UTF-8";
+@media screen and (min-width: 640px) {
+    .div-back{
+        width: 960px;
+        height: 447px;
+        padding: 30px;
+        height: auto;
+        margin: 100px 0px 50px 150px;
+        /*margin: 0 auto;*/
+        padding: 40px 0px 0px 0px;
+        color: #B0B0B0;
+        box-shadow: 0px 0px 25px #d7d7d7;
+        /*border: 1px solid #ffffff;*/
+        border-radius: 10px;
+        background-color: #ffffff;
+        display: block;
+        vertical-align:top;
+        position: relative;
+    }
+    .div-back .head{
+        margin: 0 40px 40px 40px;
+        font-weight: 600;
+        display: none;
+    }
+
+    .div-back .head .tn{
+        float: left;
+        cursor: pointer;
+    }
+    .div-back .head .tn:hover,.div-back .head .quit:hover{
+        color: #58c7ba;
+    }
+    .div-back .head .quit{
+        float: right;
+        margin-right: 50px;
+        cursor: pointer;
+    }
+    .div-back .progress-bar{
+        box-sizing: content-box;
+        width: 540px;
+        height: 23px;
+        margin: 0px 1px 1px 120px;
+        position: relative;
+        display: none;
+    }
+    .div-back .progress-bar:before,:after{
+        content: "";
+        display: inline-block;
+        position: absolute;
+    }
+    .div-back .progress-bar:before{
+        width: 540px;
+        height: 23px;
+        left: 0px;
+        top: 32px;
+        border: 2px solid #B0B0B0;
+        border-radius: 13px;
+        border-right: 5px solid white;
+        background-color: #ffffff;
+        z-index: 3;
+    }
+    .div-back .progress-bar:after{
+        width: 80px;
+        height: 80px;
+        right: -80px;
+        top: 0px;
+        border: 2px solid #B0B0B0;
+        background-color: #ffffff;
+        border-radius: 40px;
+        z-index: 2;
+    }
+    /*进度条内部*/
+    .div-back .progress-bar .bar{
+        width: 20%;
+        height: 19px;
+        top:36px;
+        left: 5px;
+        background-color: #63b4ab;
+        border-radius: 10px;
+        position: absolute;
+        z-index: 5;
+    }
+    .div-back .progress-bar span{
+        width: 60px;
+        height: 60px;
+        top: 12px;
+        right: -68px;
+        /*background-color: #EE9A49;*/
+        background: url("../images/chicken (3).png") no-repeat center;
+        background-size: 55px 55px;
+        border-radius: 30px;
+        position: absolute;
+        z-index: 6
+    }
+    .div-back .progress-bar .calculator{
+        width: 30px;
+        height: 30px;
+        right: -90px;
+        top:60px;
+        background-color: #ffffff;
+        border: 2px solid #B0B0B0;
+        /*border-top: none;*/
+        /*border-radius: 20px;*/
+        border-radius: 0 20px 20px 20px;
+        text-align: center;
+        line-height: 30px;
+        font-size:15px;
+        font-weight: 600;
+        position: absolute;
+        z-index: 8;
+    }
+    .div-back  h2{
+        color: #3c3c3c;
+        font-weight: 500;
+    }
+    /*图形选择题*/
+    .div-back .question-select-pic{
+        width: 80%;
+        margin: 80px 800px 50px 40px;
+        text-align: center;
+        display: none;
+    }
+    .div-back .question-select-pic .pic-group{
+        width: 100%;
+        height: 200px;
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+    .div-back .question-select-pic .pic-group li{
+        display: inline-block;
+        /*box-sizing: content-box;*/
+        width: 150px;
+        height: 174px;
+        margin: 30px 10px 30px 10px;
+        padding: 10px;
+        border: 2px solid #eeeeee;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    .div-back .question-select-pic .pic-group li:hover{
+        border-color: #63b4ab;
+        color: #63b4ab;
+    }
+    .div-back .question-select-pic .pic-group li:hover  .title:before{
+        border-color: #63b4ab;
+    }
+    .div-back .question-select-pic .pic-group li:hover  .title:after{
+        content: "";
+        width: 11px;
+        height: 11px;
+        left:4px;
+        top: 4px;
+        margin: 0px 10px 0 0;
+        /*border: 2px solid #63b4ab;*/
+        background-color: #63b4ab;
+        border-radius: 6px;
+        display: inline-block;
+        z-index: 21;
+        position: absolute;
+    }
+    .div-back .question-select-pic .pic-group li:active{
+        background-color: #63b4ab;
+        color: #ffffff;
+    }
+    .div-back .question-select-pic .pic-group li:active  .title:before{
+        border-color: #ffffff;
+    }
+    .div-back .question-select-pic .pic-group li:active  .title:after{
+        content: "";
+        width: 11px;
+        height: 11px;
+        left:4px;
+        top: 4px;
+        margin: 0px 10px 0 0;
+        /*border: 2px solid #63b4ab;*/
+        background-color: #ffffff;
+        border-radius: 6px;
+        display: inline-block;
+        z-index: 21;
+        position: absolute;
+    }
+    .div-back .question-select-pic .pic-group li div{
+        width: 140px;
+        height: 140px;
+        margin-left: 5px;
+        background-color: #B0B0B0;
+        border-radius: 10px;
+    }
+    .div-back .question-select-pic .pic-group li .title{
+        margin: 10px 0 10px 0;
+        display: block;
+        font-size: 15px;
+        line-height: 20px;
+        text-align: center;
+        position: relative;
+    }
+    .div-back .question-select-pic .pic-group li .title:before{
+        content: "";
+        width: 15px;
+        height: 15px;
+        left:0px;
+        top: 0px;
+        /*margin: 0px 10px 0 0;*/
+        border: 2px solid #B0B0B0;
+        /*background-color: #63b4ab;*/
+        border-radius: 10px;
+        display: inline-block;
+        z-index: 20;
+        position: absolute;
+    }
+    .div-back .question-select-pic .pic-group li .title span{
+        float: right;
+        margin-right: 10px;
+    }
+    /*翻译句子题*/
+    .div-back .question-translation{
+        width: 90%;
+        margin: 80px 800px 50px 40px;
+        text-align: center;
+        display: none;
+    }
+    .div-back .question-translation .main-question{
+        margin: 20px;
+    }
+    .div-back .question-translation .main-question .left{
+        width: 380px;
+        height: 100px;
+        border: 2px solid #f0f0f0;
+        box-shadow: 0 0 5px #f0f0f0;
+        text-align: left;
+        vertical-align: top;
+        display: inline-block;
+    }
+    .div-back .question-translation .main-question .left .media{
+        width: 30px;
+        height: 30px;
+        margin: 10px;
+        background-color: #63b4ab;
+        border-radius: 15px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .div-back .question-translation .main-question .left p{
+        margin: 10px;
+        color: #3c3c3c;
+        font-size: 18px;
+        font-weight:600;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .div-back .question-translation .main-question .left span{
+        text-decoration:underline;
+        text-decoration-color: #3c3c3c;
+        /*text-decoration: underline;*/
+        cursor: pointer;
+    }
+    .div-back .question-translation .main-question .middle{
+        width: 20px;
+        height: 30px;
+        margin: 0px 10px 0 10px;
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
+    }
+    .div-back .question-translation .main-question .middle:before,.middle:after{
+        content: "";
+        width: 5px;
+        height: 20px;
+        background-color: #63b4ab;
+        border-radius: 3px;
+        position: absolute;
+    }
+    .div-back .question-translation .main-question .middle:before {
+        height: 18px;
+        top:52px;
+        left: 6px;
+        transform: rotate(45deg);
+    }
+    .div-back .question-translation .main-question .middle:after{
+        top:40px;
+        left: 6px;
+        transform: rotate(120deg);
+    }
+    .div-back .question-translation .main-question .right{
+        width: 380px;
+        height: 80px;
+        border: 2px solid #f0f0f0;
+        box-shadow: 0 0 5px #f0f0f0;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .div-back .question-translation .main-question .right textarea {
+        width: 99%;
+        height: 99%;
+        padding: 10px;
+        font-size: 18px;
+        color: #3c3c3c;
+        border: 0px solid transparent;
+        text-align: left;
+        vertical-align: top;
+        overflow: hidden;
+    }
+    /*默认底部*/
+    .div-back .foot-default,.foot-correct,.foot-wrong,.foot-final{
+        width: 100%;
+        height: 120px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    .div-back .foot-default{
+        background-color: #cccccc;
+        border: 1px solid #cccccc;
+        display: none;
+    }
+    .div-back .foot-default .skip,.check,.div-back .foot-final .review{
+        box-sizing: border-box;
+        width: 150px;
+        height: 44px;
+        display: inline-block;
+        margin: 20px 40px 0px 40px;
+        border-radius: 30px;
+        text-align: center;
+        font-size: 18px;
+        line-height: 44px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.5s;
+    }
+    .div-back .foot-default .skip,.div-back .foot-final .review{
+        background-color: #cccccc;
+        border: 2px solid #B0B0B0;
+    }
+    .div-back .foot-default .skip,.div-back .foot-final .review:hover{
+        background-color: #B0B0B0;
+        color: #3c3c3c;
+    }
+    .div-back .foot-default .check{
+        float: right;
+        background-color: #7eb530;
+        border: 2px solid #7eb530;
+        color: white;
+    }
+    .div-back .foot-default .check,.div-back .continue:hover{
+        background-color: #91cc3c;
+        border: 2px solid #91cc3c;
+    }
+    /*正确底部*/
+    .div-back .foot-correct{
+        color: #7eb530;
+        background-color: #def0a5;
+        border: 1px solid #def0a5;
+        display: none;
+    }
+    .div-back .foot-correct .icon-correct{
+        width: 70px;
+        height: 70px;
+        border-radius: 35px;
+        background-color: #ffffff;
+        margin: 20px 0px 20px 30px;
+        display: inline-block;
+        position: relative;
+    }
+    .div-back .foot-correct .icon-correct:before,:after{
+        content: '';
+        background-color: #7eb530;
+        border-radius: 10px;
+        display: block;
+        position: absolute;
+    }
+    .div-back .foot-correct .icon-correct:before{
+        width: 10px;
+        height: 25px;
+        left: 20px;
+        top: 30px;
+        transform: rotate(130deg);
+    }
+    .div-back .foot-correct .icon-correct:after{
+        width: 10px;
+        height: 40px;
+        left: 37px;
+        top: 15px;
+        transform: rotate(40deg);
+    }
+    .div-back .foot-correct .correct-right{
+        margin: 20px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .div-back .foot-correct .correct-right .report,.div-back .continue,.div-back .foot-wrong .wrong-right .report{
+        width: 150px;
+        margin: 20px 40px 0px 0px;
+        border-radius: 30px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.5s;
+    }
+    .div-back .foot-correct .correct-right{
+        font-size: 20px;
+    }
+    .div-back .foot-correct .correct-right .report{
+        height: 25px;
+        display: block;
+        font-size: 13px;
+        line-height: 25px;
+        font-weight: 500;
+        border: 2px solid #bcdb59;
+        font-size: 15px;
+    }
+    .div-back .foot-correct .correct-right .report:hover{
+        background-color: #daf096 ;
+        border-color: #7eb530;
+    }
+    .div-back  .continue {
+        height: 44px;
+        float: right;
+        display: inline-block;
+        font-size: 18px;
+        line-height: 44px;
+        font-weight: 600;
+        background-color: #7eb530;
+        color: #ffffff;
+        border: 2px solid #7eb530;
+        vertical-align: middle;
+    }
+    /*错误底部*/
+    .div-back .foot-wrong{
+        color: #dd381d;
+        background-color: #ffd4cc;
+        display: none;
+    }
+    /*错误图标*/
+    .div-back .foot-wrong .icon-wrong{
+        width: 70px;
+        height: 70px;
+        border-radius: 35px;
+        background-color: #ffffff;
+        margin: 20px 0px 20px 30px;
+        display: inline-block;
+        position: relative;
+    }
+    .div-back .foot-wrong .icon-wrong:before,:after{
+        content: '';
+        background-color: #dd381d;
+        border-radius: 10px;
+        display: block;
+        /*display: none;*/
+        position: absolute;
+    }
+    .div-back .foot-wrong .icon-wrong:before{
+        width: 10px;
+        height: 40px;
+        left: 30px;
+        top: 15px;
+        transform: rotate(45deg);
+    }
+    .div-back .foot-wrong .icon-wrong:after{
+        width: 10px;
+        height: 40px;
+        left: 30px;
+        top: 15px;
+        transform: rotate(135deg);
+    }
+    .div-back .foot-wrong .wrong-right{
+        font-size: 20px;
+        margin: 20px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .div-back .foot-wrong .wrong-right .report{
+        height: 25px;
+        display: block;
+        margin-top: 5px;
+        font-size: 13px;
+        line-height: 25px;
+        font-weight: 500;
+        border: 2px solid #e3988c;
+        font-size: 15px;
+    }
+    .div-back .foot-wrong .wrong-right .report:hover{
+        background-color: #e8c1ba ;
+        border-color: #dd381d;
+    }
+    /*底部*/
+    .div-back .foot-final{
+        background-color: #cccccc;
+        border: 1px solid #cccccc;
+        /*display: none;*/
+    }
+    /*结束页*/
+    .div-back .ending{
+        text-align: center;
+    }
+    .div-back .ending h2{
+        font-size: 35px;
+        margin-bottom: 10px;
+    }
+    .div-back .ending h3{
+        font-weight: 500;
+        font-size: 25px;
+    }
+    .div-back .ending .graphs{
+        width: 90%;
+        height: 100%;
+        margin: 20px;
+    }
+    .div-back .ending .graphs .roll{
+        width: 200px;
+        height: 200px;
+        margin: 20px 40px;
+        border-radius: 100px;
+        background-color: #63b4ab;
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+    }
+    .div-back .ending .graphs .roll:before{
+        content: "";
+        width: 160px;
+        height: 160px;
+        margin: 20px;
+        display: inline-block;
+        border-radius: 80px;
+        background-color: #ffffff;
+    }
+    .div-back .ending .graphs .roll .fire{
+        width: 30px;
+        height: 30px;
+        top:-10px;
+        left: 84px;
+        background-image: url("../images/flame.png");
+        background-size:30px 30px;
+        position: absolute;
+    }
+    .div-back .ending .graphs .roll h4{
+        left: 60px;
+        top:70px;
+        font-size: 25px;
+        color: #63b4ab;
+        font-weight: 600;
+        position: absolute;
+    }
+    .div-back .ending .graphs .roll h5{
+        left: 65px;
+        top: 110px;
+        font-size: 15px;
+        font-weight: 500;
+        position: absolute;
+    }
+    .div-back .ending .graphs .line{
+        width: 0px;
+        height: 200px;
+        margin: 20px 40px;
+        border: 1px solid #f0f0f0;
+        display: inline-block;
+        vertical-align: top;
+        opacity:0.8;
+    }
+    .div-back .ending .graphs .graph{
+        width: 200px;
+        height: 200px;
+        margin: 20px 40px;
+        background-color: #7eb530;
+        display: inline-block;
+        vertical-align: top;
+    }
+}

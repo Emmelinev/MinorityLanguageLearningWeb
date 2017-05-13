@@ -1,0 +1,132 @@
+@charset "UTF-8";
+@media screen and (min-width: 640px) {
+    .div-main .left-main h1{
+        font-weight: 300;
+        /*margin-bottom: 20px;*/
+    }
+    .div-main .left-main .do-lesson{
+        margin: 20px 0px 20px 0px;
+    }
+    .div-main .left-main .do-lesson .bar{
+        width: 140px;
+        min-height: 160px;
+        padding: 20px;
+        margin: 15px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px #d7d7d7;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .div-main .left-main .do-lesson .bar h3{
+        font-weight:300;
+        margin-bottom: 10px;
+    }
+    .div-main .left-main .do-lesson .bar h3 span{
+        width: 20px;
+        height: 20px;
+        float: right;
+        border-radius: 10px;
+        background-color: #7eb530;
+    }
+    .div-main .left-main .do-lesson .bar p{
+        margin-bottom: 20px;
+        font-size:15px;
+        color: #888888;
+    }
+    .div-main .left-main .do-lesson .bar .btn-go{
+        width: 140px;
+        height: 20px;
+        padding: 9px 0px 9px 0px;
+        margin: 10px 1px 1px 1px;
+        border: 2px solid #d7d7d7;
+        border-radius: 25px;
+        text-align: center;
+        line-height: 20px;
+        color: #888888;
+        cursor: pointer;
+    }
+    .div-main .left-main .do-lesson .bar .btn-go:hover{
+        color: #3c3c3c;
+        background-color: #f7f7f7;
+    }
+    .div-main .left-main hr{
+        width: 90%;
+        margin: 0 auto;
+        color: #d7d7d7;
+        opacity:0.5;
+    }
+    .div-main .left-main .tips-notes{
+        margin-top: 40px;
+    }
+    .div-main .left-main .tips-notes h2{
+        font-weight: 300;
+        font-size: 22px;
+    }
+    .div-main .left-main .tips-notes .passage{
+        margin: 20px;
+    }
+    .div-main .left-main .tips-notes h5{}
+    .div-main .left-main .tips-notes p{
+        margin-top: 10px;
+        font-weight:300;
+        color: #888888;
+    }
+    /*右边栏*/
+    .right-main .right-panel-pink{
+        width: 310px;
+        padding: 15px;
+        left: 900px;
+        top: 100px;
+        /*box-shadow: 0px 0px 25px #d7d7d7;*/
+        color: #fbdede;
+        border: 1px solid #fa7474;
+        border-radius: 10px;
+        background-color: #fa7474;
+        /*margin-bottom: 30px;*/
+        display: block;
+        position: fixed;
+    }
+    .right-main .right-panel-pink .lesson-icon{
+        width: 120px;
+        height: 120px;
+        margin: 40px 0px 20px 85px;
+        border-radius: 60px;
+        background: #FAEBD7 url("../images/chicken (3).png") no-repeat center;
+        background-size: 80px 80px;
+        border: 1px solid #FAEBD7;
+        display: block;
+    }
+    .right-main .right-panel-pink .level-bar{
+        width: 100%;
+        height: 25px;
+        color: #3c3c3c;
+        font-weight:600;
+        text-align: center;
+        border-radius: 13px;
+        background-color: #e3e3e3;
+        cursor: default;
+    }
+    .right-main .right-panel-pink .level-bar .process{
+        width: 60%;
+        height: 100%;
+        /*top: 0px;*/
+        background-color: #EEE685;
+        border-radius: 13px;
+        /*position: absolute;*/
+    }
+    .right-main .right-panel-pink .strengthen{
+        width: 70%;
+        height: 30px;
+        margin: 20px 0px 20px 40px;
+        padding: 8px 0px 8px 0px;
+        border: 2px solid #FAF0E6;
+        border-radius: 25px;
+        line-height: 30px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .right-main .right-panel-pink .strengthen:hover{
+        background-color: rgba(250,240,230,0.1);
+        /*color: #C67171;*/
+    }
+}

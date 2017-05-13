@@ -1,0 +1,111 @@
+@charset "UTF-8";
+@media screen and (min-width: 640px) {
+    .div-main .div-portrait{
+        width: 68%;
+        margin: 50px 100px 40px 100px;
+    }
+    .div-main .div-portrait .portrait{
+        width: 120px;
+        height: 120px;
+        /*float: left;*/
+        margin: 0 auto;
+        display: block;
+        /*border: 1px solid #3c3c3c;*/
+        border-radius: 60px;
+        background: url("../images/portrait.jpg");
+        background-size: 120px 120px;
+    }
+    .div-main .div-portrait h2{
+        margin-top: 15px;
+        font-weight:400;
+        font-size: 38px;
+        text-align: center;
+    }
+    .right-main .right-panel-grey{
+        width: 310px;
+        padding: 15px;
+        /*box-shadow: 0px 0px 25px #d7d7d7;*/
+        color: #888888;
+        border: 2px solid #DEDEDE;
+        border-radius: 10px;
+        background-color: transparent;
+        margin-bottom: 30px;
+    }
+    .right-main .right-panel-grey h3{
+        padding: 10px 0px 10px 0px;
+        color: #3c3c3c;
+        font-weight: 400;
+    }
+    .right-main .right-panel-grey .streak{
+        margin: 5px 0px 0px 0px;
+    }
+    .right-main .right-panel-grey h4{
+        font-weight: 600;
+        margin: 20px 0px 15px 0px;
+    }
+    .right-main .right-panel-grey .streak .span-fire{
+        width: 18px;
+        height: 18px;
+        margin-right: 5px;
+        background-image: url("../images/flame.png");
+        background-size: 18px 18px;
+        display: inline-block;
+    }
+    #streak-days{
+        color: #3c3c3c;
+        font-size: 16px;
+        font-weight: 600;
+        margin-top: 5px;
+    }
+    .right-main .right-panel-grey .lang-icon{
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        display: block;
+    }
+    .right-main .right-panel-grey .spain{
+         background: #FFB90F url("../images/holy-family.png") no-repeat center;
+        background-size: 40px 40px;
+     }
+    .right-main .right-panel-grey .japan{
+        background: #EEB4B4 url("../images/torii-gate.png") no-repeat center;
+        background-size: 40px 40px;
+    }
+    .right-main .right-panel-grey table tr td{
+        padding: 10px;
+    }
+    .right-main .right-panel-grey table h5{
+        color: #3c3c3c;
+        font-weight: 600;
+        font-size: 15px;
+    }
+    .right-main .right-panel-grey table h6{
+        font-size: 12px;
+        font-weight: 400;
+    }
+    #scroll-lang {
+        width:100%;
+        height:300px;
+        overflow-y: scroll;
+    }
+    #scroll-lang div {
+        width:100%;
+        height:100px;
+    }
+    #scroll-lang::-webkit-scrollbar {
+        width:12px;
+        height:10px;
+    }
+    #scroll-lang::-webkit-scrollbar-button    {
+        background-color:#DEDEDE;
+    }
+    #scroll-lang::-webkit-scrollbar-track     {
+        background:#DEDEDE;
+    }
+    #scroll-lang::-webkit-scrollbar-thumb{
+        background:#F5FFFA;
+    }
+    #scroll-lang::-webkit-scrollbar-corner {
+        background:#DEDEDE;
+    }
+}

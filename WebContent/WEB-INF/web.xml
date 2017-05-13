@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>BACALINGWEB</display-name>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.bacaling.Servlet.LoginServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UserInfoServlet</servlet-name>
+    <servlet-class>com.bacaling.Servlet.UserInfoServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description>For user log out.</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.bacaling.Servlet.LogoutServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SignupServlet</servlet-name>
+    <servlet-class>com.bacaling.Servlet.SignupServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>WordServlet</servlet-name>
+    <servlet-class>com.bacaling.Servlet.WordServlet</servlet-class>
+  </servlet>
+  
+   <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SettingsServlet</servlet-name>
+    <servlet-class>com.bacaling.Servlet.SettingsServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>MessageServlet</servlet-name>
+    <servlet-class>com.bacaling.Servlet.MessageServlet</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserInfoServlet</servlet-name>
+    <url-pattern>/UserInfoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>SignupServlet</servlet-name>
+    <url-pattern>/SignupServlet</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>WordServlet</servlet-name>
+    <url-pattern>/WordServlet</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>SettingsServlet</servlet-name>
+    <url-pattern>/SettingsServlet</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>MessageServlet</servlet-name>
+    <url-pattern>/MessageServlet</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/errors/404.jsp</location>
+  </error-page>
+</web-app>

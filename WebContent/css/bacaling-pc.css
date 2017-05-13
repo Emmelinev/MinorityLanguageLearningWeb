@@ -1,0 +1,234 @@
+-moz-border-radius: none | <length>{1,4} [/ <length>{1,4} ]?
+-webkit-border-radius: none | <length>{1,4} [/ <length>{1,4} ]?
+border-radius: none | <length>{1,4} [/ <length>{1,4} ]?
+
+@charset "UTF-8";
+
+/*body{*/
+    /*background-color: mediumaquamarine;*/
+	    background: #0b3e71;
+/*}*/
+
+@media screen and (min-width: 640px) {
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    /***************************header*****************************/
+    header .mheadercontent{
+        display: none;
+    }
+
+    .mnews{
+        display: none;
+    }
+    header{
+        height: 90px;
+        width: 100%;
+        /*border: 1px solid indianred;*/
+    }
+    header .headercontent{
+        width: 94%;
+        height: 100%;
+        margin: 0 auto;
+        /*background-color: white;*/
+        background-image: url("../image/nav.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+
+
+
+
+    /*设置logo*/
+    header .headercontent .logodiv{
+        position: absolute;
+        left: 25px;
+        top: 40px;
+        cursor: pointer;
+    }
+
+    header .headercontent .tooldiv{
+        width: 400px;
+        height: 35px;
+        /*border: 1px solid navy;*/
+        position: absolute;
+        top: 5px;
+        right: 120px;
+        line-height: 35px;
+        /*font-size: 14px;*/
+        /*font-weight: bold;*/
+    }
+
+    header .headercontent .tooldiv .man{
+        width: 20px;
+        height: 20px;
+        /*垂直居中*/
+        vertical-align: middle;
+        /*background-color: blueviolet;*/
+        display: inline-block;
+        background-image: url("../image/ico.png");
+    }
+
+    header .headercontent .tooldiv .searchdiv{
+        width: 80px;
+        height: 22px;
+        border: 1px solid white;
+        left: 115px;
+        top: 5px;
+        position: absolute;
+        font-size: 12px;
+        line-height: 22px;
+    }
+
+    header .headercontent .tooldiv .searchdiv:hover{
+        border: 1px solid lightgray;
+    }
+
+    header .headercontent .tooldiv .searchdiv .searchicon{
+        width: 20px;
+        height: 20px;
+        /*垂直居中*/
+        vertical-align: middle;
+        /*background-color: blueviolet;*/
+        display: inline-block;
+        background-position: -20px 0px;
+        background-image: url("../image/ico.png");
+        cursor: pointer;
+    }
+    header .headercontent .tooldiv .explore{
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        left: 200px;
+        top: 5px;
+    }
+    header .headercontent .tooldiv .explore img{
+        width: 100%;
+        height: 100%;
+    }
+
+    header .headercontent .tooldiv .textdiv{
+        width: 133px;
+        height: 22px;
+        position: absolute;
+        left: 235px;
+        top: 5px;
+        line-height: 22px;
+        /*vertical-align: middle;*/
+        border: 1px solid lightgray;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    header .headercontent .menudiv{
+        width: 640px;
+        height: 50px;
+        /*border: 1px solid magenta;*/
+        position: absolute;
+        right: 120px;
+        top: 38px;
+    }
+    header .headercontent .menudiv .first{
+        list-style: none;
+        float: left;
+        font-size: 18px;
+        font-weight: bold;
+        margin-left: 20px;
+        width: 100px;
+        text-align: center;
+        line-height: 45px;
+    }
+
+    header .headercontent .menudiv .first ul{
+        overflow: hidden;
+        height: 0px;
+        -webkit-transition: all 0.5s;
+    }
+    /*改变菜单背景色*/
+    header .headercontent .menudiv .first:hover{
+        background-color: black;
+        color: white;
+    }
+
+    /*header .headercontent .menudiv .first:hover ul{*/
+        /*height: 150px;*/
+    /*}*/
+    header .headercontent .menudiv .first:hover li{
+        display: block;
+    }
+
+    header .headercontent .menudiv .first li{
+        list-style: none;
+        font-size: 12px;
+        line-height: 25px;
+        display: none;
+    }
+@media screen and (max-width: 1100px){
+    header .headercontent .menudiv{
+        display: none;
+    }
+
+}
+
+    /***************************content*****************************/
+    /*设置banner图尺寸*/
+    .content .bannerdiv{
+        width: 100%;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: -10;
+    }
+    .content .bannerdiv img{
+        width: 100%;
+        height: 670px;
+
+
+    /***************************footer*****************************/
+@media screen and (max-width: 1100px){
+    header .headercontent .menu{
+        display: none;
+    }
+    footer .foot1{
+        display: none;
+    }
+    .content .knowXG .right .btmdiv .more{
+        display: none;
+    }
+    .content .knowXG .right .btmdiv li{
+        width: 90%;
+        height: 80%;
+        margin-left: 5%;
+        list-style: none;
+        /*background-color: red;*/
+    }
+
+    .content .know .knowXG .left .itable1{
+        display: block;
+    }
+    .content .know .knowXG .left .table1{
+        display: none;
+    }
+    .content .know .knowXG .left .itable1{
+        width: 85%;
+        margin: 0 auto;
+        line-height: 30px;
+    }
+    .content .know .knowXG .left .itable1 i{
+        display: inline-block;
+        width: 33px;
+        height: 32px;
+        vertical-align: middle;
+        background: url("../image/i_ab_arr.png");
+    }
+}
+@media screen and (min-width: 1100px){
+    .content .know .knowXG .left .table1{
+        display: block;
+    }
+    .content .know .knowXG .left .itable1{
+        display: none;
+    }
+}

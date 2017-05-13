@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <style>
+        .animation{
+            /*width: 40px;*/
+            /*height: 40px;*/
+            /*background: url("../images/strawberry.png") no-repeat center;*/
+            /*background-size: 40px;*/
+            /*background-size: 40px;*/
+            /*transform: rotate(20deg);*/
+            /*position: absolute;*/
+            animation: berryframe-5px 2s;
+            animation-direction: alternate;
+            animation-iteration-count: 999;
+        }
+        @keyframes berryframe-5px {
+            0%{
+                /*top: 200px;*/
+                opacity: 0.9;
+            }
+            100%{
+                /*top: 210px;*/
+                opacity: 0.5;
+            }
+        }
+        @keyframes berryframe-10px {
+            0%{
+                top: 200px;
+            }
+            100%{
+                top: 210px;
+            }
+        }
+        .size1{
+            width: 40px;height: 40px;
+            position: absolute;
+        }
+        .size2{
+            width: 50px;height: 50px;
+            position: absolute;
+        }
+        .size3{
+            width: 60px;height: 60px;
+            position: absolute;
+        }
+        .circle{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 150px;
+            left: 150px;
+            border: 1px solid transparent;
+            -webkit-border-radius: 300px;
+            -moz-border-radius: 300px;
+            border-radius: 300px;
+        }
+    </style>
+    <script>
+
+    </script>
+    <div class="circle animation">
+        <span class="size1" style="background: url(../images/strawberry.png) no-repeat center;top: 40px;left: 70px;background-size: 40px 40px;transform: rotate(20deg);" ></span>
+        <span class="size1" style="background: url(../images/strawberry.png) no-repeat center;top: 70px;left: 150px;background-size: 40px 40px;transform: rotate(30deg);" ></span>
+        <span class="size3" style="background: url(../images/strawberry.png) no-repeat center;top: 120px;left: 90px;background-size: 60px 60px;transform: rotate(700deg);" ></span>
+        <span class="size1" style="background: url(../images/strawberry.png) no-repeat center;top: 180px;left: 250px;background-size: 30px 30px;transform: rotate(120deg);" ></span>
+        <span class="size1" style="background: url(../images/strawberry.png) no-repeat center;top: 350px;left: 120px;background-size: 40px 40px;transform: rotate(145deg);" ></span>
+
+        <span class="size1" style="background: url(../images/blueberries.png) no-repeat center;top: 60px;left: 100px;background-size: 40px 40px;transform: rotate(15deg);"></span>
+        <span class="size2" style="background: url(../images/blueberries.png) no-repeat center;top: 110px;left: 240px;background-size: 50px 50px;transform: rotate(48deg);"></span>
+        <span class="size1" style="background: url(../images/blueberries.png) no-repeat center;top: 170px;left: 340px;background-size: 20px 20px;transform: rotate(60deg);"></span>
+        <span class="size1" style="background: url(../images/blueberries.png) no-repeat center;top: 240px;left: 180px;background-size: 40px 40px;transform: rotate(160deg);"></span>
+        <span class="size1" style="background: url(../images/blueberries.png) no-repeat center;top: 260px;left: 80px;background-size: 30px 30px;transform: rotate(180deg);"></span>
+
+        <span class="size1" style="background: url(../images/raspberry.png) no-repeat center;top: 30px;left: 180px;background-size: 40px 40px;transform: rotate(35deg);"></span>
+        <span class="size2" style="background: url(../images/raspberry.png) no-repeat center;top: 120px;left: 150px;background-size: 50px 50px;transform: rotate(75deg);"></span>
+        <span class="size1" style="background: url(../images/raspberry.png) no-repeat center;top: 200px;left: 300px;background-size: 40px 40px;transform: rotate(92deg);"></span>
+        <span class="size1" style="background: url(../images/raspberry.png) no-repeat center;top: 280px;left: 120px;background-size: 30px 30px;transform: rotate(144deg);"></span>
+        <span class="size3" style="background: url(../images/raspberry.png) no-repeat center;top: 310px;left: 260px;background-size: 60px 60px;transform: rotate(130deg);"></span>
+
+        <span class="size1" style="background: url(../images/cherries.png) no-repeat center;top: 30px;left: 230px;background-size: 40px 40px;transform: rotate(27deg);"></span>
+        <span class="size2" style="background: url(../images/cherries.png) no-repeat center;top: 180px;left: 90px;background-size: 50px 50px;transform: rotate(88deg);"></span>
+        <span class="size1" style="background: url(../images/cherries.png) no-repeat center;top: 200px;left: 170px;background-size: 30px 30px;transform: rotate(65deg);"></span>
+        <span class="size1" style="background: url(../images/cherries.png) no-repeat center;top: 250px;left: 270px;background-size: 40px 40px;transform: rotate(140deg);"></span>
+        <span class="size2" style="background: url(../images/cherries.png) no-repeat center;top: 300px;left: 180px;background-size: 50px 50px;transform: rotate(176deg);"></span>
+
+        <span class="size1" style="background: url(../images/grape.png) no-repeat center;top: 100px;left: 40px;background-size: 40px 40px;transform: rotate(21deg);"></span>
+        <span class="size2" style="background: url(../images/grape.png) no-repeat center;top: 120px;left: 340px;background-size: 50px 50px;transform: rotate(74deg);"></span>
+        <span class="size2" style="background: url(../images/grape.png) no-repeat center;top: 220px;left: 120px;background-size: 40px 40px;transform: rotate(98deg);"></span>
+        <span class="size1" style="background: url(../images/grape.png) no-repeat center;top: 270px;left: 230px;background-size: 40px 40px;transform: rotate(108deg);"></span>
+        <span class="size1" style="background: url(../images/grape.png) no-repeat center;top: 355px;left: 230px;background-size: 30px 30px;transform: rotate(138deg);"></span>
+
+        <span class="size1" style="background: url(../images/grapes.png) no-repeat center;top: 70px;left: 200px;background-size: 30px 30px;transform: rotate(56deg);"></span>
+        <span class="size1" style="background: url(../images/grapes.png) no-repeat center;top: 150px;left: 20px;background-size: 40px 40px;transform: rotate(78deg);"></span>
+        <span class="size3" style="background: url(../images/grapes.png) no-repeat center;top: 150px;left: 200px;background-size: 60px 60px;transform: rotate(124deg);"></span>
+        <span class="size2" style="background: url(../images/grapes.png) no-repeat center;top: 220px;left: 340px;background-size: 50px 50px;transform: rotate(164deg);"></span>
+        <span class="size1" style="background: url(../images/grapes.png) no-repeat center;top: 300px;left: 70px;background-size: 40px 40px;transform: rotate(240deg);"></span>
+
+        <span class="size1" style="background: url(../images/strawberry-g.png) no-repeat center;top: 35px;left: 270px;background-size: 40px 40px;transform: rotate(16deg);"></span>
+        <span class="size2" style="background: url(../images/strawberry-g.png) no-repeat center;top: 75px;left: 300px;background-size: 50px 50px;transform: rotate(100deg);"></span>
+        <span class="size2" style="background: url(../images/strawberry-g.png) no-repeat center;top: 210px;left: 40px;background-size: 50px 50px;transform: rotate(164deg);"></span>
+        <span class="size1" style="background: url(../images/strawberry-g.png) no-repeat center;top: 280px;left: 30px;background-size: 40px 40px;transform: rotate(210deg);"></span>
+        <span class="size1" style="background: url(../images/strawberry-g.png) no-repeat center;top: 360px;left: 190px;background-size: 30px 30px;transform: rotate(275deg);"></span>
+
+        <span class="size2" style="background: url(../images/biscuit.png) no-repeat center;top: 15px;left: 120px;background-size: 50px 50px;transform: rotate(16deg);"></span>
+        <span class="size1" style="background: url(../images/biscuit.png) no-repeat center;top: 150px;left: 290px;background-size: 40px 40px;transform: rotate(16deg);"></span>
+        <span class="size1" style="background: url(../images/biscuit.png) no-repeat center;top: 220px;left: 220px;background-size: 40px 40px;transform: rotate(16deg);"></span>
+        <span class="size1" style="background: url(../images/biscuit.png) no-repeat center;top: 280px;left: 320px;background-size: 40px 40px;transform: rotate(16deg);"></span>
+        <span class="size1" style="background: url(../images/biscuit.png) no-repeat center;top: 320px;left: 140px;background-size: 30px 30px;transform: rotate(16deg);"></span>
+    </div>
+</div>
+</body>
+</html>

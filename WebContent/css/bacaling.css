@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+/*引入电脑端样式*/
+@import url(bacaling-pc.css);
+/*引入移动端样式*/
+@import url(bacaling-mobile.css);
+
