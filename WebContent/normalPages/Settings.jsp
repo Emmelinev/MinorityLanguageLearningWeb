@@ -95,7 +95,7 @@
 <div class="div-main">
     <div class="left-main">
         <!--账户设置-->
-        <form id="frm-change-account" method="post" action="../SettingsServlet">           
+        <form id="frm-change-account" enctype="multipart/form-data" method="post" action="../SettingsServlet">           
         <div class="settings-left" id="account-settings">
             <div class="head">
                 <h1>Account Settings</h1>
@@ -105,37 +105,32 @@
             <table>
                 <tr>
                     <td>Username</td>
-                    <td><input id="user_name" type="text" class="text-input"  Oninput="txtchange(event)" value=${sessionScope.user_name}></td>
+                    <td><input id="user_name" type="text" class="text-input" name="user_name"  Oninput="txtchange(event)" value=${sessionScope.user_name}></td>
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td><input id="email" type="text" class="text-input" Oninput="txtchange(event)" value=${sessionScope.user_email}></td>
-                </tr>
-                <tr>
-                    <td>Microphone</td>
-                    <td>
-                        <span class="radio-out"><input type="radio" class="radio-input" name="microphone" value="on">on&nbsp;&nbsp;</span>
-                        <span class="radio-out"><input type="radio" class="radio-input" name="microphone" value="off">off</span></td>
+                    <td><input id="email" type="text" class="text-input" name="email" Oninput="txtchange(event)" value=${sessionScope.user_email}></td>
                 </tr>
                 <tr>
                     <td>Voice autoplay</td>
                     <td>
-                        <span class="radio-out"><input type="radio" class="radio-input" name="aautoplay" value="on">on&nbsp;&nbsp;</span>
-                        <span class="radio-out"><input type="radio" class="radio-input" name="autoplay" value="off">off</span></td>
+                        <span id="autoplay0" class="radio-out"><input type="radio" class="radio-input" name="autoplay" value="on">on&nbsp;&nbsp;</span>
+                        <span id="autoplay1" class="radio-out"><input type="radio" class="radio-input" name="autoplay" value="off">off</span></td>
                 </tr>
                 <tr>
                     <td>Sound effects</td>
                     <td>
-                        <span class="radio-out"><input type="radio" class="radio-input" name="effect" value="on">on&nbsp;&nbsp;</span>
-                        <span class="radio-out"><input type="radio" class="radio-input" name="effect" value="off">off</span></td>
+                        <span id="effect0" class="radio-out"><input type="radio" class="radio-input" name="effect" value="on">on&nbsp;&nbsp;</span>
+                        <span id="effect1" class="radio-out"><input type="radio" class="radio-input" name="effect" value="off">off</span></td>
                 </tr>
                 <tr>
                     <td>Profile picture</td>
                     <td>
                         <div class="profile-picture">
                             <span class="picture"></span>
+                            <img alt="go" src="d:/university/<%=(String) request.getAttribute("profile_pic")%> " />
                             <div class="picture-right">
-                                <input type="file" value="Select file...">
+                                <input type="file" id="profile_pic" name="profile_pic">
                                 maximum images size is 1MB
                             </div>
                         </div>
@@ -177,7 +172,7 @@
         <div class="settings-left" id="notification">
             <div class="head">
                 <h1>Notification</h1>
-                <input id="submit-notice" type="button" class="save-changes" value="Save changes">
+                <input id="submit_notice" type="button" class="save-changes" value="Save changes">
             </div>
             <table>
                 <tr>
@@ -197,15 +192,15 @@
         <div class="settings-left" id="dailyGoal">
             <div class="head">
                 <h1>Daily Goal</h1>
-                <input id="submit-goal" type="button" class="save-changes" value="Save changes">
+                <input id="submit_goal" type="button" class="save-changes" value="Save changes">
             </div>
             <div class="content">
                 <span class="image"></span>
                 <ul>
-                    <li><input type="radio" name="goal1">&nbsp;&nbsp;&nbsp;&nbsp;Basic<span>1px per day</span></li>
-                    <li><input type="radio" name="goal2">&nbsp;&nbsp;&nbsp;&nbsp;Causal<span>10px per day</span></li>
-                    <li><input type="radio" name="goal3">&nbsp;&nbsp;&nbsp;&nbsp;Regular<span>30px per day</span></li>
-                    <li><input type="radio" name="goal4">&nbsp;&nbsp;&nbsp;&nbsp;Serious<span>50px per day</span></li>
+                    <li><input type="radio" name="goal" value="1">&nbsp;&nbsp;&nbsp;&nbsp;Basic<span>1px per day</span></li>
+                    <li><input type="radio" name="goal" value="2">&nbsp;&nbsp;&nbsp;&nbsp;Causal<span>10px per day</span></li>
+                    <li><input type="radio" name="goal" value="3">&nbsp;&nbsp;&nbsp;&nbsp;Regular<span>30px per day</span></li>
+                    <li><input type="radio" name="goal" value="4">&nbsp;&nbsp;&nbsp;&nbsp;Serious<span>50px per day</span></li>
                 </ul>
             </div>
             <hr>

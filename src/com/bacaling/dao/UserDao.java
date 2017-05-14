@@ -133,13 +133,9 @@ public class UserDao extends BaseDao {
 	 */
 	public int updateUserTel(String oldTel, String newTel) throws SQLException{
 		String sql = "update bacaling.user_info " +
-			     	 "set user_tel = ? "+
-			     	 "where user_tel = ? ";
-		Object[] parm = new Object[2];
-		parm[0] = newTel;
-		parm[1] = oldTel;
-
-		return super.executeUpdate(sql, parm);
+			     	 "set user_tel = "+ newTel +
+			     	 "where user_tel = " + oldTel;
+		return super.executeUpdate(sql);
 	}
 	
 	/*
@@ -147,53 +143,91 @@ public class UserDao extends BaseDao {
 	 */
 	public int updatePassword(String userId, String password) throws SQLException{
 		String sql = " update bacaling.user_info " +
-			     	 "set user_password = ? "+
-			     	 "where user_id = ? ";
-		Object[] parm = new Object[2];
-		parm[0] = password;
-		parm[1] = userId;
-
-		return super.executeUpdate(sql, parm);
+			     	 "set user_password = "+ password +
+			     	 "where user_id = " + userId;
+		return super.executeUpdate(sql);
 	}
 	/*
 	 * 更改用户名
 	 */
 	public int updateUserName(String userId, String userName) throws SQLException{
 		String sql = "update bacaling.user_info " +
-			     	 "set user_name = ? "+
-			     	 "where user_id = ? "; 
-		Object[] parm = new Object[2];
-		parm[0] = userName;
-		parm[1] = userId;
-
-		return super.executeUpdate(sql, parm);
+			     	 "set user_name = "+ userName +
+			     	 "where user_id = " + userId; 
+		return super.executeUpdate(sql);
 	}
 	/*
 	 * 更改邮箱
 	 */
 	public int updateEmail(String userId, String userEmail) throws SQLException{
 		String sql = "update bacaling.user_info " +
-			     	 "set user_email = ? "+
-			     	 "where user_id = ? "; 
-		Object[] parm = new Object[2];
-		parm[0] = userEmail;
-		parm[1] = userId;
-
-		return super.executeUpdate(sql, parm);
+			     	 "set user_email = "+ userEmail +
+			     	 "where user_id = " +userId; 
+		return super.executeUpdate(sql);
 	}	
 	/*
 	 * 更改头像
 	 */
 	public int updateImg(String userId, String url) throws SQLException{
 		String sql = "update bacaling.user_info " +
-			     	 "set profile_img = ? "+
-			     	 "where user_id = ? "; 
-		Object[] parm = new Object[2];
-		parm[0] = url;
-		parm[1] = userId;
-
-		return super.executeUpdate(sql, parm);
-	}	
+			     	 "set profile_img = "+ url +
+			     	 "where user_id = " + userId; 
+		return super.executeUpdate(sql);
+	}
+	/*
+	 * 更改每日目标
+	 */
+	public int updateGoal(String userId,String goal) throws SQLException{
+		String sql = "update bacaling.user_info " +
+			     	 "set daily_goal = "+ goal +
+			     	 "where user_id = " + userId; 
+		return super.executeUpdate(sql);
+	}
+	/*
+	 * 更改邮件提醒
+	 */
+	public int updateNotice(String userId,String result) throws SQLException{
+		String sql = "update bacaling.user_info " +
+			     	 "set mail_notice = "+ result +
+			     	 "where user_id = " + userId; 
+		return super.executeUpdate(sql);
+	}
+	/*
+	 * 更改自动播放
+	 */
+	public int updateAutoplay(String userId,String result) throws SQLException{
+		String sql = "update bacaling.user_info " +
+			     	 "set autoplay = "+ result +
+			     	 "where user_id = " + userId; 
+		return super.executeUpdate(sql);
+	}
+	/*
+	 * 更改音效
+	 */
+	public int updateEffect(String userId,String result) throws SQLException{
+		String sql = "update bacaling.user_info " +
+			     	 "set effect = "+ result +
+			     	 "where user_id = " + userId; 
+		return super.executeUpdate(sql);
+	}
+	/*
+	 * 更改邮件通知
+	 */
+	public int updateMail(String userId,String notice) throws SQLException{
+		String sql = "update bacaling.user_info " +
+			     	 "set mail_notice = "+ notice +
+			     	 "where user_id = " + userId; 
+		return super.executeUpdate(sql);
+	}
+	/*
+	 * 注销用户
+	 */
+	public int deactiveAccount(String userId) throws SQLException{
+		String sql = "update user_info "
+				+ "set status = -1 "
+				+ "where user_id = " + userId;
+		return super.executeUpdate(sql);
+	}
 	public Client queryUser(String userInfo)
 	{
 		Client client = null;

@@ -1,7 +1,11 @@
 package com.bacaling.Servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,90 +13,201 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 import com.bacaling.dao.UserDao;
 import com.bacaling.entity.Client;
+import com.bacaling.util.UploadImgUtil;
+
+import net.sf.json.JSONObject;
 
 public class SettingsServlet extends HttpServlet {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	private int method;
 
-	/**
-	 * Constructor of the object.
-	 */
 	public SettingsServlet() {
 		super();
 	}
 
-	/**
-	 * Destruction of the servlet. <br>
-	 */
 	public void destroy() {
-		super.destroy(); // Just puts "destroy" string in log
-		// Put your code here
+		super.destroy(); 
 	}
 
-	/**
-	 * The doGet method of the servlet. <br>
-	 *
-	 * This method is called when a form has its tag value method equals to get.
-	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
-	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		this.doPost(request, response);
 	}
 
-	/**
-	 * The doPost method of the servlet. <br>
-	 *
-	 * This method is called when a form has its tag value method equals to post.
-	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
-	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		String information="";
-
-		UserDao userDao=new UserDao();
-		
-		String userName=request.getParameter("userName");
-		String password=request.getParameter("password");
-		System.out.println(userName);
-		
-		Client client=userDao.queryUser(userName);
-		if(null!=client&&password.equals(client.getPassword())){			
-			HttpSession session = request.getSession();
-			session.setAttribute("user_id", client.getUserId());
-			session.setAttribute("user_name", client.getUserName());
-			session.setAttribute("user_tel", client.getPhoneNum());
-			session.setAttribute("user_password", client.getPassword());
-			session.setAttribute("user_email", client.getUserEmail());
-			session.setAttribute("current_language", client.getCurrentLanguage());
-			session.setAttribute("profile_img", client.getProfileImg());
-			session.setAttribute("user_state", client.getState());
-//			response.sendRedirect(request.getContextPath()+"/index.jsp");
-			response.sendRedirect(request.getContextPath()+"/normalPages/index.jsp");
-			//response.getWriter().print("1");
-		}else{
-//			session.setAttribute("message", "用户名或密码不匹配。");
-//		    response.sendRedirect("fail.jsp") ;
-			information="Something wrong with username or password.";
-			request.setAttribute("information", information);
-			request.getRequestDispatcher(request.getContextPath()+"/login.jsp").forward(request, response);
-			//response.getWriter().println("0");
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		method=Integer.parseInt(request.getParameter("method"));
+		if(method==1){
+			try {
+				this.updateAccount(request, response);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (FileUploadException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		if(method==2){
+			try {
+				this.updateProfile(request, response);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(method==3){
+			try {
+				this.updateNotice(request, response);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(method==4){
+			try {
+				this.updateGoal(request, response);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(method==5){
+			try {
+				this.updateProfile(request, response);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+//	信息更新
+	public void updateAccount(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, FileUploadException{
+		String userName=request.getParameter("user_name");
+		String email=request.getParameter("email");
+		String autoplay=request.getParameter("autoplay");
+		String effect=request.getParameter("effect");
+//		String profilePic=request.getParameter("profile_pic");
+//		System.out.println(profilePic);
+		
+		String userId = (String) request.getSession().getAttribute("user_id"); 
+		UserDao userdao = new UserDao();
+		if(userName != null){
+			userdao.updateUserName(userId, userName);
+		}
+		if(email != null){
+			userdao.updateEmail(userId, email);
+		}
+		if(autoplay != null){
+			userdao.updateAutoplay(userId, autoplay);
+		}
+		if(effect != null){
+			userdao.updateEffect(userId, effect);
+		}
+		if(request.getParameter("profile_pic") != null){
+			this.uploadImg(request, response);
+		}
+	}
+	/*
+	 * 更改密码
+	 */
+	public void updateProfile(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
+		UserDao userdao = new UserDao();
+		JSONObject json = new JSONObject();
+		String userId = (String) request.getSession().getAttribute("user_id"); 
+		String password=request.getParameter("modifyPassword");
+		int ret = userdao.updatePassword(userId, password);
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		if( ret > 0){
+			json.put("valid",true);
+		}else{
+			json.put("valid",false);					
+		}
+		out.print(json);
+		System.out.println(json);
+	}
+	/*
+	 * 更改邮件通知
+	 */
+	public void updateNotice(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
+		UserDao userdao = new UserDao();
+		JSONObject json = new JSONObject();
+		String userId = (String) request.getSession().getAttribute("user_id"); 
+		String result=request.getParameter("notice");
+		int ret = userdao.updateNotice(userId, result);
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		if( ret > 0){
+			json.put("valid",true);
+		}else{
+			json.put("valid",false);					
+		}
+		out.print(json);
+		System.out.println(json);
+	}
+	/*
+	 * 更改邮件通知
+	 */
+	public void updateGoal(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
+		UserDao userdao = new UserDao();
+		JSONObject json = new JSONObject();
+		String userId = (String) request.getSession().getAttribute("user_id"); 
+		String result=request.getParameter("goal");
+		int ret = userdao.updateGoal(userId, result);
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		if( ret > 0){
+			json.put("valid",true);
+		}else{
+			json.put("valid",false);					
+		}
+		out.print(json);
+		System.out.println(json);
+	}
+	/*
+	 * 注销账号
+	 */
+	public void deactiveAccount(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException{
+		UserDao userdao = new UserDao();		
+		String userId = (String) request.getSession().getAttribute("user_id"); 
+		int ret = userdao.deactiveAccount(userId);
+		JSONObject json = new JSONObject();
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		if( ret > 0){
+			json.put("valid",true);
+		}else{
+			json.put("valid",false);					
+		}
+		out.print(json);
+		System.out.println(json);
+	}
+	/*
+	 * 上传头像
+	 */
+//	@SuppressWarnings("deprecation")
+	public void uploadImg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, FileUploadException{
+		request.setCharacterEncoding("utf-8"); 
+	    String path = "d:/university";
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        factory.setRepository(new File(path));
+        factory.setSizeThreshold(1024*1024) ;
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        List<FileItem> list = (List<FileItem>)upload.parseRequest(request);
+        UploadImgUtil.uplaod(path,list);
+//	        request.getRequestDispatcher("filedemo.jsp").forward(request, response);
+	}
+	public void output(){
+		
 	}
 
 	/**
@@ -103,5 +218,5 @@ public class SettingsServlet extends HttpServlet {
 	public void init() throws ServletException {
 		// Put your code here
 	}
-
+	
 }

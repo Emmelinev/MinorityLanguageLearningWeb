@@ -3,6 +3,10 @@ var user_email = null;
 var current_pwd = null;
 var new_pwd = null;
 var confirm_pwd = null;
+var a_account = {"user_name":"0","email":"0","autoplay":"0","effect":"0","profile_pic":"0"};
+var a_profile = {"new_pwd":"0"};
+var a_notice = {"notice":"0","reminder":"0"};
+var a_goal = {"goal":"0"};
 $(document).ready(function() {
 	 if (window.history && window.history.pushState) {
 		$(window).on('popstate', function () {
@@ -19,6 +23,9 @@ $(document).ready(function() {
 	current_pwd = $("#current_pwd").val();
 	new_pwd = $("#new_pwd").val();
 	confirm_pwd = $("#confirm_pwd").val();
+	
+	radioChange();
+	
 });
 function txtchange(event){
 	console.log(event.target.id);
@@ -28,6 +35,36 @@ function txtchange(event){
 	    }else{
 	    	$("#"+getButton(elemId)).attr("disabled",true);
 	    }
+}
+function radioChange(){
+	$("input:radio[name='autoplay']").change(function (){
+		var ckd = $("input:radio[name='autoplay']:checked").val();
+		$("#submit_account").attr("disabled",false);
+		if(ckd == "on"){
+			a_account["autoplay"] = "1";
+			$("#autoplay0").attr("class","radio-out-selected");
+			$("#autoplay1").attr("class","radio-out");
+		}else if(ckd == "off"){
+			a_account["autoplay"] = "2";
+			$("#autoplay0").attr("class","radio-out");
+			$("#autoplay1").attr("class","radio-out-selected");
+		}
+		console.log(a_account);
+	});
+	$("input:radio[name='effect']").change(function (){
+		var ckd = $("input:radio[name='effect']:checked").val();
+		$("#submit_account").attr("disabled",false);
+		if(ckd == "on"){
+			a_account["effect"] = "1";
+			$("#effect0").attr("class","radio-out-selected");
+			$("#effect1").attr("class","radio-out");
+		}else if(ckd == "off"){
+			a_account["effect"] = "2";
+			$("#effect0").attr("class","radio-out");
+			$("#effect1").attr("class","radio-out-selected");
+		}
+		console.log(a_account);
+	});
 }
 function checkChanged(orig_value,new_value){
 	if($.trim(orig_value) == $.trim(new_value)){
@@ -91,6 +128,8 @@ function getTable(){
     var servlet = "../WordServlet?method=1";
     return ajaxFunc(param,servlet);
 }
+
+function get
 
 
 
