@@ -3,6 +3,7 @@ package com.bacaling.Servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,9 +13,12 @@ import javax.servlet.http.HttpSession;
 //import javax.xml.registry.infomodel.User;
 
 import com.bacaling.dao.UserDao;
+import com.bacaling.dao.WordDao;
 import com.bacaling.entity.Client;
+import com.bacaling.entity.UserWord;
 import com.bacaling.util.SendMsgUtil;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 /**
@@ -70,9 +74,14 @@ public class UserInfoServlet extends HttpServlet {
 		if(method==6){
 			this.validateCode(request, response);
 		}
+		if(method==7){
+			this.getExp(request, response);
+		}
+		if(method==8){
+			this.getExpList(request, response);
+		}
 	}
 	/*
-	 * 忘记密码1-》2-》6》3
 	 * 输入用户名时检查是否存在
 	 */
 	private void validateUser(HttpServletRequest request, HttpServletResponse response)
@@ -96,7 +105,43 @@ public class UserInfoServlet extends HttpServlet {
 		System.out.println("用户名校验-请求用户"+phonenum+"验证结果："+json);
 //		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
-	
+	private void getExp(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException{
+		JSONObject json = new JSONObject();
+		UserDao userdao = new UserDao();
+		
+		String userId = String.valueOf(request.getSession().getAttribute("user_id"));
+		String language = String.valueOf(request.getSession().getAttribute("current_language"));	
+
+		System.out.println("userid-" + userId + " language-" + language);
+		
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		Client userInfo = userdao.queryExp(userId, language);
+		
+		if(userdao != null){
+			json.put("exp", userInfo.getExp());
+			json.put("level", userInfo.getLevel());
+		}
+		out.print(json);
+		System.out.println(json);
+	}
+	private void getExpList(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException{
+		UserDao userdao = new UserDao();
+
+		String user_id= String.valueOf(request.getSession().getAttribute("user_id"));
+		System.out.println("user_id" + user_id);
+		
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		List<Client> list = userdao.queryExpList(user_id);
+		
+		JSONArray jsonArray =JSONArray.fromObject(list);
+		out.print(jsonArray);
+		System.out.println(jsonArray);
+	}
 	/*
 	 * 点击发送验证码
 	 */

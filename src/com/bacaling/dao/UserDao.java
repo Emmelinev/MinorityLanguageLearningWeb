@@ -1,51 +1,20 @@
 package com.bacaling.dao;
 
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import com.bacaling.entity.Client;
 import com.bacaling.entity.User;
-import com.bacaling.util.DateClass;;
+import com.bacaling.entity.UserWord;
+import com.bacaling.util.DateClass;
+import com.bacaling.util.LessonInfo;;
 
-	/***
-	 * create table user_info(
-		user_id int auto_increment primary key not null,
-	    user_name varchar(20),
-	    user_tel char(11),
-	    user_password varchar(50) not null,
-	    user_email varchar(100),
-	    user_state int,
-	    user_privilege int,
-	    user_reg_date  datetime
-	);
-	 */
+
 public class UserDao extends BaseDao {
-	/**
-	 * @param userName
-	 * @param password
-	 * @return true 成功登录 false 登录失败
-	 * @throws SQLException 
-	 */
-//	public boolean login(String userName,String upwd){
-//		
-//		boolean ret=false;
-//		String sql="select * from user_info where " +
-//				"user_name='"+userName+"' and pwd='"+upwd+"'";
-//		ResultSet rs=super.executeQuery(sql);
-//		try {
-//			if(rs.next()){
-//				ret=true;
-////				 String tel = rs.getString("tel");  
-////	                String pwd = rs.getString("pwd");  
-////	                System.out.println("tel:"+tel+" pwd:"+pwd);
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return ret;
-//	}
+
 	/*
 	 * 新用户注册
 	 */
@@ -128,6 +97,72 @@ public class UserDao extends BaseDao {
 		}
 		return re;
 	}
+	/*
+	 * 查询用户信息设置
+	 */
+	public Client queryProfile(String userId){
+		Client client = null;
+		String sql="select * from bacaling.user_info where " +
+				"user_id='" + userId;
+		ResultSet rs=super.executeQuery(sql);
+		try {
+			while(rs.next()){
+				client = new Client(userId);
+				client.setAutoplay(rs.getInt("autoplay"));
+				client.setEffect(rs.getInt("effect"));
+				client.setMailNotice(rs.getInt("mail_notice"));
+				client.setDailyGoal(rs.getInt("daily_goal"));
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return client;
+	}
+	/*
+	 * 语言经验值
+	 */
+	public Client queryExp(String userId, String language){
+		Client client = null;
+		String sql="select user_id,language_id,exp from bacaling.user_sr_static where " +
+				"user_id='" + userId + " and language_id = " + language;
+		ResultSet rs=super.executeQuery(sql);
+		try {
+			while(rs.next()){
+				client = new Client(userId);
+				client.setExp(rs.getInt("exp"));
+				client.setLevel(LessonInfo.setLevel(rs.getInt("exp")));
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return client;
+	}
+	/*
+	 * 语言经验值列表
+	 */
+	public List<Client> queryExpList(String userId){
+		List<Client> list = new ArrayList<Client>();
+		String sql="select user_id,language_id,exp from bacaling.user_sr_static where " +
+				"user_id='" + userId;
+		ResultSet rs=super.executeQuery(sql);
+		try {
+			while(rs.next()){
+				Client client = null;
+				client = new Client(userId);
+				client.setExp(rs.getInt("exp"));
+				client.setLevel(LessonInfo.setLevel(rs.getInt("exp")));
+				client.setCurrentLanguage(rs.getInt("language_id"));
+				list.add(client);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 	/*
 	 * 更改手机号
 	 */
@@ -251,5 +286,5 @@ public class UserDao extends BaseDao {
 			e.printStackTrace();
 		}
 		return client;
-	}	
+	}
 }

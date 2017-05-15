@@ -45,7 +45,7 @@
                 <span class="span-flag"></span>
                 <div class="drop-down">
                     &nbsp;&nbsp;&nbsp;&nbsp;LEARNING<br>
-                    <ul>
+                    <ul id="user_language">
                         <li>
                             <img src="../images/spain.png">
                             <span class="language">Spanish</span>
@@ -105,7 +105,7 @@
             <!--语言指示-->
             <h2 id="language_name"> Skills</h2>
             <!--等级-->
-            <h4>LEVEL 9</h4>
+            <h4 id="language_level">LEVEL 9</h4>
         </div>
         <!--主要部分-->
         <ul class="div-main" id="lesson_list">

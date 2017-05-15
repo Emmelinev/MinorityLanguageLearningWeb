@@ -5,6 +5,7 @@ public class Question extends Word{
 	private String content;
 	private String answer;
 	private String type;
+	private String img;
 
 	public Question(String word) {
 		super(word);
@@ -34,5 +35,10 @@ public class Question extends Word{
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
 }

@@ -78,6 +78,9 @@ public class WordServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		if(method==5){
+			this.randomWord(request, response);
+		}
 	}
 //	加载表单
 	private void getWords(HttpServletRequest request, HttpServletResponse response)
@@ -148,6 +151,29 @@ public class WordServlet extends HttpServlet {
 			json.put("word_tanslation", wordInfo.getWordTranslation());
 			json.put("word_class", wordInfo.getWordClass());
 			json.put("lesson", wordInfo.getOfBar());
+			json.put("example", wordInfo.getContent());
+			json.put("translation", wordInfo.getTranslation());
+		}
+		out.print(json);
+		System.out.println(json);
+	}
+	private void randomWord(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		JSONObject json = new JSONObject();
+		WordDao worddao = new WordDao();
+
+		String current_language = String.valueOf(request.getSession().getAttribute("current_language"));	
+
+		System.out.println("language-" + current_language);
+		
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		wordInfo = worddao.randomWord(current_language);
+		
+		if(wordInfo != null){
+			json.put("word",wordInfo.getWord());
+			json.put("word_tanslation", wordInfo.getWordTranslation());
+			json.put("word_class", wordInfo.getWordClass());
 			json.put("example", wordInfo.getContent());
 			json.put("translation", wordInfo.getTranslation());
 		}

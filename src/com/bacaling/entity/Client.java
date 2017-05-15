@@ -21,6 +21,10 @@ public class Client extends User {
 	private int dailyGoal;
 	private String profileImg;
 	private int exp;
+	private int autoplay;
+	private int effect;
+	private int mailNotice;
+	private int level;
 
 	public Client(String userTel) {
 		super(userTel);
@@ -89,6 +93,38 @@ public class Client extends User {
 
 	public void setExp(int exp) {
 		this.exp = exp;
+	}
+
+	public int getAutoplay() {
+		return autoplay;
+	}
+
+	public void setAutoplay(int autoplay) {
+		this.autoplay = autoplay;
+	}
+
+	public int getEffect() {
+		return effect;
+	}
+
+	public void setEffect(int effect) {
+		this.effect = effect;
+	}
+
+	public int getMailNotice() {
+		return mailNotice;
+	}
+
+	public void setMailNotice(int mailNotice) {
+		this.mailNotice = mailNotice;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 	
 }

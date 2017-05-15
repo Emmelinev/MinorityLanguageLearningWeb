@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 //import javax.xml.registry.infomodel.User;
 
+import com.bacaling.dao.LessonDao;
 import com.bacaling.dao.UserDao;
 import com.bacaling.dao.WordDao;
 import com.bacaling.entity.Client;
 import com.bacaling.entity.ExampleSentences;
+import com.bacaling.entity.Lesson;
 import com.bacaling.entity.UserWord;
 import com.bacaling.entity.Word;
 import com.bacaling.util.SendMsgUtil;
@@ -57,7 +59,7 @@ public class LessonServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		method=Integer.parseInt(request.getParameter("method"));
 		if(method==1){
-			this.getWords(request, response);
+			this.getLessonList(request, response);
 		}
 		if(method==2){
 			try {
@@ -80,21 +82,19 @@ public class LessonServlet extends HttpServlet {
 		}
 	}
 //	加载表单
-	private void getWords(HttpServletRequest request, HttpServletResponse response)
+	private void getLessonList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
-		WordDao worddao = new WordDao();
+		LessonDao lessondao = new LessonDao();
 //		JSONObject json = new JSONObject();
 
 		String user_id= String.valueOf(request.getSession().getAttribute("user_id"));
-		String current_language = String.valueOf(request.getSession().getAttribute("current_language"));
-//		String current_language = (String) request.getSession().getAttribute("current_language");
-//		String user_id=request.getParameter("userId");
-//		String current_language=request.getParameter("cLanguage");
-		System.out.println("user_id" + user_id + " language:"  + current_language);
+		String language = String.valueOf(request.getSession().getAttribute("current_language"));
+
+		System.out.println("user_id" + user_id + " language:"  + language);
 		
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();
-		List<UserWord> list = worddao.wordList(user_id,current_language);
+		List<Lesson> list = lessondao.lessonList(user_id, language);
 		
 		JSONArray jsonArray =JSONArray.fromObject(list);
 		out.print(jsonArray);

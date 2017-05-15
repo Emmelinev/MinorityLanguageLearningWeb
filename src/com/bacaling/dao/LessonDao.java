@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bacaling.entity.Lesson;
+import com.bacaling.entity.UserWord;
 
 
 public class LessonDao extends BaseDao{
@@ -12,15 +13,14 @@ public class LessonDao extends BaseDao{
 	 *加载课程
 	 */
 	public List<Lesson> lessonList(String user_id,String language){
-		List<Lesson> lessons = null;
+		List<Lesson> lessons = new ArrayList<Lesson>();
 //		Lesson lesson = null;
 		String sql = "select c.lesson_name,c.lesson_icon,d.progress progress,ifnull(uid,2) uid "
 				+ "from lesson_list c left join (select ifnull(b.user_id,"
 				+ user_id +") uid,a.lesson_id lesson_id,ifnull(progress,0) progress "
 				+ "from lesson_list a left join v_lesson_user b on a.lesson_id = b.lesson_id "
 				+ "where a.of_language = " 
-				+ language + ") d on c.lesson_id = d.lesson_id "
-				+ "where c.isvisible = 1 and c.of_language = " 
+				+ language + ") d on c.lesson_id = d.lesson_id where c.isvisible = 1 and c.of_language = " 
 				+ language + " and uid = " + user_id + ";";
 		
 		ResultSet rs=super.executeQuery(sql);

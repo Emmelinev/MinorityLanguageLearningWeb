@@ -55,6 +55,43 @@ public class WordDao extends BaseDao {
 		}
 		return word;
 	}
+	/*
+	 *单词查询
+	 */
+	public ExampleSentences randomWord(String language){
+		ExampleSentences word = null;
+		
+//		String sql ="select a.user_id,c.word,c.translation,c.class,b.exp_content,b.standard_translation "
+//				+ "from user_word_list a, "
+//				+ "example_sentences b,"
+//				+ "(select distinct(d.word_id) word_id,d.word_text word,e.translation_content translation,f.class_name class  "
+//				+ "from vocabulary_warehouse d,word_translation_warehouse e,word_class_dictionary f "
+//				+ "where d.word_id=e.of_word and d.word_class=f.class_id group by d.word_id) c "
+//				+ "where a.word_id = b.of_word and c.word_id = a.word_id and user_id = 2 and b.exp_language = " + language
+//				+ "order by rand() limit 1,1;";
+		String sql ="select c.word word,c.translation translation,c.class class,b.exp_content example,b.standard_translation example_translation"
+				+ "from example_sentences b,"
+				+ "(select distinct(d.word_id) word_id,d.word_text word,e.translation_content translation,f.class_name class "
+				+ "from vocabulary_warehouse d,word_translation_warehouse e,word_class_dictionary f"
+				+ "	where d.word_id=e.of_word and d.word_class=f.class_id group by d.word_id) c"
+				+ "	where b.of_word = c.word_id and b.exp_language = " + language
+				+ "	order by rand() limit 1,1;";
+
+		ResultSet rs=super.executeQuery(sql);
+		try {
+			while(rs.next()){
+				word = new ExampleSentences("null");
+				word.setWord(rs.getString("word"));
+				word.setWordTranslation(rs.getString("translation"));
+				word.setWordClass(rs.getString("class"));
+				word.setContent(rs.getString("example"));
+				word.setTranslation(rs.getString("example_translation"));
+			}
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		}
+		return word;
+	}
 	
 	/*
 	 * 词汇列表
