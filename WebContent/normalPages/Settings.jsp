@@ -11,7 +11,7 @@
     <title>Bacaling - Pleasure with languages</title>
 </head>
 <body>
-<!-- 判断是否已经登录 -->
+	<!-- 判断是否已经登录 -->
 	<%  
   		if(session.getAttribute("user_id")==null)
   		{%>
@@ -20,25 +20,24 @@
   			<span class="sr-only">Error:</span>
   			You're supposed to login before starting your study. Page will redirect to login page after 3 seconds.<a href="login.jsp" class="alert-link">Click here if the broswer didn't redirect.</a>
 		</div>
-		<script language="javascript">
-   			setInterval("window.history.go(-1)",3000) //300表3秒
-		</script>
     	<%
-       // response.setHeader("refresh","3;URL=login.jsp");
+        response.setHeader("refresh","3;URL=login.jsp");
         return;
    		}
    	%>
+<div id="loading">loading...</div>
 <header>
 	<div id="head1" class="header-back1">
         <div class="header-back"></div>
         <!--左上角元素-->
         <div class="left-header">
             <div class="div-logo"><a href="index.jsp">BACALING</a></div>
+
             <div class="div-menu">
-                <li style="background-color: #63b4ab"><a href="index.jsp">Home</a></li>
+            <ul>
+                <li><a href="index.jsp">Home</a></li>
                 <li><a href="Words.jsp">Words</a></li>
-                <!--<li>Community</li>-->
-                <!--<li>Translation</li>-->
+                </ul>
             </div>
         </div>
         <!--右上角元素-->
@@ -47,18 +46,7 @@
                 <span class="span-flag"></span>
                 <div class="drop-down">
                     &nbsp;&nbsp;&nbsp;&nbsp;LEARNING<br>
-                    <ul>
-                        <li>
-                            <img src="../images/spain.png">
-                            <span class="language">Spanish</span>
-                            <span class="level">level 9</span>
-                        </li>
-                        <li>
-                            <img src="../images/japan.png">
-                            <span class="language">Japanese</span>
-                            <span class="level">level 1</span>
-                        </li>
-                    </ul>
+                    <ul id="user_language"></ul>
                 </div>
             </div>
             <div class="div-user">
@@ -76,7 +64,7 @@
             <div class="div-login-days">
                 <img src="../images/flame.png">
                 <!--<span class="fire"></span>-->
-                <span class="days">${sessionScope.user_state}</span>
+                <span class="fire">${sessionScope.user_state}</span>
                 <h5><span>${sessionScope.user_state}</span> day(s) streak</h5>
             </div>
             <div class="div-alert">

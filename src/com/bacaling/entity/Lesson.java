@@ -8,6 +8,8 @@ public class Lesson {
 	private int allowPic;
 	private double progress;
 	private String color;
+	private int passed;
+	private int number;
 	
 
 	public Lesson() {
@@ -59,5 +61,17 @@ public class Lesson {
 	}
 	public void setColor(String color) {
 		this.color = color;
+	}
+	public int getPassed() {
+		return passed;
+	}
+	public void setPassed(int passed) {
+		this.passed = passed;
+	}
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
 	}
 }

@@ -27,16 +27,18 @@
         return;
    		}
    	%>
+<div id="loading">loading...</div>
 <header>
 	<div id="head1" class="header-back1">
         <div class="header-back"></div>
         <!--左上角元素-->
         <div class="left-header">
             <div class="div-logo"><a href="index.jsp">BACALING</a></div>
+
             <div class="div-menu">
-            	<ul>
+            <ul>
                 <li><a href="index.jsp">Home</a></li>
-                <li  style="background-color: #63b4ab"><a href="Words.jsp">Words</a></li>
+                <li style="background-color: #63b4ab"><a href="Words.jsp">Words</a></li>
                 </ul>
             </div>
         </div>
@@ -64,7 +66,7 @@
             <div class="div-login-days">
                 <img src="../images/flame.png">
                 <!--<span class="fire"></span>-->
-                <span>${sessionScope.user_state}</span>
+                <span class="fire">${sessionScope.user_state}</span>
                 <h5><span>${sessionScope.user_state}</span> day(s) streak</h5>
             </div>
             <div class="div-alert">

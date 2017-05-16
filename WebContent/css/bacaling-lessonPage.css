@@ -21,31 +21,48 @@
         font-weight:300;
         margin-bottom: 10px;
     }
-    .div-main .left-main .do-lesson .bar h3 span{
+    .div-main .left-main .do-lesson .bar h3 .status-1{
         width: 20px;
         height: 20px;
         float: right;
         border-radius: 10px;
         background-color: #7eb530;
     }
+    .div-main .left-main .do-lesson .bar h3 .status-0{
+        width: 20px;
+        height: 20px;
+        float: right;
+        border-radius: 10px;
+        background-color: #fa7474;
+    }
     .div-main .left-main .do-lesson .bar p{
         margin-bottom: 20px;
         font-size:15px;
         color: #888888;
     }
-    .div-main .left-main .do-lesson .bar .btn-go{
+    .div-main .left-main .do-lesson .bar .btn-1,.div-main .left-main .do-lesson .bar .btn-0{
         width: 140px;
         height: 20px;
         padding: 9px 0px 9px 0px;
         margin: 10px 1px 1px 1px;
-        border: 2px solid #d7d7d7;
         border-radius: 25px;
         text-align: center;
         line-height: 20px;
-        color: #888888;
         cursor: pointer;
     }
-    .div-main .left-main .do-lesson .bar .btn-go:hover{
+    .div-main .left-main .do-lesson .bar .btn-0{
+    	background-color: #7eb530;
+    	border: 2px solid #7eb530;
+    	color: #fff;
+    }
+    .div-main .left-main .do-lesson .bar .btn-1{
+        border: 2px solid #d7d7d7;
+    	color: #888888;
+    }
+    .div-main .left-main .do-lesson .bar .btn-0:hover{
+        opacity:0.8;
+    }
+    .div-main .left-main .do-lesson .bar .btn-1:hover{
         color: #3c3c3c;
         background-color: #f7f7f7;
     }

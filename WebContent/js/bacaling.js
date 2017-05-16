@@ -1,3 +1,8 @@
+$(document).ajaxStart(function () {
+	$("#loading").show();
+	}).ajaxStop(function () {
+	$("#loading").hide();
+});
 //===================顶部导航栏======================================
 //获取通知
 function getMessage(){

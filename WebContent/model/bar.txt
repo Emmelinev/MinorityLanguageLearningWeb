@@ -1,0 +1,16 @@
+        <!--    <div class="bar">
+                <h3>LESSON 1<span></span></h3>
+                <p>el, hombre, la, mujer, yo, un, una, soy, ni?o, ni?a</p>
+                <div class="btn-1"><a href="PracticePage.jsp">Redo</a></div>
+            </div>
+            <div class="bar">
+                <h3>LESSON 2<span></span></h3>
+                <p>¨¦l, es, ella, come, t¨², eres, usted, manzanas</p>
+                <div class="btn-1">Redo</div>
+            </div>
+            <div class="bar">
+                <h3>LESSON 3<span></span></h3>
+                <p>pan, como, comes, agua, leche, bebe, bebo, bebes</p>
+                <div class="btn-0">Start</div>
+            </div>
+        </div>-->

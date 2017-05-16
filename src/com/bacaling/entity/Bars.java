@@ -6,13 +6,14 @@ public class Bars extends Lesson{
 	private String barId;
 	private String barName;
 	private String barMember;
-	private boolean status;
+	private int status;
 	
 	public Bars() {
 //		super(lessonName);
 		this.barId = null;
 		this.barName = null;
 		this.barMember = null;
+		this.status = 0;
 	}
 	public String getBarId() {
 		return barId;
@@ -32,10 +33,10 @@ public class Bars extends Lesson{
 	public void setBarMember(String barMember) {
 		this.barMember = barMember;
 	}
-	public boolean isStatus() {
+	public int getStatus() {
 		return status;
 	}
-	public void setStatus(boolean status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 	

@@ -4,9 +4,7 @@ $(document).ready(function() {
 			window.history.forward(1);
 		});
 	  }
-   
     $("#language_name").prepend("<span>" + getLanguageName() + "</span>");
-//    console.log(getLanguageName());
     
     $(".div-alert").click(function(){
     	$(".new-count").hide();
@@ -19,11 +17,9 @@ $(document).ready(function() {
     	$(".div-alert").animate({"opacity":"0.5"},100); 
     });
     $("#play_sentence").click(function(){
-//    	console.log($("#sentence").html());
     	getAudioNormal($("#sentence").html(),$("#language_hide").html());
     });
     $("#play_word").click(function(){
-//    	console.log($(".word").html());
     	getAudioNormal($(".word").html(),$("#language_hide").html());
     });
     $(".head").click(function(){
@@ -35,6 +31,7 @@ $(document).ready(function() {
     getWord();
     getLessons();
 });
+
 
 function getLevel(){
 	var param = {"user_id":"1"};
@@ -54,11 +51,12 @@ function getWord(){
 	$("#translation").html(json.word_tanslation);
 	$("#word_class").html(json.word_class);
 	$("#sentence").html(json.example);
+	$("#sentence_example").html(json.translation);
 	var lan = $("#language_hide").html();
 	if(lan == 4){
 		$("#word_pronunce").html("<"+json.pronunce+">");
 	}else{
-		$("#word_pronunce").html("");
+		$("#word_pronunce").hide();
 	}
 }
 function getLessons(){

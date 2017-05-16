@@ -1,0 +1,27 @@
+          <!--   <h2>Tips and notes</h2>
+            <div class="passage">
+                <h5>Masculine and Feminine Nouns</h5>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;In Spanish all nouns are masculine or feminine.
+                    Usually, nouns that end with an "o" are masculine,
+                    and nouns that end with an "a" are feminine.
+                    For example, "manzana" (apple) is feminine and "diario" (newspaper) is masculine.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;The articles "el" and "un" are used with masculine nouns,
+                    and the articles "la" and "una" are used with feminine nouns.
+                    "The apple" is "la manzana" and "a newspaper" is "un diario."<br>
+                </p>
+            </div>
+            <div class="passage">
+                <h5>Accent Marks</h5>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Vowels in Spanish can have an accent mark, such as the "u" in "men¨²" (menu).
+                    One use of the accent mark is to indicate which syllable should be stressed in the pronunciation.
+                    For example, in "tel¨¦fono" (telephone), the second "e" has the most stress.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Accent marks are also used to distinguish homophones.
+                    For example, "¨¦l" and "el" are homophones because they have the same pronunciation.
+                    However, "¨¦l" is a masculine pronoun (meaning "he" or "him")
+                    and "el" is a masculine article (meaning "the").<br>
+                </p>
+            </div>
+        </div>
+    </div>--> 

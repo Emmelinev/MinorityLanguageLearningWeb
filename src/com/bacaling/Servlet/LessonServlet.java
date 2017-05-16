@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.bacaling.dao.LessonDao;
 import com.bacaling.dao.UserDao;
 import com.bacaling.dao.WordDao;
+import com.bacaling.entity.Bars;
 import com.bacaling.entity.Client;
 import com.bacaling.entity.ExampleSentences;
 import com.bacaling.entity.Lesson;
@@ -62,6 +63,12 @@ public class LessonServlet extends HttpServlet {
 			this.getLessonList(request, response);
 		}
 		if(method==2){
+			this.getBarList(request, response);
+		}
+		if(method==3){
+			this.getProgress(request, response);
+		}
+		if(method==4){
 			try {
 				this.newRecords(request, response);
 			} catch (SQLException e) {
@@ -87,9 +94,46 @@ public class LessonServlet extends HttpServlet {
 		
 		JSONArray jsonArray =JSONArray.fromObject(list);
 		out.print(jsonArray);
+//		System.out.println(jsonArray);
+	}
+//	加载bar列表
+	private void getBarList(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		LessonDao lessondao = new LessonDao();
+
+		String userId= String.valueOf(request.getSession().getAttribute("user_id"));
+		String language = String.valueOf(request.getSession().getAttribute("current_language"));
+		String lessonId = request.getParameter("lesson");
+//		System.out.println("user_id" + userId + " language:"  + language);
+		
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		List<Bars> list = lessondao.loadBarList(language, userId, lessonId);
+		
+		JSONArray jsonArray =JSONArray.fromObject(list);
+		out.print(jsonArray);
 		System.out.println(jsonArray);
 	}
-	
+//	获取进度
+	private void getProgress(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		LessonDao lessondao = new LessonDao();
+		JSONObject json = new JSONObject();
+		String userId= String.valueOf(request.getSession().getAttribute("user_id"));
+		String language = String.valueOf(request.getSession().getAttribute("current_language"));
+		String lessonId = request.getParameter("lesson");
+//		System.out.println("user_id" + userId + " language:"  + language);
+		
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		Bars bar = lessondao.lessonProgress(language, userId, lessonId);
+
+		json.put("name",bar.getLessonName());
+		json.put("passed",bar.getPassed());
+		json.put("number",bar.getNumber());
+		json.put("progress",bar.getProgress());
+		json.put("img",bar.getLessonImg());
+		out.print(json);
+		System.out.println(json);
+	}	
 //	插入新数据
 	private void newRecords(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, SQLException{

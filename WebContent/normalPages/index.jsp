@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript" src="../js/jquery-3.0.0.js"></script>
 	<script type="text/javascript" src="../js/jquery.voicerss-tts.min.js"></script>
+	<script type="text/javascript" src="../js/jQueryRotate.2.2.js"></script>
 	<script type="text/javascript" src="../js/bacaling.js"></script>
 	<script type="text/javascript" src="../js/bacaling-index.js"></script>
 	<title>Bacaling - Pleasure with Languages</title>
@@ -27,16 +28,19 @@
         return;
    		}
    	%>
-<!-- <iframe src="headPage.jsp"></iframe> -->
+<div id="loading">loading...</div>
 <header>
 	<div id="head1" class="header-back1">
         <div class="header-back"></div>
         <!--左上角元素-->
         <div class="left-header">
             <div class="div-logo"><a href="index.jsp">BACALING</a></div>
+
             <div class="div-menu">
+            <ul>
                 <li style="background-color: #63b4ab"><a href="index.jsp">Home</a></li>
                 <li><a href="Words.jsp">Words</a></li>
+                </ul>
             </div>
         </div>
         <!--右上角元素-->
@@ -63,15 +67,15 @@
             <div class="div-login-days">
                 <img src="../images/flame.png">
                 <!--<span class="fire"></span>-->
-                <span>${sessionScope.user_state}</span>
+                <span class="fire">${sessionScope.user_state}</span>
                 <h5><span>${sessionScope.user_state}</span> day(s) streak</h5>
             </div>
             <div class="div-alert">
             	<span class="new-count">new</span>
             </div>
             <div class="message">
-                    <div class="close"></div>
-                    <ul id="srcoll-message"></ul>
+	            <div class="close"></div>
+	            <ul id="srcoll-message"></ul>
            </div>
         </div>
     </div>
