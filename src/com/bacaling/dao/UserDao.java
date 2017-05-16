@@ -125,13 +125,15 @@ public class UserDao extends BaseDao {
 	public Client queryExp(String userId, String language){
 		Client client = null;
 		String sql="select user_id,language_id,exp from bacaling.user_sr_static where " +
-				"user_id='" + userId + " and language_id = " + language;
+				"user_id='" + userId + "' and language_id = " + language;
+		System.out.println(sql);
 		ResultSet rs=super.executeQuery(sql);
 		try {
 			while(rs.next()){
 				client = new Client(userId);
 				client.setExp(rs.getInt("exp"));
 				client.setLevel(LessonInfo.setLevel(rs.getInt("exp")));
+				client.setCurrentLanguage(rs.getInt("language_id"));
 			}
 		} catch (SQLException e) {
 			
@@ -145,7 +147,8 @@ public class UserDao extends BaseDao {
 	public List<Client> queryExpList(String userId){
 		List<Client> list = new ArrayList<Client>();
 		String sql="select user_id,language_id,exp from bacaling.user_sr_static where " +
-				"user_id='" + userId;
+				"user_id='" + userId + "';";
+		System.out.println(sql);
 		ResultSet rs=super.executeQuery(sql);
 		try {
 			while(rs.next()){

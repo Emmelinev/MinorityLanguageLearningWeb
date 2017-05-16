@@ -22,9 +22,6 @@ public class WordDao extends BaseDao {
 //				+ "where exp_language = 3"
 //				+ "group by of_word) c"
 //				+ "where a.word_class = b.class_id and a.word_id = c.of_word";
-//		Object[] parm = new Object[2];
-//		parm[0] = word1;
-//		parm[1] = language;
 		String sql ="select ifnull(a.word_id,'No record') id,"
 				+ "ifnull(a.word_text,'No reord') word,"
 				+ "ifnull(d.lesson_name,'No record') lesson,"
@@ -69,26 +66,51 @@ public class WordDao extends BaseDao {
 //				+ "where d.word_id=e.of_word and d.word_class=f.class_id group by d.word_id) c "
 //				+ "where a.word_id = b.of_word and c.word_id = a.word_id and user_id = 2 and b.exp_language = " + language
 //				+ "order by rand() limit 1,1;";
-		String sql ="select c.word word,c.translation translation,c.class class,b.exp_content example,b.standard_translation example_translation"
-				+ "from example_sentences b,"
-				+ "(select distinct(d.word_id) word_id,d.word_text word,e.translation_content translation,f.class_name class "
-				+ "from vocabulary_warehouse d,word_translation_warehouse e,word_class_dictionary f"
-				+ "	where d.word_id=e.of_word and d.word_class=f.class_id group by d.word_id) c"
-				+ "	where b.of_word = c.word_id and b.exp_language = " + language
-				+ "	order by rand() limit 1,1;";
-
-		ResultSet rs=super.executeQuery(sql);
-		try {
-			while(rs.next()){
-				word = new ExampleSentences("null");
-				word.setWord(rs.getString("word"));
-				word.setWordTranslation(rs.getString("translation"));
-				word.setWordClass(rs.getString("class"));
-				word.setContent(rs.getString("example"));
-				word.setTranslation(rs.getString("example_translation"));
+		if("4".equals(language)){
+			String sql ="select c.word word,c.pronunce pronunce,c.translation translation,c.class class,b.exp_content example,b.standard_translation example_translation"
+					+ " from example_sentences b,"
+					+ "(select distinct(d.word_id) word_id,d.word_text word,d.word_pronunciation pronunce,e.translation_content translation,f.class_name class "
+					+ "from vocabulary_warehouse d,word_translation_warehouse e,word_class_dictionary f"
+					+ "	where d.word_id=e.of_word and d.word_class=f.class_id group by d.word_id) c"
+					+ "	where b.of_word = c.word_id and b.exp_language = " + language
+					+ "	order by rand() limit 1,1;";
+			System.out.println(sql);
+			ResultSet rs=super.executeQuery(sql);
+			try {
+				while(rs.next()){
+					word = new ExampleSentences("null");
+					word.setWord(rs.getString("word"));
+					word.setWordTranslation(rs.getString("translation"));
+					word.setWordClass(rs.getString("class"));
+					word.setContent(rs.getString("example"));
+					word.setTranslation(rs.getString("example_translation"));
+					word.setWordPronunciation(rs.getString("pronunce"));
+				}
+			} catch (SQLException e) {			
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {			
-			e.printStackTrace();
+		}else{
+			String sql ="select c.word word,c.translation translation,c.class class,b.exp_content example,b.standard_translation example_translation"
+					+ " from example_sentences b,"
+					+ "(select distinct(d.word_id) word_id,d.word_text word,e.translation_content translation,f.class_name class "
+					+ "from vocabulary_warehouse d,word_translation_warehouse e,word_class_dictionary f"
+					+ "	where d.word_id=e.of_word and d.word_class=f.class_id group by d.word_id) c"
+					+ "	where b.of_word = c.word_id and b.exp_language = " + language
+					+ "	order by rand() limit 1,1;";
+			System.out.println(sql);
+			ResultSet rs=super.executeQuery(sql);
+			try {
+				while(rs.next()){
+					word = new ExampleSentences("null");
+					word.setWord(rs.getString("word"));
+					word.setWordTranslation(rs.getString("translation"));
+					word.setWordClass(rs.getString("class"));
+					word.setContent(rs.getString("example"));
+					word.setTranslation(rs.getString("example_translation"));
+				}
+			} catch (SQLException e) {			
+				e.printStackTrace();
+			}
 		}
 		return word;
 	}

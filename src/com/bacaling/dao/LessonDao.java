@@ -15,14 +15,14 @@ public class LessonDao extends BaseDao{
 	public List<Lesson> lessonList(String user_id,String language){
 		List<Lesson> lessons = new ArrayList<Lesson>();
 //		Lesson lesson = null;
-		String sql = "select c.lesson_name,c.lesson_icon,d.progress progress,ifnull(uid,2) uid "
+		String sql = "select c.lesson_id lesson_id,c.lesson_name,c.lesson_icon,c.background_color color,d.progress progress,ifnull(uid,2) uid "
 				+ "from lesson_list c left join (select ifnull(b.user_id,"
 				+ user_id +") uid,a.lesson_id lesson_id,ifnull(progress,0) progress "
 				+ "from lesson_list a left join v_lesson_user b on a.lesson_id = b.lesson_id "
 				+ "where a.of_language = " 
 				+ language + ") d on c.lesson_id = d.lesson_id where c.isvisible = 1 and c.of_language = " 
 				+ language + " and uid = " + user_id + ";";
-		
+		System.out.println(sql);
 		ResultSet rs=super.executeQuery(sql);
 		try {
 			while(rs.next()){
@@ -31,6 +31,7 @@ public class LessonDao extends BaseDao{
 				lesson.setLessonName(rs.getString("lesson_name"));
 				lesson.setLessonImg(rs.getString("lesson_icon"));
 				lesson.setProgress(rs.getDouble("progress"));
+				lesson.setColor(rs.getString("color"));
 				lessons.add(lesson);
 			}
 		} catch (SQLException e) {			

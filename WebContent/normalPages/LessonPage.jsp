@@ -13,16 +13,14 @@
 </head>
 <body>
 <header>
-	<div id="head1" class="header-back1">
+<div id="head1" class="header-back1">
         <div class="header-back"></div>
         <!--左上角元素-->
         <div class="left-header">
             <div class="div-logo"><a href="index.jsp">BACALING</a></div>
             <div class="div-menu">
-                <li style="background-color: #63b4ab"><a href="index.jsp">Home</a></li>
-                <li><a onclick='jump();'>Words</a></li>
-                <!--<li>Community</li>-->
-                <!--<li>Translation</li>-->
+                <li><a href="index.jsp">Home</a></li>
+                <li><a href="Words.jsp">Words</a></li>
             </div>
         </div>
         <!--右上角元素-->
@@ -31,18 +29,7 @@
                 <span class="span-flag"></span>
                 <div class="drop-down">
                     &nbsp;&nbsp;&nbsp;&nbsp;LEARNING<br>
-                    <ul>
-                        <li>
-                            <img src="../images/spain.png">
-                            <span class="language">Spanish</span>
-                            <span class="level">level 9</span>
-                        </li>
-                        <li>
-                            <img src="../images/japan.png">
-                            <span class="language">Japanese</span>
-                            <span class="level">level 1</span>
-                        </li>
-                    </ul>
+                    <ul id="user_language"></ul>
                 </div>
             </div>
             <div class="div-user">

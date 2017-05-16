@@ -34,10 +34,10 @@
         <div class="left-header">
             <div class="div-logo"><a href="index.jsp">BACALING</a></div>
             <div class="div-menu">
-                <li style="background-color: #63b4ab"><a href="index.jsp">Home</a></li>
-                <li><a onclick='jump();'>Words</a></li>
-                <!--<li>Community</li>-->
-                <!--<li>Translation</li>-->
+            	<ul>
+                <li><a href="index.jsp">Home</a></li>
+                <li  style="background-color: #63b4ab"><a href="Words.jsp">Words</a></li>
+                </ul>
             </div>
         </div>
         <!--右上角元素-->
@@ -46,18 +46,7 @@
                 <span class="span-flag"></span>
                 <div class="drop-down">
                     &nbsp;&nbsp;&nbsp;&nbsp;LEARNING<br>
-                    <ul>
-                        <li>
-                            <img src="../images/spain.png">
-                            <span class="language">Spanish</span>
-                            <span class="level">level 9</span>
-                        </li>
-                        <li>
-                            <img src="../images/japan.png">
-                            <span class="language">Japanese</span>
-                            <span class="level">level 1</span>
-                        </li>
-                    </ul>
+                    <ul id="user_language"></ul>
                 </div>
             </div>
             <div class="div-user">
@@ -94,47 +83,7 @@
     <div class="left-main">
         <h1 id="language_name"><!--<span>Spanish</span>-->&nbsp; words learned</h1>
         <h4 id="count-row"><!-- <span>5</span>--> &nbsp;Words</h4>
-        <div class="word-table" id="word-list">
-        <!-- 
-            <table>
-                <tr>
-                    <th>Word</th>
-                    <th>Part of speech</th>
-                    <th>Last practiced</th>
-                    <th>Strength</th>
-                </tr>
-                <tr>
-                    <td>ellos</td>
-                    <td>Pronoun</td>
-                    <td>3 months ago</td>
-                    <td><span class="icon-strength-level icon-strength-level-4"></span></td>
-                </tr>
-                <tr>
-                    <td>son</td>
-                    <td>Verb</td>
-                    <td>3 months ago</td>
-                    <td><span class="icon-strength-level icon-strength-level-4"></span></td>
-                </tr>
-                <tr>
-                    <td>soy</td>
-                    <td>Verb</td>
-                    <td>3 months ago</td>
-                    <td><span class="icon-strength-level icon-strength-level-4"></span></td>
-                </tr>
-                <tr>
-                    <td>sus</td>
-                    <td>Determiner</td>
-                    <td>3 months ago</td>
-                    <td><span class="icon-strength-level icon-strength-level-4"></span></td>
-                </tr>
-                <tr>
-                    <td>los</td>
-                    <td>Determiner</td>
-                    <td>3 months ago</td>
-                    <td><span class="icon-strength-level icon-strength-level-4"></span></td>
-                </tr>
-            </table> -->
-        </div>
+        <div class="word-table" id="word-list"></div>
     </div>
 
     <!--右边栏-->

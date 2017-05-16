@@ -88,6 +88,9 @@ public class SettingsServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		if(method==6){
+				this.changeLanguage(request, response);
+		}
 	}
 //	信息更新
 	public void updateAccount(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException, FileUploadException{
@@ -206,8 +209,16 @@ public class SettingsServlet extends HttpServlet {
         UploadImgUtil.uplaod(path,list);
 //	        request.getRequestDispatcher("filedemo.jsp").forward(request, response);
 	}
-	public void output(){
-		
+	public void changeLanguage(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		JSONObject json = new JSONObject();
+		String language=request.getParameter("language");
+		HttpSession session = request.getSession();
+		session.setAttribute("current_language", language);
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		json.put("language",(String) request.getSession().getAttribute("current_language"));
+		out.print(json);
+		System.out.println(json);
 	}
 
 	/**

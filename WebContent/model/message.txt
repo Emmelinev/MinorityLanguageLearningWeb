@@ -1,0 +1,6 @@
+                    <!-- 
+                        <li>
+                            <p>Welcome to Bacaling! Joy with your learning.</p>
+                            <span>2017/04/10</span>
+                        </li>
+                    -->

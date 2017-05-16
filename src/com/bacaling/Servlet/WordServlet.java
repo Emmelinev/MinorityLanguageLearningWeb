@@ -176,6 +176,7 @@ public class WordServlet extends HttpServlet {
 			json.put("word_class", wordInfo.getWordClass());
 			json.put("example", wordInfo.getContent());
 			json.put("translation", wordInfo.getTranslation());
+			json.put("pronunce", wordInfo.getWordPronunciation());
 		}
 		out.print(json);
 		System.out.println(json);

@@ -123,6 +123,7 @@ public class UserInfoServlet extends HttpServlet {
 		if(userdao != null){
 			json.put("exp", userInfo.getExp());
 			json.put("level", userInfo.getLevel());
+			json.put("language", Integer.parseInt(language));
 		}
 		out.print(json);
 		System.out.println(json);
@@ -132,7 +133,7 @@ public class UserInfoServlet extends HttpServlet {
 		UserDao userdao = new UserDao();
 
 		String user_id= String.valueOf(request.getSession().getAttribute("user_id"));
-		System.out.println("user_id" + user_id);
+//		System.out.println("user_id" + user_id);
 		
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();

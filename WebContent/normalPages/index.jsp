@@ -7,7 +7,7 @@
 	<link href="../css/bacaling-main.css" rel='stylesheet' type='text/css' />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript" src="../js/jquery-3.0.0.js"></script>
-	<script type="text/javascript" src="../js/ValidateCode.js"></script>
+	<script type="text/javascript" src="../js/jquery.voicerss-tts.min.js"></script>
 	<script type="text/javascript" src="../js/bacaling.js"></script>
 	<script type="text/javascript" src="../js/bacaling-index.js"></script>
 	<title>Bacaling - Pleasure with Languages</title>
@@ -45,18 +45,7 @@
                 <span class="span-flag"></span>
                 <div class="drop-down">
                     &nbsp;&nbsp;&nbsp;&nbsp;LEARNING<br>
-                    <ul id="user_language">
-                        <li>
-                            <img src="../images/spain.png">
-                            <span class="language">Spanish</span>
-                            <span class="level">level 9</span>
-                        </li>
-                        <li>
-                            <img src="../images/japan.png">
-                            <span class="language">Japanese</span>
-                            <span class="level">level 1</span>
-                        </li>
-                    </ul>
+                    <ul id="user_language"></ul>
                 </div>
             </div>
             <div class="div-user">
@@ -82,14 +71,7 @@
             </div>
             <div class="message">
                     <div class="close"></div>
-                    <ul id="srcoll-message">
-                    <!-- 
-                        <li>
-                            <p>Welcome to Bacaling! Joy with your learning.</p>
-                            <span>2017/04/10</span>
-                        </li>
-                    -->
-                    </ul>
+                    <ul id="srcoll-message"></ul>
            </div>
         </div>
     </div>
@@ -109,89 +91,46 @@
         </div>
         <!--主要部分-->
         <ul class="div-main" id="lesson_list">
-            <li class="lesson Basics1">
-                <!--图标-->
-                <div class="logo">
-                    <a href="LessonPage.jsp">
-                        <img src="../images/chicken%20(3).png">
-                    </a>
-
-                </div>
-                <!--<span class="logo"></span>-->
-                <div class="level-bar">
-                    <div class="level"></div>
-                </div>
-                <h5>Basics1</h5>
-            </li>
-            <li class="lesson Basics2">
-                <!--图标-->
-                <div class="logo">
-                    <a href="login.jsp">
-                        <img src="../images/chicken%20(2).png">
-                    </a>
-
-                </div>
-                <!--<span class="logo"></span>-->
-                <div class="level-bar">
-                    <div class="level"></div>
-                </div>
-                <h5>Basics2</h5>
-            </li>
-            <li class="lesson Phrases">
-                <!--图标-->
-                <div class="logo">
-                    <img src="../images/sun.png">
-                </div>
-                <!--<span class="logo"></span>-->
-                <div class="level-bar">
-                    <div class="level"></div>
-                </div>
-                <h5>Phrases</h5>
-            </li>
-            <li class="lesson Food">
-                <!--图标-->
-                <div class="logo">
-                    <img src="../images/carrot%20(1).png">
-                </div>
-                <!--<span class="logo"></span>-->
-                <div class="level-bar">
-                    <div class="level"></div>
-                </div>
-                <h5>Food</h5>
-            </li>
-            <li class="lesson Animals">
-                <!--图标-->
-                <div class="logo">
-                    <img src="../images/dove.png">
-                </div>
-                <!--<span class="logo"></span>-->
-                <div class="level-bar">
-                    <div class="level"></div>
-                </div>
-                <h5>Animals</h5>
-            </li>
         </ul>
         <!--<div style="clear:both;"></div>-->
     </div>
 
     <div class="right-main">
-        <div class="right-panel div-daily-goal">
-            <div class="daily-title">
-                <h1>Daily Goal</h1>
-                <!--设置图标-->
-                <span></span>
-            </div>
-            <div class="portrait">
-                <!--头像-->
-                <span></span>
-                Learning a language requires practice every day.
-            </div>
-            <div></div>
-            <div class="line>"></div>
-            <span class="btn-strength"><a>Strengthen skills</a></span>
-        </div>
         <div class="right-panel">
-            <h1>My Words</h1>
+               <h2>Daily Word</h2>
+                <div class="right-selected">
+                <div class="head">
+                    <div class="span-refresh"></div>Random a new word
+                </div>
+                <div class="div-word">
+                    <div class="media" id="play_word"></div>
+                    <span class="word"></span>                
+                </div>
+                <h4 id="word_pronunce"></h4>
+                <table>
+                    <tr>
+                        <td class="left">
+                            <p5>TRANSLATION</p5><hr>
+                            <span id="translation"></span>
+                        </td>
+                        <td class="right">
+                            <p5>PART OF SPEECH</p5><hr>
+                            <span id="word_class"></span>
+                        </td>
+                    </tr>
+                </table>
+                    <h3>Examples</h3>
+                    <hr>
+                <ul class="examples">
+                    <li>
+                        <div id="play_sentence" class="play"></div>
+                        <div class="example">
+                            <h4 id="sentence"></h4>
+                            <p id="sentence_example"></p>
+                        </div>
+                    </li>
+                </ul>
+                </div>
         </div>
     </div>
 </div>

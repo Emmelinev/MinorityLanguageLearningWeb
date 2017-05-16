@@ -87,12 +87,6 @@ $(function () {
 }); 
 
 function getAudioNormal(word){
-//	var getValue = $(".right-selected .word").html();
-//	var param = {"word":getValue};
-//	var servlet = "../WordServlet?method=4";
-//	var json = ajaxFunc(param,servlet);
-//	console.log(json);
-//	$(".div-word").append(json);
 	$.speech({
         key: 'a5d6cea34d5c4aac84b4790307adeebe',
         src: word,

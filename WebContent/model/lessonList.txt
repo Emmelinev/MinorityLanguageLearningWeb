@@ -1,0 +1,61 @@
+          <!-- <li class="lesson Basics1">
+                <!--图标-->
+                <div class="logo">
+                    <a href="LessonPage.jsp">
+                        <img src="../images/chicken%20(3).png">
+                    </a>
+
+                </div>
+                <!--<span class="logo"></span>-->
+                <div class="level-bar" >
+                    <div class="level" id="bar-Basics1"></div>
+                </div>
+                <h5>Basics1</h5>
+            </li>
+            <li class="lesson Basics2">
+                <!--图标-->
+                <div class="logo">
+                    <a href="login.jsp">
+                        <img src="../images/chicken%20(2).png">
+                    </a>
+
+                </div>
+                <!--<span class="logo"></span>-->
+                <div class="level-bar">
+                    <div class="level"></div>
+                </div>
+                <h5>Basics2</h5>
+            </li>
+            <li class="lesson Phrases">
+                <!--图标-->
+                <div class="logo">
+                    <img src="../images/sun.png">
+                </div>
+                <!--<span class="logo"></span>-->
+                <div class="level-bar">
+                    <div class="level"></div>
+                </div>
+                <h5>Phrases</h5>
+            </li>
+            <li class="lesson Food">
+                <!--图标-->
+                <div class="logo">
+                    <img src="../images/carrot%20(1).png">
+                </div>
+                <!--<span class="logo"></span>-->
+                <div class="level-bar">
+                    <div class="level"></div>
+                </div>
+                <h5>Food</h5>
+            </li>
+            <li class="lesson Animals">
+                <!--图标-->
+                <div class="logo">
+                    <img src="../images/dove.png">
+                </div>
+                <!--<span class="logo"></span>-->
+                <div class="level-bar">
+                    <div class="level"></div>
+                </div>
+                <h5>Animals</h5>
+            </li>  --> 

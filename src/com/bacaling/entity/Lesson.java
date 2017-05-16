@@ -7,6 +7,7 @@ public class Lesson {
 	private String ofLanguage;
 	private int allowPic;
 	private double progress;
+	private String color;
 	
 
 	public Lesson() {
@@ -52,5 +53,11 @@ public class Lesson {
 	}
 	public void setProgress(double progress) {
 		this.progress = progress;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
 	}
 }

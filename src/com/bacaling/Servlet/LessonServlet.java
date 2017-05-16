@@ -69,17 +69,6 @@ public class LessonServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		if(method==3){
-			this.queryWord(request, response);
-		}
-		if(method==4){
-			try {
-				this.getMedia(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 	}
 //	加载表单
 	private void getLessonList(HttpServletRequest request, HttpServletResponse response)
@@ -123,53 +112,6 @@ public class LessonServlet extends HttpServlet {
 		}else{
 			json.put("valid",false);					
 		}
-		out.print(json);
-		System.out.println(json);
-	}
-//	单词查询
-	private void queryWord(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException{
-		JSONObject json = new JSONObject();
-		WordDao worddao = new WordDao();
-		
-		String word=request.getParameter("word");
-		String current_language = String.valueOf(request.getSession().getAttribute("current_language"));	
-
-		System.out.println("word-" + word + " language-" + current_language);
-		
-		response.setContentType("application/json; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		
-		wordInfo = worddao.wordQuery(word, current_language);
-		
-		if(wordInfo != null){
-			json.put("id", wordInfo.getWordId());
-			json.put("word",wordInfo.getWord());
-			json.put("word_tanslation", wordInfo.getWordTranslation());
-			json.put("word_class", wordInfo.getWordClass());
-			json.put("lesson", wordInfo.getOfBar());
-			json.put("example", wordInfo.getContent());
-			json.put("translation", wordInfo.getTranslation());
-		}
-		out.print(json);
-		System.out.println(json);
-	}
-	
-	private void getMedia(HttpServletRequest request, HttpServletResponse response)
-			throws Exception{
-		JSONObject json = new JSONObject();
-		String word=request.getParameter("word");
-		String current_language = String.valueOf(request.getSession().getAttribute("current_language"));	
-		
-		System.out.println("word-" + word + " language-" + current_language);
-		
-		response.setContentType("application/json; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		
-		TTSUtil tts = new TTSUtil();
-		String media = tts.tts(word);
-		
-		json.put("media", media);
 		out.print(json);
 		System.out.println(json);
 	}

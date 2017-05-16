@@ -1,0 +1,39 @@
+        <!-- 
+            <table>
+                <tr>
+                    <th>Word</th>
+                    <th>Part of speech</th>
+                    <th>Last practiced</th>
+                    <th>Strength</th>
+                </tr>
+                <tr>
+                    <td>ellos</td>
+                    <td>Pronoun</td>
+                    <td>3 months ago</td>
+                    <td><span class="icon-strength-level icon-strength-level-4"></span></td>
+                </tr>
+                <tr>
+                    <td>son</td>
+                    <td>Verb</td>
+                    <td>3 months ago</td>
+                    <td><span class="icon-strength-level icon-strength-level-4"></span></td>
+                </tr>
+                <tr>
+                    <td>soy</td>
+                    <td>Verb</td>
+                    <td>3 months ago</td>
+                    <td><span class="icon-strength-level icon-strength-level-4"></span></td>
+                </tr>
+                <tr>
+                    <td>sus</td>
+                    <td>Determiner</td>
+                    <td>3 months ago</td>
+                    <td><span class="icon-strength-level icon-strength-level-4"></span></td>
+                </tr>
+                <tr>
+                    <td>los</td>
+                    <td>Determiner</td>
+                    <td>3 months ago</td>
+                    <td><span class="icon-strength-level icon-strength-level-4"></span></td>
+                </tr>
+            </table> -->
