@@ -7,6 +7,7 @@
     <link href="../css/bacaling-profile.css" rel='stylesheet' type='text/css' />
     <script type="text/javascript" src="../js/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="../js/bacaling.js"></script>
+    <script type="text/javascript" src="../js/bacaling-profile.js"></script>
     <title>Bacaling - Pleasure with languages</title>
 </head>
 <body>
@@ -91,30 +92,13 @@
             <div class="streak">
                 <h4>STREAK</h4>
                 <span class="span-fire"></span>
-                <span id="streak-days">0</span>
+                <span id="streak-days">${sessionScope.user_state}</span>
                 <span class="days">Days</span>
             </div>
             <div class="laguages">
                 <h4>LANGUAGES</h4>
                 <div id="scroll-lang">
-                    <table>
-                        <tr>
-                            <td><span class="lang-icon spain"></span></td>
-                            <td>
-                                <h5><span>Spanish</span> - <span>Level 9</span></h5>
-                                <h6>Next level: &nbsp;<span>2</span>&nbsp;XP</h6>
-                                <h6>Total XP: &nbsp;<span>2248</span>&nbsp;XP</h6>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><span class="lang-icon japan"></span></td>
-                            <td>
-                                <h5><span>Japanese</span> - <span>Level 1</span></h5>
-                                <h6>Next level: &nbsp;<span>7</span>&nbsp;XP</h6>
-                                <h6>Total XP: &nbsp;<span>53</span>&nbsp;XP</h6>
-                            </td>
-                        </tr>
-                    </table>
+                    <table id="lang-table"></table>
                 </div>
             </div>
         </div>

@@ -1,0 +1,16 @@
+<tr>
+                            <td><span class="lang-icon spain"></span></td>
+                            <td>
+                                <h5><span>Spanish</span> - <span>Level 9</span></h5>
+                                <h6>Next level: &nbsp;<span>2</span>&nbsp;XP</h6>
+                                <h6>Total XP: &nbsp;<span>2248</span>&nbsp;XP</h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-icon japan"></span></td>
+                            <td>
+                                <h5><span>Japanese</span> - <span>Level 1</span></h5>
+                                <h6>Next level: &nbsp;<span>7</span>&nbsp;XP</h6>
+                                <h6>Total XP: &nbsp;<span>53</span>&nbsp;XP</h6>
+                            </td>
+                        </tr>

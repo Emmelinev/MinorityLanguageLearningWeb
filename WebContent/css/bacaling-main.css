@@ -686,10 +686,12 @@
     width: 78px;
     height: 15px;
     float: left;
-    display: block;
-    box-sizing: border-box;
-    /*margin: 0 auto;*/
+    /*    display: block;
+    margin: 0 auto;
+        box-sizing: border-box;*/
     margin: 0px 0px 10px 0px;
+    display:table-cell;      /*按照单元格的样式显示元素*/
+	vertical-align:middle;
     /*padding: 10px;*/
 }
 .icon-strength-level-4:after{

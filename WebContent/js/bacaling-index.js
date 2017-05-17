@@ -29,7 +29,7 @@ $(document).ready(function() {
     getLevels();
     getLevel();
     getWord();
-    getLessons();
+    getLevels();
 });
 
 

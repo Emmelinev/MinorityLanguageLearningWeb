@@ -1,3 +1,10 @@
+var tableObject = null;//获取id为tableSort的table对象
+var tbHead = null;//获取table对象下的thead
+var tbHeadTh = null;//获取thead下的tr下的th
+var tbBody = null;//获取table对象下的tbody
+var tbBodyTr = null;//获取tbody下的tr
+var sortIndex = -1; //初始化索引
+
 $(document).ready(function() {
 	 if (window.history && window.history.pushState) {
 		$(window).on('popstate', function () {
@@ -6,8 +13,9 @@ $(document).ready(function() {
 	  }
     var data = getTable();
     var count_rows = 0;
-
-    var table_str = '<table id="words"><tr><th>Word</th><th>Part of speech</th><th>Last practiced</th><th>Strength</th></tr>';
+    getLevels();
+    getLevel();
+    var table_str = '<table id="words"><thead><tr><th type="text">Word</th><th type="text">Part of speech</th><th type="text">Last practiced</th><th type="number">Strength</th></tr></thead><tbody>';
     for(var key in data){
         var td_class = null;
         switch(data[key].strengthLevel)
@@ -21,24 +29,51 @@ $(document).ready(function() {
         table_str = table_str + '<tr class="rows"><td>' 
         			+ data[key].word + "</td><td>" 
         			+ data[key].wordClass + "</td><td>"
-        			+ data[key].lastPracticed + " days ago</td><td><span class=" 
-        			+ td_class + "></span></td></tr>";
+        			+ data[key].lastPracticed + ' days ago</td><td class="word-level"><span class=' 
+        			+ td_class + '></span>' 
+        			+ data[key].strengthLevel + '</td></tr>';
         count_rows++;
     }
     
-    table_str = table_str+"</table>";
+    table_str = table_str+"</tbody></table>";
     $("#language_name").prepend("<span>" + getLanguageName() + "</span>");
     $("#word-list").append(table_str);
     $("#count-row").prepend("<span>" + count_rows + "</span>")
-//    console.log("2-"+table_str);
+    tableObject = $('#words');
+    tbHead = tableObject.children('thead');
+    tbHeadTh = tbHead.find('tr th');
+    tbBody = tableObject.children('tbody');
+    tbBodyTr = tbBody.find('tr');
+    sortIndex = -1;
+    var status = {"0":0,"1":0,"2":0,"3":0};
+    tbHeadTh.each(function() {
+    	 var thisIndex = tbHeadTh.index($(this));
+    	 console.log(thisIndex);
+         $(this).click(function() {
+        	 iconStatus(thisIndex,status);
+             var dataType = $(this).attr("type"); 
+             sortTable(thisIndex, dataType);
+         });
+    });
 });
-
+function iconStatus(index,status){
+	switch(status[index]){
+	case 0:
+		$("tr").children().eq(index).attr("class","ascending");
+		$("tr").children().eq(index).siblings().removeClass("ascending decending");
+		status[index]=1; 
+		break;
+	case 1:
+		$("tr").children().eq(index).attr("class","decending");
+		$("tr").children().eq(index).siblings().removeClass("ascending decending");
+		status[index]=0; 
+		break;
+	}
+}
 function getRow(){
-//	$("table").find("tr").eq(3).find("td").eq(1);
 	$("#Button1").click(function(){
 		$("#words tr");
-	})
-	
+	})	
 }
 
 $(function () {
@@ -46,15 +81,12 @@ $(function () {
 		$(this).addClass('selected') 
 		.siblings().removeClass('selected')
 		.end();
-	//	alert($(this).children().eq(0).text());
+
 		var getValue = $(this).children().eq(0).text();
 		var param = {"word":getValue};
-		console.log(param);
 		var servlet = "../WordServlet?method=3";
 		var json = ajaxFunc(param,servlet);
 		var td_class = $(this).children().eq(3).find("span").attr('class');
-		console.log(td_class);
-		console.log(json);
 		$(".right-unselected").slideUp();
 	//	$(".right-unselected").slideToggle();
 	//	$(".right-unselected").slideToggle();
@@ -66,21 +98,10 @@ $(function () {
 		$("#of_lesson").html(json.lesson);
 		$("#word_translation").html(json.word_tanslation);
 		$("#strength").attr('class',td_class);
-		console.log($("#strength").attr('classs'));
-		
-//		if ($(".word-audio").length && $(".word-audio").length>0){
-//	    	$(".word-audio").empty();
-//	        $(".word-audio").remove();
-//	    }
-		
-		
+		console.log($("#strength").attr('classs'));		
 	});
 	
 	$(".media").click(function(){
-//		var audio = $(".word-audio")[0];  
-//		console.log(audio);
-//		audio.pause();  
-//		audio.play();  
 		getAudioNormal($(".right-selected .word").html());
 	});
 
@@ -97,7 +118,6 @@ function getAudioNormal(word){
         ssml: false
     });
 }
-
 
 function ajaxFunc(param,servlet){
     var json = null;
@@ -122,6 +142,45 @@ function getTable(){
     var param = jQuery.param(str);
     var servlet = "../WordServlet?method=1";
     return ajaxFunc(param,servlet);
+}
+function sortTable(index, type) {
+    var trsValue = new Array();
+    tbBodyTr.each(function() {
+        var tds = $(this).find('td');
+        trsValue.push(type + ".separator" + $(tds[index]).html() + ".separator" + $(this).html());
+        $(this).html("");
+    });
+    var len = trsValue.length;
+    if(index == sortIndex){
+        trsValue.reverse();
+    } else {
+        for(var i = 0; i < len; i++){
+            type = trsValue[i].split(".separator")[0];
+            for(var j = i + 1; j < len; j++){
+                value1 = trsValue[i].split(".separator")[1];
+                value2 = trsValue[j].split(".separator")[1];
+                if(type == "number"){
+                    value1 = value1 == "" ? 0 : value1;
+                    value2 = value2 == "" ? 0 : value2;
+                    if(parseFloat(value1) > parseFloat(value2)){
+                        var temp = trsValue[j];
+                        trsValue[j] = trsValue[i];
+                        trsValue[i] = temp;
+                    }
+                }else {
+                    if (value1.localeCompare(value2) > 0) {
+                        var temp = trsValue[j];
+                        trsValue[j] = trsValue[i];
+                        trsValue[i] = temp;
+                    }
+                }
+            }
+        }
+    }
+    for(var i = 0; i < len; i++){
+        $("tbody tr:eq(" + i + ")").html(trsValue[i].split(".separator")[2]);
+    }
+    sortIndex = index;
 }
 
 

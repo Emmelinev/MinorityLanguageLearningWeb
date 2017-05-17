@@ -118,7 +118,7 @@
                             <span class="picture"></span>
                             <img alt="go" src="d:/university/<%=(String) request.getAttribute("profile_pic")%> " />
                             <div class="picture-right">
-                                <input type="file" id="profile_pic" name="profile_pic">
+                                <input type="file" id="profile_pic" name="profile_pic" onchange="getPhotoSize(this);">
                                 maximum images size is 1MB
                             </div>
                         </div>

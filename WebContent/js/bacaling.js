@@ -36,6 +36,15 @@ function getLevels(){
 		$("#user_language").append(str);
 	}
 }
+function getLevel(){
+	var param = {"user_id":"1"};
+	var servlet = "../UserInfoServlet?method=7";
+	var json = ajaxFunc(param,servlet);
+	$("#language_level").html("Level "+json.level);
+	var img_url = "../images/"+setCountry(json.language)+".png";
+    $(".span-flag").css('background-image','url('+img_url+')');
+//    $(".flag").css('background-image','url('+img_url+')');
+}
 function changeLanguage(event){
 	var language = setLanguage($(event.target).html(),2);
 	var param = {"language":language};

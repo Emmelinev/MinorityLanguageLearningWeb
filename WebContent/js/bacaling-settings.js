@@ -25,7 +25,8 @@ $(document).ready(function() {
 	confirm_pwd = $("#confirm_pwd").val();
 	
 	radioChange();
-	
+	getLevels();
+    getLevel();	
 });
 function txtchange(event){
 	console.log(event.target.id);
@@ -128,8 +129,31 @@ function getTable(){
     var servlet = "../WordServlet?method=1";
     return ajaxFunc(param,servlet);
 }
-
-function get
-
+function getPhotoSize(obj){
+    photoExt=obj.value.substr(obj.value.lastIndexOf(".")).toLowerCase();//获得文件后缀名
+    if(photoExt=='.jpg'||photoExt=='.png'||photoExt=='jpeg'||photpExt=='bmp'||photoExt=='gif'){
+//        return true;
+    }else{
+    	alert("请上传后缀名为jpg的照片!");
+//        return false;
+    }
+    var fileSize = 0;
+    var isIE = /msie/i.test(navigator.userAgent) && !window.opera;            
+    if (isIE && !obj.files) {          
+         var filePath = obj.value;            
+         var fileSystem = new ActiveXObject("Scripting.FileSystemObject");   
+         var file = fileSystem.GetFile (filePath);               
+         fileSize = file.Size;         
+    }else {  
+         fileSize = obj.files[0].size;     
+    } 
+//    1*1024*1024/1024*100/100
+    fileSize=Math.round(fileSize/1024*1024); //单位为KB
+    console.log("filesize-"+fileSize);
+    if(fileSize>=1){
+        alert("照片最大尺寸为1MB，请重新上传!");
+        return false;
+    }
+}
 
 

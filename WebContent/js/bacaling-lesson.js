@@ -4,8 +4,10 @@ $(document).ready(function() {
 			window.history.forward(1);
 		});
 	  }
-	 getBarList();
-	 getProgress();
+	getBarList();
+	getProgress();
+	getLevels();
+    getLevel();
 });
 function getBarList(){
 	var lesson_id = getUrlParam("lessonId");

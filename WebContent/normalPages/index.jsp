@@ -1,11 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>  
   
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">  
+<!DOCTYPE HTML>  
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link href="../css/bacaling-main.css" rel='stylesheet' type='text/css' />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript" src="../js/jquery-3.0.0.js"></script>
 	<script type="text/javascript" src="../js/jquery.voicerss-tts.min.js"></script>
 	<script type="text/javascript" src="../js/jQueryRotate.2.2.js"></script>

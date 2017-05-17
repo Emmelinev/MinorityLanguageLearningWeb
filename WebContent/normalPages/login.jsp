@@ -4,12 +4,9 @@
 <html>
 <head>
     <link href="../css/bacaling-login.css" rel='stylesheet' type='text/css' />
-    <link href="../css/bootstrapValidator.css" rel="stylesheet" type='text/css'/>
     <script type="text/javascript" src="../js/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="../js/bacaling.js"></script>
     <script type="text/javascript" src="../js/customJS.js"></script>
-    <script type="text/javascript" src="../js/codeValidator.js"></script>
-
     <title>Bacaling - Pleasure with Languages</title>
 </head>
 

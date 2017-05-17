@@ -96,7 +96,7 @@
                 <h2>Spaced repetition</h2>
                 <p>Bacaling's algorithms figure out when you should practice words to
                     get them into your long-term memory.</p>
-                <table>
+                <table id="word-info">
                     <tr>
                         <td><span class="icon-strength-level icon-strength-level-4"></span></td>
                         <td>Still strong</td>

@@ -29,6 +29,36 @@
     .div-main .left-main .word-table table th {
         font-size: 15px;
     }
+    .ascending,.decending{
+    	position:relative;
+    }
+    .ascending:before,.ascending:after,.decending:before,.decending:after{
+    	content:"";
+    	display:inline-block;
+    	width:5px;
+    	height:10px;
+    	float:right;
+    	top:15px;
+    	background-color:#3b3b3b;
+    	position:absolute;
+    	border-radius:5px;
+    }
+    .decending:after{    	
+    	right:0px;    	
+    	transform:rotate(45deg);
+    }
+    .decending:before{
+    	right:5px;
+    	transform:rotate(135deg);
+    }
+    .ascending:after{
+    	right:5px;    	
+    	transform:rotate(45deg);
+    }
+    .ascending:before{
+    	right:0px;    	
+    	transform:rotate(135deg);
+    }
     .div-main .left-main .word-table table tr:hover {
         background-color: #d7d7d7;
     }
@@ -43,6 +73,11 @@
         border-top: 2px solid #d7d7d7;
         border-bottom: 2px solid #d7d7d7;
         /*border: 1px solid #888888;*/
+    }
+    .div-main .left-main .word-table table .word-level{
+    	color:transparent;
+    	box-sizing:border-box;
+    	padding-top:5px;
     }
     /*右边栏*/
     .right-main .right-panel-fix {
@@ -62,7 +97,6 @@
     }
     .right-main .right-panel-fix .right-unselected {
         margin: 10px;
-        display: none;
     }
     .right-main .right-panel-fix .right-unselected h2 {
         font-size: 22px;
@@ -96,6 +130,7 @@
     .right-main .right-panel-fix .right-selected {
         margin: 10px;
         text-align: center;
+        display:none;
     }
     .right-main .right-panel-fix .right-selected .head {
         margin-bottom: 10px;
