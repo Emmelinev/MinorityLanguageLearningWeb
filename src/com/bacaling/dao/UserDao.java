@@ -171,8 +171,8 @@ public class UserDao extends BaseDao {
 	 */
 	public int updateUserTel(String oldTel, String newTel) throws SQLException{
 		String sql = "update bacaling.user_info " +
-			     	 "set user_tel = "+ newTel +
-			     	 "where user_tel = " + oldTel;
+			     	 "set user_tel = '"+ newTel +
+			     	 "' where user_tel = " + oldTel;
 		return super.executeUpdate(sql);
 	}
 	
@@ -181,8 +181,9 @@ public class UserDao extends BaseDao {
 	 */
 	public int updatePassword(String userId, String password) throws SQLException{
 		String sql = " update bacaling.user_info " +
-			     	 "set user_password = "+ password +
-			     	 "where user_id = " + userId;
+			     	 "set user_password = '"+ password +
+			     	 "' where user_id = " + userId;
+//		System.out.println(sql);
 		return super.executeUpdate(sql);
 	}
 	/*
@@ -190,8 +191,9 @@ public class UserDao extends BaseDao {
 	 */
 	public int updateUserName(String userId, String userName) throws SQLException{
 		String sql = "update bacaling.user_info " +
-			     	 "set user_name = "+ userName +
-			     	 "where user_id = " + userId; 
+			     	 "set user_name = '"+ userName +
+			     	 "' where user_id = " + userId +";"; 
+		System.out.println(sql);
 		return super.executeUpdate(sql);
 	}
 	/*
@@ -199,8 +201,8 @@ public class UserDao extends BaseDao {
 	 */
 	public int updateEmail(String userId, String userEmail) throws SQLException{
 		String sql = "update bacaling.user_info " +
-			     	 "set user_email = "+ userEmail +
-			     	 "where user_id = " +userId; 
+			     	 "set user_email = '"+ userEmail +
+			     	 "' where user_id = " +userId; 
 		return super.executeUpdate(sql);
 	}	
 	/*
@@ -208,8 +210,8 @@ public class UserDao extends BaseDao {
 	 */
 	public int updateImg(String userId, String url) throws SQLException{
 		String sql = "update bacaling.user_info " +
-			     	 "set profile_img = "+ url +
-			     	 "where user_id = " + userId; 
+			     	 "set profile_img = '"+ url +
+			     	 "' where user_id = " + userId; 
 		return super.executeUpdate(sql);
 	}
 	/*
@@ -218,7 +220,7 @@ public class UserDao extends BaseDao {
 	public int updateGoal(String userId,String goal) throws SQLException{
 		String sql = "update bacaling.user_info " +
 			     	 "set daily_goal = "+ goal +
-			     	 "where user_id = " + userId; 
+			     	 " where user_id = " + userId; 
 		return super.executeUpdate(sql);
 	}
 	/*
@@ -227,7 +229,8 @@ public class UserDao extends BaseDao {
 	public int updateNotice(String userId,String result) throws SQLException{
 		String sql = "update bacaling.user_info " +
 			     	 "set mail_notice = "+ result +
-			     	 "where user_id = " + userId; 
+			     	 " where user_id = " + userId; 
+		System.out.println(sql);
 		return super.executeUpdate(sql);
 	}
 	/*
@@ -236,7 +239,7 @@ public class UserDao extends BaseDao {
 	public int updateAutoplay(String userId,String result) throws SQLException{
 		String sql = "update bacaling.user_info " +
 			     	 "set autoplay = "+ result +
-			     	 "where user_id = " + userId; 
+			     	 " where user_id = " + userId; 
 		return super.executeUpdate(sql);
 	}
 	/*
@@ -245,16 +248,7 @@ public class UserDao extends BaseDao {
 	public int updateEffect(String userId,String result) throws SQLException{
 		String sql = "update bacaling.user_info " +
 			     	 "set effect = "+ result +
-			     	 "where user_id = " + userId; 
-		return super.executeUpdate(sql);
-	}
-	/*
-	 * 更改邮件通知
-	 */
-	public int updateMail(String userId,String notice) throws SQLException{
-		String sql = "update bacaling.user_info " +
-			     	 "set mail_notice = "+ notice +
-			     	 "where user_id = " + userId; 
+			     	 " where user_id = " + userId; 
 		return super.executeUpdate(sql);
 	}
 	/*
@@ -262,15 +256,49 @@ public class UserDao extends BaseDao {
 	 */
 	public int deactiveAccount(String userId) throws SQLException{
 		String sql = "update user_info "
-				+ "set status = -1 "
-				+ "where user_id = " + userId;
+				+ "set user_state = -1 "
+				+ " where user_id = " + userId;
 		return super.executeUpdate(sql);
 	}
+	/*
+	 * 加载用户设置
+	 */
+	public Client getUserSettings(String userId){
+		Client client = null;
+		String sql = "select user_id,user_name,user_password,ifnull(user_email,'0') user_email,"
+				+ "ifnull(daily_goal,0) daily_goal,ifnull(profile_img,'../images/apple.png') profile_img,"
+				+ "ifnull(autoplay,0) autoplay,ifnull(effect,0) effect,ifnull(mail_notice,0) mail_notice "
+				+ "from user_info where user_id = " 
+				+ userId + ";";
+		ResultSet rs=super.executeQuery(sql);
+		try {
+			while(rs.next()){
+				client = new Client(userId);
+				client.setUserId(rs.getInt("user_id"));
+				client.setUserName(rs.getString("user_name"));
+				client.setPassword(rs.getString("user_password"));
+				client.setUserEmail(rs.getString("user_email"));
+				client.setDailyGoal(rs.getInt("daily_goal"));
+				client.setProfileImg(rs.getString("profile_img"));
+				client.setAutoplay(rs.getInt("autoplay"));
+				client.setEffect(rs.getInt("effect"));
+				client.setMailNotice(rs.getInt("mail_notice"));
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return client;
+	}
+	/*
+	 * 用户登录时用户查询
+	 */
 	public Client queryUser(String userInfo)
 	{
 		Client client = null;
 		String sql="select * from bacaling.user_info where " +
-				"user_name='" + userInfo + "' or user_tel = '" + userInfo + "'";
+				"(user_name='" + userInfo + "' or user_tel = '" + userInfo + "') "
+						+ " and user_state<>-1";
 		ResultSet rs=super.executeQuery(sql);
 		try {
 			while(rs.next()){

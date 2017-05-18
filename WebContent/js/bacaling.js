@@ -3,6 +3,17 @@ $(document).ajaxStart(function () {
 	}).ajaxStop(function () {
 	$("#loading").hide();
 });
+$(document).ready(function(){
+	var str = {"userId":"2"};
+    var param = jQuery.param(str);
+    var servlet = "../SettingsServlet?method=8";
+    var json = ajaxFunc(param,servlet);
+	var style = {
+			"background" : '#fff url('+json.img+') center no-repeat',
+			"background-size" : "50px 50px"
+		}
+	$(".span-user").css(style);
+});
 //===================顶部导航栏======================================
 //获取通知
 function getMessage(){

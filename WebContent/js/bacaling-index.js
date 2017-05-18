@@ -27,13 +27,13 @@ $(document).ready(function() {
     });
     getMsgCount();
     getLevels();
-    getLevel();
+    getLessonLevel();
     getWord();
-    getLevels();
+    getLessons();
 });
 
 
-function getLevel(){
+function getLessonLevel(){
 	var param = {"user_id":"1"};
 	var servlet = "../UserInfoServlet?method=7";
 	var json = ajaxFunc(param,servlet);

@@ -25,10 +25,12 @@ public class UserWord extends Word{
 		return StrengthLevel;
 	}
 	public void setStrengthLevel() {
-		if(practiceCount >= 20){
+		if(practiceCount >= 20 && this.lastPracticed < 300){
 			StrengthLevel = 4;
+		}else if(this.practiceCount <20 && this.lastPracticed >= 300) {
+			StrengthLevel = 0;
 		}else{
-			int r = (int) Math.ceil(0.13*this.practiceCount-0.08*this.lastPracticed+0.8);
+			int r = (int) Math.ceil(0.13*this.practiceCount-0.01*this.lastPracticed+0.8);
 			if(r>4){
 				r = 4;
 			}

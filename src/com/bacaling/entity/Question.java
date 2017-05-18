@@ -4,7 +4,7 @@ public class Question extends Word{
 	private int questionID;
 	private String content;
 	private String answer;
-	private String type;
+	private int type;
 	private String img;
 
 	public Question(String word) {
@@ -29,10 +29,10 @@ public class Question extends Word{
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	public String getType() {
+	public int getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 	public String getImg() {

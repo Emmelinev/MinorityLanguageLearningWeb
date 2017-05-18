@@ -26,6 +26,11 @@
    		}
    	%>
 <div id="loading">loading...</div>
+<div class="background-div"></div>
+<div class="pop-div">
+<p></p>
+<div class="pop-btn"><div class="pop-no">Cancel</div><div class="pop-yes">I know.</div></div>
+</div>
 <header>
 	<div id="head1" class="header-back1">
         <div class="header-back"></div>
@@ -83,7 +88,7 @@
 <div class="div-main">
     <div class="left-main">
         <!--账户设置-->
-        <form id="frm-change-account" enctype="multipart/form-data" method="post" action="../SettingsServlet">           
+        <form id="frm-change-account" ENCTYPE="multipart/form-data" method="post" action="../SettingsServlet?method=1">           
         <div class="settings-left" id="account-settings">
             <div class="head">
                 <h1>Account Settings</h1>
@@ -93,11 +98,11 @@
             <table>
                 <tr>
                     <td>Username</td>
-                    <td><input id="user_name" type="text" class="text-input" name="user_name"  Oninput="txtchange(event)" value=${sessionScope.user_name}></td>
+                    <td><input id="user_name" type="text" class="text-input" name="user_name"  Oninput="txtchange(event)"></td>
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td><input id="email" type="text" class="text-input" name="email" Oninput="txtchange(event)" value=${sessionScope.user_email}></td>
+                    <td><input id="email" type="text" class="text-input" name="email" Oninput="txtchange(event)" ></td>
                 </tr>
                 <tr>
                     <td>Voice autoplay</td>
@@ -115,17 +120,18 @@
                     <td>Profile picture</td>
                     <td>
                         <div class="profile-picture">
-                            <span class="picture"></span>
-                            <img alt="go" src="d:/university/<%=(String) request.getAttribute("profile_pic")%> " />
+                            <span id="img-profile" class="picture"></span>
+                            
                             <div class="picture-right">
-                                <input type="file" id="profile_pic" name="profile_pic" onchange="getPhotoSize(this);">
-                                maximum images size is 1MB
+                                <input type="file" id="profile_pic" name="profile_pic" >
+                                <span id="span-size">MAXIMUM images size is 1MB.<br></span>
+                                <span id="span-ext">Only JGP/PNG/JPEG/GIF/BMP are available.</span>
                             </div>
                         </div>
                     </td>
                 </tr>
             </table>
-            <a>Deactive my account</a>
+            <a id="deactive_account">Deactive my account</a>
             <hr>
         </div>
          </form>
@@ -135,20 +141,20 @@
         <div class="settings-left" id="profile">
             <div class="head">
                 <h1>Profile</h1>
-                <input id="submit_profile" type="button" class="save-changes" value="Save changes">
+                <input id="submit_profile" type="submit" class="save-changes" value="Save changes">
             </div>
             <table>
                 <tr>
                     <td>Current Password</td>
-                    <td><input id="current_pwd" type="text" class="text-input" Oninput="txtchange(event)" name="oldPassword"></td>
+                    <td><input id="current_pwd" type="text" class="text-input" Oninput="txtchange(event,1)" name="oldPassword"></td>
                 </tr>
                 <tr>
                     <td>New Password</td>
-                    <td><input id="new_pwd" type="text" class="text-input" Oninput="txtchange(event)"  name="modifyPassword"></td>
+                    <td><input id="new_pwd" type="text" class="text-input" Oninput="txtchange(event,2)"  name="modifyPassword"></td>
                 </tr>
                 <tr>
                     <td>Confirm Password</td>
-                    <td><input id="confirm_pwd" type="text" class="text-input" Oninput="txtchange(event)" name="confirmPassword"></td>
+                    <td><input id="confirm_pwd" type="text" class="text-input" Oninput="txtchange(event,2)" name="confirmPassword"></td>
                 </tr>
             </table>
             <hr>
@@ -160,14 +166,15 @@
         <div class="settings-left" id="notification">
             <div class="head">
                 <h1>Notification</h1>
-                <input id="submit_notice" type="button" class="save-changes" value="Save changes">
+                <input id="submit_notice" type="submit" class="save-changes" value="Save changes">
             </div>
             <table>
                 <tr>
                     <td>Email me when</td>
                     <td>
-                        <span class="checkbox-out"><input type="checkbox" name="notice">&nbsp;&nbsp;&nbsp;&nbsp;There is an announcement<br></span>
-                        <span class="checkbox-out"><input type="checkbox" name="notice">&nbsp;&nbsp;&nbsp;&nbsp;I forget to practice<br></span>
+                        <span class="checkbox-out" id="mail0"><input type="checkbox" name="notice" value="1">&nbsp;&nbsp;&nbsp;&nbsp;There is an announcement<br></span>
+                        <span class="checkbox-out" id="mail1"><input type="checkbox" name="notice" value="2">&nbsp;&nbsp;&nbsp;&nbsp;I forget to practice<br></span>
+                        <span style="opacity:0;" id="mail3"><input type="checkbox" name="notice" value="0"><br></span>
                     </td>
                 </tr>
             </table>
@@ -180,15 +187,15 @@
         <div class="settings-left" id="dailyGoal">
             <div class="head">
                 <h1>Daily Goal</h1>
-                <input id="submit_goal" type="button" class="save-changes" value="Save changes">
+                <input id="submit_goal" type="submit" class="save-changes" value="Save changes">
             </div>
             <div class="content">
                 <span class="image"></span>
                 <ul>
-                    <li><input type="radio" name="goal" value="1">&nbsp;&nbsp;&nbsp;&nbsp;Basic<span>1px per day</span></li>
-                    <li><input type="radio" name="goal" value="2">&nbsp;&nbsp;&nbsp;&nbsp;Causal<span>10px per day</span></li>
-                    <li><input type="radio" name="goal" value="3">&nbsp;&nbsp;&nbsp;&nbsp;Regular<span>30px per day</span></li>
-                    <li><input type="radio" name="goal" value="4">&nbsp;&nbsp;&nbsp;&nbsp;Serious<span>50px per day</span></li>
+                    <li id="goal0"><input type="radio" name="goal" value="1">&nbsp;&nbsp;&nbsp;&nbsp;Basic<span>1px per day</span></li>
+                    <li id="goal1"><input type="radio" name="goal" value="2">&nbsp;&nbsp;&nbsp;&nbsp;Causal<span>10px per day</span></li>
+                    <li id="goal2"><input type="radio" name="goal" value="3">&nbsp;&nbsp;&nbsp;&nbsp;Regular<span>30px per day</span></li>
+                    <li id="goal3"><input type="radio" name="goal" value="4">&nbsp;&nbsp;&nbsp;&nbsp;Serious<span>50px per day</span></li>
                 </ul>
             </div>
             <hr>
@@ -201,7 +208,6 @@
         <div class="right-panel">
             <ul>
                 <li><a href="#account-settings">Account</a></li>
-                <!--<li>Learning language</li>-->
                 <li><a href="#profile">Profile</a></li>
                 <li><a href="#notification">Notifications</a></li>
                 <li><a href="#dailyGoal">Daily Goal</a></li>

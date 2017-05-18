@@ -199,8 +199,8 @@
         /*left: 20px;*/
         /*top: -5px;*/
         border-radius: 20px;
-        background-image: url("../images/portrait.jpg");
-        background-size: 40px 40px;
+       /* background-image: url("../images/portrait.jpg");
+        background-size: 40px 40px;*/
         /*position: absolute;*/
         cursor: pointer;
         z-index: 1;

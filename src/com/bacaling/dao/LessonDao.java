@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.bacaling.entity.Bars;
 import com.bacaling.entity.Lesson;
-import com.bacaling.entity.UserWord;
 
 
 public class LessonDao extends BaseDao{
@@ -23,7 +22,7 @@ public class LessonDao extends BaseDao{
 				+ "where a.of_language = " 
 				+ language + ") d on c.lesson_id = d.lesson_id where c.isvisible = 1 and c.of_language = " 
 				+ language + " and uid = " + user_id + ";";
-		System.out.println(sql);
+//		System.out.println(sql);
 		ResultSet rs=super.executeQuery(sql);
 		try {
 			while(rs.next()){

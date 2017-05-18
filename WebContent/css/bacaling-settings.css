@@ -1,5 +1,98 @@
 @charset "UTF-8";
 @media screen and (min-width: 640px) {
+	.background-div{
+		width:100%;
+		height:100%;
+		display:none;
+		z-index:2000;
+		background-color:#3b3b3b;
+		opacity:0.7;
+		position:absolute;
+		top:0px;
+		left:0px;
+	}
+	.pop-div{
+		width:400px;
+		height:150px;
+		border-radius:10px;
+		background-color:#fff;
+		display:none;
+		position:absolute;
+		left:35%;
+		top:20%;
+		padding:80px 20px 20px 20px;
+		font-size:20px;
+		color:#3b3b3b;
+		z-index:9999;
+		animation: border-anime 2s;
+       animation-direction: alternate;
+       animation-iteration-count: 999;
+       text-align:center;
+	}
+	.pop-div p{
+		margin-bottom:20px;
+		cursor:default;
+	}
+	.pop-div:before{
+		content:"::Attention::";
+		position:absolute;
+		display:inline-block;
+		left:120px;
+		top:20px;
+		width:190px;
+		height:40px;
+		background-color:#fa7474;
+		border-radius:40px;
+		line-height:30px;
+		color:#fff;
+		cursor:default;
+	}
+	pop-btn{
+		vertical-align:bottom;
+		margin-bottom:100px;
+	}
+	.pop-no,.pop-yes{
+		width:150px;
+		height:50px;
+		font-size:20px;
+		border-radius:30px;
+		display:inline-block;
+		line-height:50px;
+		cursor:pointer;
+	}
+	.pop-yes:hover{
+		opacity:0.8;
+	}
+	.pop-no:hover{
+		background-color:#d7d7d7;
+	}
+	.pop-no{
+		color:#3b3b3b;
+		background-color:#f0f0f0;
+	}
+	.pop-yes{
+		margin-left:50px;
+		color:#fff;
+		background-color:#7eb530;
+	}
+    @keyframes border-anime {
+        0%{
+        	box-shadow:0 0 5px #fa7474;
+        }
+        25%{
+        	box-shadow:0 0 7px #fa7474;
+        }
+        50%{
+        	box-shadow:0 0 9px #fa7474;
+        }
+        75%{
+        	box-shadow:0 0 7px #fa7474;
+        }
+        100%{
+            /*top: 210px;*/
+           box-shadow:0 0 5px #fa7474;
+        }
+    }
     .settings-left{
         margin-bottom: 40px;
         color: #3c3c3c;
@@ -37,7 +130,7 @@
         cursor: not-allowed;
     }
     .settings-left table{
-        width: 500px;
+        width: 550px;
         margin: 20px 0px 20px 100px;
     }
     .settings-left table tr td{
@@ -46,13 +139,20 @@
         padding: 10px;
         height: 30px;
     }
-    .settings-left table tr td .text-input{
+    .settings-left table tr td .text-input,.text-input-wrong{
         width: 80%;
         height: 27px;
         padding: 5px;
-        border: 1px solid #B0B0B0;
+        
         border-radius: 0.9375em;
         /*box-shadow: inset 3px 2px 10px #f0f0f0;*/
+    }
+    .settings-left table tr td .text-input{
+    	border: 1px solid #B0B0B0;
+    }
+    .text-input-wrong{
+    	border:1px solid #fa7474;
+    	box-shadow: 0 0 5px #fa7474;
     }
     .radio-out,.radio-out-selected{
         width: 3.125em;
@@ -96,9 +196,21 @@
         width: 50px;
         height: 50px;
         border-radius: 30px;
-        background-image: url("../images/portrait.jpg");
+      /*  background-image: url("../images/blueberries.png");*/
         background-size: 50px 50px;
         display: inline-block;
+        vertical-align: middle;
+    }
+    .settings-left .profile-picture .picture img{
+    /*	width: 50px;*/
+        height: 50px;
+        _width:expression(this.width > 50 ? "50px" : this.width);
+        border-radius: 30px;
+        display: inline-block;
+       /* width: auto;  
+	    height: auto;  
+	    max-width: 120%;  
+	    max-height: 120%; */  
         vertical-align: middle;
     }
     .settings-left .profile-picture .picture-right{
@@ -117,14 +229,14 @@
         width: 90%;
         margin: 20px 0px 40px 30px;
     }
-    .settings-left .checkbox-out{
+     .checkbox-out,.checkbox-out-selected{
         width: 200px;
         height: 20px;
         margin: 0px 0px 15px 0px;
         position: relative;
         cursor: pointer;
     }
-    .settings-left .checkbox-out:before{
+    .checkbox-out:before,.checkbox-out-selected:before{
         content: "";
         width: 14px;
         height: 14px;
@@ -135,7 +247,7 @@
         display: inline-block;
         position: absolute;
     }
-    .settings-left .checkbox-out:active:after{
+     .checkbox-out:active:after,.checkbox-out-selected:after{
         content: "";
         width: 10px;
         height: 10px;
@@ -146,7 +258,7 @@
         display: inline-block;
         position: absolute;
     }
-    .settings-left .checkbox-out input{
+    .settings-left .checkbox-out input,.checkbox-out-selected input{
         opacity: 0;
     }
     .settings-left li{
@@ -162,7 +274,7 @@
     .settings-left li:hover{
         background-color: #d9e7e5;
     }
-    .settings-left li:active{
+    .settings-left li:active,.li-selected{
         background-color: #63b4ab;
         color: #ffffff;
     }
