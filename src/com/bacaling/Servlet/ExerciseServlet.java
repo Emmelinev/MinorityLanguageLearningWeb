@@ -68,14 +68,11 @@ public class ExerciseServlet extends HttpServlet {
 			this.qaGeneration(request, response);
 		}
 		if(method==2){
-			this.getBarList(request, response);
+			this.pictureSelection(request, response);
 		}
 		if(method==3){
-			this.getProgress(request, response);
-		}
-		if(method==4){
 			try {
-				this.newRecords(request, response);
+				this.uploadAnswers(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -110,10 +107,12 @@ public class ExerciseServlet extends HttpServlet {
 		List<Question> qList = new ArrayList<Question>();
 		String userId= String.valueOf(request.getSession().getAttribute("user_id"));
 		String language = String.valueOf(request.getSession().getAttribute("current_language"));
-		String barId = String.valueOf(request.getSession().getAttribute("barId"));		
+		String barId = String.valueOf(request.getParameter("barId"));	
+		String status = String.valueOf(request.getParameter("status"));	
 		System.out.println("userId-" + userId + " language-"  + language + " barId-" +barId);
-		if(ed.barStatus(userId, language, barId) > 0){
-			List<Bars> bars = ld.loadBarList(language, userId, barId);
+		
+		if(Integer.parseInt(status) > 0){
+//			List<Bars> bars = ld.loadBarList(language, userId, barId);
 			List<UserWord> list = ed.getBarWordInfo(userId, language, barId);
 			List<UserWord> randList_4 = new ArrayList<UserWord>();
 			List<UserWord> randList_3 = new ArrayList<UserWord>();
@@ -130,22 +129,88 @@ public class ExerciseServlet extends HttpServlet {
 					randList_3.add(uw);
 					break;
 				case 2:
-					randList_2.add(uw);
+					randList_2.add(uw);					
 					break;
 				case 1:
-					randList_1.add(uw);
+					randList_1.add(uw);					
 					break;
 				default:
 					randList_0.add(uw);
 					break;
 				}
 			}
+			System.out.println("4-"+randList_4.size()+" empty?"+randList_4.isEmpty());
+			System.out.println("3-"+randList_3.size()+" empty?"+randList_3.isEmpty());
+			System.out.println("2-"+randList_2.size()+" empty?"+randList_2.isEmpty());
+			System.out.println("1-"+randList_1.size()+" empty?"+randList_1.isEmpty());
+			System.out.println("0-"+randList_0.size()+" empty?"+randList_0.isEmpty());
+			int r4 = randList_4.size();
+			int r3 = randList_3.size();
+			int r2 = randList_2.size();
+			int r1 = randList_1.size();
+			int r0 = randList_0.size();
 //			每个分类抽取一个单词id,没有该等级的值为0
-			int word_4 = randList_4.isEmpty() ? 0 : randList_4.get(randomNum(randList_4)).getWordId();
-			int word_3 = randList_3.isEmpty() ? 0 : randList_3.get(randomNum(randList_3)).getWordId();
-			int word_2 = randList_2.isEmpty() ? 0 : randList_2.get(randomNum(randList_2)).getWordId();
-			int word_1 = randList_1.isEmpty() ? 0 : randList_1.get(randomNum(randList_1)).getWordId();
-			int word_0 = randList_0.isEmpty() ? 0 : randList_0.get(randomNum(randList_0)).getWordId();
+			int word_4 = randList_4.isEmpty() ? 0 : randList_4.get(randomNum(r4)).getWordId();
+			int word_3 = randList_3.isEmpty() ? 0 : randList_3.get(randomNum(r3)).getWordId();
+			int word_2 = randList_2.isEmpty() ? 0 : randList_2.get(randomNum(r2)).getWordId();
+			int word_1 = randList_1.isEmpty() ? 0 : randList_1.get(randomNum(r1)).getWordId();
+			int word_0 = randList_0.isEmpty() ? 0 : randList_0.get(randomNum(r0)).getWordId();
+			
+			System.out.println("4-"+word_4+" 3-"+word_3+" 2-"+word_2+" 1-"+word_1+" 0-"+word_0);
+			
+			int count = 0;
+			if(word_4 != 0){
+				qList.add(ed.qaGeneration(language, barId,String.valueOf(word_4), 2));
+				count++;
+			}
+			if(word_3 != 0){
+				qList.add(ed.qaGeneration(language, barId,String.valueOf(word_3), 2));
+				count++;
+			}
+			if(word_2 != 0){
+				qList.add(ed.qaGeneration(language, barId,String.valueOf(word_2), 2));
+				count++;
+			}
+			if(word_1 != 0){
+				qList.add(ed.qaGeneration(language, barId,String.valueOf(word_1), 2));
+				count++;
+			}
+			if(word_0 != 0){
+				qList.add(ed.qaGeneration(language, barId,String.valueOf(word_0), 2));
+				count++;
+			}
+//			System.out.println("img-q:"+count);
+			while(count < 10){
+				int rand = randomNum();
+				System.out.println("rand-"+rand);
+				if(rand < 10 && !randList_4.isEmpty()){
+//					level 4
+					int word = randList_4.isEmpty() ? 0 : randList_4.get(randomNum(r4)).getWordId();
+					qList.add(ed.qaGeneration(language, barId,String.valueOf(word), 2));
+				}else if(rand >= 10 && rand < 20 && !randList_3.isEmpty()){
+//					level 3
+					int word = randList_3.isEmpty() ? 0 : randList_3.get(randomNum(r3)).getWordId();
+					qList.add(ed.qaGeneration(language, barId,String.valueOf(word), 2));
+				}else if(rand >= 20 && rand < 40 && !randList_2.isEmpty()){
+//					level 2
+					int word = randList_2.isEmpty() ? 0 : randList_2.get(randomNum(r2)).getWordId();
+					qList.add(ed.qaGeneration(language, barId,String.valueOf(word), 2));
+				}else if(rand >= 40 && rand < 70 && !randList_1.isEmpty()){
+//					level 1
+					int word = randList_1.isEmpty() ? 0 : randList_1.get(randomNum(r1)).getWordId();
+					qList.add(ed.qaGeneration(language, barId,String.valueOf(word), 2));
+				}else if(rand >= 70 && !randList_0.isEmpty()){
+//					level 0
+					int word = randList_0.isEmpty() ? 0 : randList_0.get(randomNum(r0)).getWordId();
+					qList.add(ed.qaGeneration(language, barId,String.valueOf(word), 2));
+				}else{
+					int word = randList_0.isEmpty() ? 0 : randList_0.get(randomNum(r0)).getWordId();
+					qList.add(ed.qaGeneration(language, barId,String.valueOf(word), 2));
+				}
+				count++;
+			}
+
+			
 		}else{
 //			先加载图题
 			ArrayList<Integer> a = ed.newBarList(language, barId,1);
@@ -165,90 +230,55 @@ public class ExerciseServlet extends HttpServlet {
 		System.out.println(jsonArray);
 		
 	}
-	private int randomNum(List<UserWord> l){
+	private int randomNum(int l){
+//		List<UserWord> l
 		int ret = 0;
-		int max= l.size()-1;
+		if(l==1){
+			return 0;
+		}else{
+			int mmm= l-1;
+//			System.out.println("max;;"+mmm);
+	        int min=0;
+	        Random random = new Random();
+	        ret = random.nextInt(mmm) % (mmm-min+1) + min;
+//	        System.out.println("random-"+ret);
+	        return ret;	
+		}
+	}
+	private int randomNum(){
+		int ret = 0;
+		int max= 100;
         int min=0;
         Random random = new Random();
         ret = random.nextInt(max)%(max-min+1) + min;
-        System.out.println(ret);
+//        System.out.println(ret);
         return ret;
 	}
-	private int randomType(int word){
-		int ret = 0;
-		int max = 0;
-		int min=0;
-		if(word == 1){
-			max= 3;
-		}else{
-			max = 2; 
-		}        
-        Random random = new Random();
-        ret = random.nextInt(max)%(max-min+1) + min;
-        System.out.println(ret);
-		return ret;
-	}
-//	加载bar列表
-	private void getBarList(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		LessonDao lessondao = new LessonDao();
-
-		String userId= String.valueOf(request.getSession().getAttribute("user_id"));
+//	随机抽两道图片题作为选项
+	private void pictureSelection(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		ExerciseDao ed = new ExerciseDao();
 		String language = String.valueOf(request.getSession().getAttribute("current_language"));
-		String lessonId = request.getParameter("lesson");
-//		System.out.println("user_id" + userId + " language:"  + language);
-		
+		List<Question> list = ed.imgRandom(language);
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();
-		List<Bars> list = lessondao.loadBarList(language, userId, lessonId);
 		
 		JSONArray jsonArray =JSONArray.fromObject(list);
 		out.print(jsonArray);
 		System.out.println(jsonArray);
 	}
-//	获取进度
-	private void getProgress(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		LessonDao lessondao = new LessonDao();
-		JSONObject json = new JSONObject();
-		String userId= String.valueOf(request.getSession().getAttribute("user_id"));
+//	上传答题情况
+	private void uploadAnswers(HttpServletRequest request, HttpServletResponse response) throws SQLException{
+		ExerciseDao ed = new ExerciseDao();
 		String language = String.valueOf(request.getSession().getAttribute("current_language"));
-		String lessonId = request.getParameter("lesson");
-//		System.out.println("user_id" + userId + " language:"  + language);
+		String userId = String.valueOf(request.getSession().getAttribute("user_id"));
+//		{"userAnswers":userAnswers,"types":types,"userAnswerFlag":userAnswerFlag,"expIds":expIds,"wordIds":wordIds,"barId":barId};
+		String[] userAnswers=request.getParameterValues("userAnswers");
+		String[] types=request.getParameterValues("types");
+		String[] userAnswerFlag=request.getParameterValues("userAnswerFlag");
+		String[] expIds=request.getParameterValues("expIds");
+		String[] wordIds=request.getParameterValues("wordIds");
+		String barId = String.valueOf(request.getParameter("barId"));
 		
-		response.setContentType("application/json; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		Bars bar = lessondao.lessonProgress(language, userId, lessonId);
-
-		json.put("name",bar.getLessonName());
-		json.put("passed",bar.getPassed());
-		json.put("number",bar.getNumber());
-		json.put("progress",bar.getProgress());
-		json.put("img",bar.getLessonImg());
-		out.print(json);
-		System.out.println(json);
-	}	
-//	插入新数据
-	private void newRecords(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException{
-		JSONObject json = new JSONObject();
-		WordDao worddao = new WordDao();
-		int ret = 0;
-
-		String user_id = (String) request.getSession().getAttribute("user_id");
-		String current_language = (String) request.getSession().getAttribute("current_language");	
-//		String word_id = String.valueOf(worddao.wordQuery(user_id, current_language).getWordId());
-		String word_id=request.getParameter("wordId");
-		
-		System.out.println("user_id-" + user_id + ", lang-" + current_language + ", word_id-" + word_id);
-
-		ret = worddao.newRecord(user_id, word_id);
-		response.setContentType("application/json; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		if( ret > 0){
-			json.put("valid",true);
-		}else{
-			json.put("valid",false);					
-		}
-		out.print(json);
-		System.out.println(json);
+		int up1 = ed.uploadToExp(userId, language);
 	}
 }

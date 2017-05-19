@@ -1,8 +1,8 @@
-$(document).ajaxStart(function () {
-	$("#loading").show();
-	}).ajaxStop(function () {
-	$("#loading").hide();
-});
+//$(document).ajaxStart(function () {
+//	$("#loading").show();
+//	}).ajaxStop(function () {
+//	$("#loading").hide();
+//});
 $(document).ready(function(){
 	var str = {"userId":"2"};
     var param = jQuery.param(str);
@@ -124,6 +124,7 @@ function getAudioNormal(word,language){
         ssml: false
     });
 }
+
 function ajaxFunc(param,servlet){
     var json = null;
     $.ajax({
@@ -133,6 +134,24 @@ function ajaxFunc(param,servlet){
         url : servlet,
         data: param,
         dataType:"json",
+        error : function(data) {
+        },
+        success : function(data){
+            json = data;
+        }
+    });
+    return json;
+}
+function ajaxFunc(param,servlet,global){
+    var json = null;
+    $.ajax({
+        async : false,
+        cache : false,
+        type : 'POST',
+        url : servlet,
+        data: param,
+        dataType:"json",
+        global:false,
         error : function(data) {
         },
         success : function(data){

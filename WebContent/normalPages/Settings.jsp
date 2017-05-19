@@ -25,7 +25,7 @@
         return;
    		}
    	%>
-<div id="loading">loading...</div>
+<!--<div id="loading">loading...</div>  -->
 <div class="background-div"></div>
 <div class="pop-div">
 <p></p>

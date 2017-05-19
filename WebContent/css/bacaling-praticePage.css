@@ -20,7 +20,7 @@
     .div-back .head{
         margin: 0 40px 40px 40px;
         font-weight: 600;
-        display: none;
+        display: block;
     }
 
     .div-back .head .tn{
@@ -41,7 +41,7 @@
         height: 23px;
         margin: 0px 1px 1px 120px;
         position: relative;
-        display: none;
+        display: block;
     }
     .div-back .progress-bar:before,:after{
         content: "";
@@ -71,7 +71,7 @@
     }
     /*进度条内部*/
     .div-back .progress-bar .bar{
-        width: 20%;
+        width: 100%;
         height: 19px;
         top:36px;
         left: 5px;
@@ -186,6 +186,21 @@
         background-color: #B0B0B0;
         border-radius: 10px;
     }
+    .div-back .question-select-pic .pic-group li .p1{
+       /* background: url("../images/man.PNG") no-repeat center;*/
+       background-color: #fff;
+        background-size: 140px 140px;
+    }
+    .div-back .question-select-pic .pic-group li .p2{
+       /* background: url("../images/boy.PNG") no-repeat center;*/
+       background-color: #fff;
+        background-size: 140px 140px;
+    }
+    .div-back .question-select-pic .pic-group li .p3{
+       /* background: url("../images/apple.PNG") no-repeat center;*/
+       background-color: #fff;
+        background-size: 140px 140px;
+    }
     .div-back .question-select-pic .pic-group li .title{
         margin: 10px 0 10px 0;
         display: block;
@@ -217,7 +232,7 @@
         width: 90%;
         margin: 80px 800px 50px 40px;
         text-align: center;
-        display: none;
+        display: block;
     }
     .div-back .question-translation .main-question{
         margin: 20px;
@@ -299,6 +314,78 @@
         text-align: left;
         vertical-align: top;
         overflow: hidden;
+    }
+    .div-back .question-missing{
+        width: 90%;
+        height: 260px;
+        margin: 80px 800px 50px 40px;
+        text-align: center;
+        display: none;
+    }
+    .div-back .question-missing .main-question{
+        margin: 20px;
+        font-size: 25px;
+    }
+    .div-back .question-missing select{
+        font-size: 28px;
+        color: #3c3c3c;
+        border: 2px solid #63b4ab;
+        border-radius: 20px;
+    }
+    .div-back .question-missing select option{
+        font-size: 20px;
+    }
+    .div-back .question-listening{
+        width: 90%;
+        height: 260px;
+        margin: 80px 800px 50px 40px;
+        text-align: center;
+        display: none;
+    }
+    .div-back .question-listening .main-question{
+        margin: 20px;
+        font-size: 25px;
+    }
+    .div-back .question-listening .normal-speed{
+        width: 120px;
+        height: 120px;
+        top: 190px;
+        left: 180px;
+        border-radius: 60px;
+        background-color: #63b4ab;
+        display: inline-block;
+        position: absolute;
+        text-align: center;
+        line-height: 120px;
+        color: #ffffff;
+        z-index: 10;
+        cursor: pointer;
+    }
+    .div-back .question-listening .slow-speed{
+        width: 80px;
+        height: 80px;
+        top:70px;
+        left: 80px;
+        border: 5px solid #ffffff;
+        border-radius: 50px;
+        background-color: #63b4ab;
+        display: inline-block;
+        line-height: 80px;
+        position: absolute;
+        z-index: 11;
+        cursor: pointer;
+    }
+    .div-back .question-listening input{
+        width: 300px;
+        height: 50px;
+        font-size: 18px;
+        margin: 30px 0px 0px 80px;
+        border: 2px solid #63b4ab;
+        border-radius: 5px;
+        display: inline-block;
+    }
+    .div-back .question-listening input:active{
+        box-shadow: 0px 0 10px #63b4ab;
     }
     /*默认底部*/
     .div-back .foot-default,.foot-correct,.foot-wrong,.foot-final{
@@ -489,6 +576,7 @@
     /*结束页*/
     .div-back .ending{
         text-align: center;
+        display: none;
     }
     .div-back .ending h2{
         font-size: 35px;
@@ -562,5 +650,173 @@
         background-color: #7eb530;
         display: inline-block;
         vertical-align: top;
+    }
+    /*报错面板*/
+    .report-panel{
+        width: 280px;
+        height: 140px;
+        bottom: 50px;
+        left: 400px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0px 0px 8px #b0b0b0;
+        position: absolute;
+        display: none;
+    }
+    .report-panel textarea{
+        /*margin: ;*/
+        width: 100%;
+        height: 70%;
+        border: 1px solid #f0f0f0;
+        box-shadow: 0px 0px 10px #b0b0b0;
+        border-radius: 10px;
+    }
+    .report-panel .buttons{
+        margin: 10px;
+        float: right;
+    }
+    .report-panel .button{
+        width: 80px;
+        height: 25px;
+        border-radius: 20px;
+        padding: 5px;
+        /*margin: 10px;*/
+        text-align: center;
+        line-height:25px;
+        font-size: 14px;
+        display: inline-block;
+        cursor: pointer;
+    }
+    .report-panel .cancel{
+        background-color: #cccccc;
+    }
+    .report-panel .submit{
+        height: 35px;
+        border:none;
+        background-color: #888888;
+    }
+    .shade{
+        width: 100%;
+        height: 100%;
+        top:0px;
+        left: 0px;
+        background-color: #000;
+        opacity: 0.3;
+        z-index: 21;
+        position: fixed;
+        display: none;
+    }
+    .review-panel{
+        width: 800px;
+        height: 600px;
+        box-sizing: border-box;
+        top: 50px;
+        left: 15%;
+        padding: 30px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px #d0d0d0;
+        position: fixed;
+        z-index: 25;
+        display: none;
+    }
+    .review-panel .title{
+        width: 100%;
+        text-align: center;
+    }
+    .review-panel .title h1{
+        font-weight: 500;
+        color: #3c3c3c;
+    }
+    .review-panel .title h2{
+        font-weight: 500;
+        color: #888888;
+    }
+    .review-panel .card-group .card-correct,.review-panel .card-group .card-wrong{
+        width: 165px;
+        height: 150px;
+        box-sizing: border-box;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        display: inline-block;
+        vertical-align: top;
+        cursor: pointer;
+    }
+    .review-panel .card-group .card-correct h5{
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    .review-panel .card-group .card-correct{
+        /*border: 2px solid #7eb530;*/
+        background-color: #def0a5;
+        color: #7eb530;
+    }
+    .review-panel .card-group .card-wrong{
+        background-color: #ffd4cc;
+        color: #dd381d;
+    }
+    .pop-answer{
+        width: 250px;
+        height: 145px;
+        box-sizing: border-box;
+        top: 250px;
+        left: 50px;
+        padding: 20px;
+        color: #3c3c3c;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px #c0c0c0;
+        position: absolute;
+        display: none;
+    }
+    /*.pop-answer:before,:after{*/
+        /*content: "";*/
+        /*position: absolute;*/
+    /*}*/
+    .pop-answer:before{
+        content: "";
+        position: absolute;
+        border: 10px solid;
+        border-color: transparent transparent white;
+        top: -19px;
+        left:40px;
+        z-index: 9;
+    }
+    .pop-answer p{
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+    .pop-answer span{
+        font-weight: 500;
+    }
+    .close{
+        width: 25px;
+        height: 25px;
+        top: -10px;
+        right: -10px;
+        background-color: #3c3c3c;
+        border-radius: 13px;
+        position: absolute;
+        cursor: pointer;
+    }
+    .close:hover{
+    	opacity:0.8;
+    }
+    .close:before,.close:after{
+        content: "";
+        position: absolute;
+        width: 3px;
+        height: 15px;
+        background-color: #ffffff;
+        top: 5px;
+        left: 11px;
+    }
+    .close:before{
+        transform: rotate(45deg);
+    }
+    .close:after{
+        transform: rotate(135deg);
     }
 }

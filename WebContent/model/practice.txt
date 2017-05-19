@@ -1,0 +1,147 @@
+<!--  
+    <!--Í¼Æ¬Ñ¡ÔñÌâ-->
+    <div class="question-select-pic">
+        <h2 class="question">Select translation of "<span>the boy</span>"</h2>
+        <ul class="pic-group">
+            <li class="choice-item">
+                <div></div>
+                <!--<input type="radio" checked="checked" name="1" value="la manzana 1">-->
+                <span class="title">la manzana <span>1</span></span>
+            </li>
+            <li class="choice-item">
+                <div></div>
+                <!--<input type="radio" checked="checked" name="2" value="el ni?o 2">-->
+                <span class="title">el ni?o <span>2</span></span>
+            </li>
+            <li class="choice-item">
+                <div></div>
+                <!--<input type="radio" checked="checked" name="3" value="el pan 3">-->
+                <span class="title">el pan <span>3</span></span>
+            </li>
+        </ul>
+    </div>
+    <!--end of Í¼Æ¬Ñ¡ÔñÌâ-->
+
+    <!--·­Òë¾ä×ÓÌâ-->
+    <div class="question-translation">
+        <h2 class="question">Translate this text</h2>
+        <div class="main-question">
+            <div class="left">
+                <div class="media"></div>
+                <p><span>Una</span>&nbsp;<span>ni?a</span></p>
+            </div>
+            <div class="middle"></div>
+            <div class="right">
+                <textarea  name="translationAnswer">Type in English</textarea>
+            </div>
+        </div>
+    </div>
+    <!--end of ·­Òë¾ä×ÓÌâ-->
+    
+    <!--Ñ¡´ÊÌî¿Õ-->
+    <div class="question-missing">
+        <h2 class="question">Select the missing word</h2>
+        <div class="main-question">
+            <p>Ella&nbsp;<select>
+                <option>es</option>
+                <option>eres</option>
+            </select>&nbsp;una mujer.</p>
+        </div>
+    </div>
+    <!--end of Ñ¡´ÊÌî¿Õ-->
+    <!--ÌýÐ´Ìâ-->
+    <div class="question-listening">
+        <h2 class="question">Type what you hear</h2>
+        <div class="main-question">
+            <div class="normal-speed">
+                speek
+                <div class="slow-speed">slow </div>
+            </div>
+            <input type="text" name="listenInput">
+        </div>
+    </div>
+    <!--end of ÌýÐ´Ìâ-->
+
+    <!--½áÊøÒ³-->
+
+    <!--end of ½áÊøÒ³-->
+    <div class="ending">
+        <h2>Lesson complete! +10 XP</h2>
+        <h3>You met your daily goal!</h3>
+        <div class="graphs">
+            <div class="roll">
+                <span class="fire"></span>
+                <h4><span>10</span>/<span>10</span></h4>
+                <h5>xp gained</h5>
+            </div>
+            <div class="line"></div>
+            <div class="graph"></div>
+        </div>
+    </div>
+    <div class="scroll-circle"></div>
+
+    <!--Á·Ï°»Ø¹Ë-->
+    <div class="review-panel">
+    <div class="title">
+    	<h2>Check out your scorecard!</h2>
+        <h3>Click the tiles below to reveal the solutions</h3>
+        <div class="close"></div>
+    </div>
+        
+        <div class="card-group">
+            <div class="card-correct">
+                <h5>Select<br>translation of:</h5>
+                <span class="icon-correct-sm"></span>
+                <span>the man</span>
+            </div>
+            <div class="card-wrong">
+                <h5>Select<br>translation of:</h5>
+                <span class="icon-correct-sm"></span>
+                <span>the man</span>
+            </div>
+            <!--Translate this<br> text-->
+        </div>
+        <!--×÷´ð-->
+        <div class="pop-answer">
+            <div class="close"></div>
+            <p>YOUR RESPONSE</p>
+            <P>"<SPAN>the man</SPAN>"</P>
+            <p>CORRECT RESPONSE</p>
+            <p>"<span>the woman</span>"</p>
+        </div>
+    </div>
+    <!--end of Á·Ï°»Ø¹Ë-->
+    <!--end of ½áÊøÒ³-->
+
+    <!--µ×²¿-->
+    <!--Ä¬ÈÏµ×²¿-->
+        <div class="foot-default">
+        <div class="skip">Skip</div>
+        <div id="answer-check" class="btn-green check">Check</div>
+    </div>
+    <!--ÕýÈ·µ×²¿-->
+    <div class="foot-correct">
+        <div class="icon-correct"></div>
+        <div class="correct-right">
+            <span>You are correct.</span>
+            <div class="btn-general report">Report a Problem</div>
+        </div>
+        <div id="continue-practice-right" class="btn-general continue">continue</div>
+    </div>
+    <!--´íÎóµ×²¿-->
+    <div class="foot-wrong">
+        <div class="icon-wrong"></div>
+        <div class="wrong-right">
+            <h4>Correct solutions:</h4>
+            <span>la ni?a</span>
+            <div class="btn-general report">Report a Problem</div>
+        </div>
+        <div id="continue-practice-wrong" class="btn-general continue">continue</div>
+    </div>
+    <!--end of ´íÎóµ×²¿-->
+    <!--×îÖÕµ×²¿-->
+    <div class="foot-final">
+        <div class="btn-general review">Review lesson</div>
+        <div id="continue-quit" class="btn-general continue">continue</div>
+    </div>
+    <!--end of ×îÖÕµ×²¿-->

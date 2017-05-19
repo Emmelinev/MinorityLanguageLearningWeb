@@ -28,7 +28,7 @@
         return;
    		}
    	%>
-<div id="loading">loading...</div>
+<!--<div id="loading">loading...</div>  -->
 <header>
 	<div id="head1" class="header-back1">
         <div class="header-back"></div>

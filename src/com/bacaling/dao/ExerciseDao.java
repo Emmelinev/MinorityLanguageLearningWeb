@@ -81,7 +81,7 @@ public class ExerciseDao extends BaseDao{
 		return status;
 	}
 	/*
-	 * 
+	 * 获取单词
 	 */
 	public ArrayList<Integer> newBarList(String language,String barId,int type){
 		ArrayList<Integer> a = new ArrayList<Integer>();
@@ -129,7 +129,7 @@ public class ExerciseDao extends BaseDao{
 		Question q = new Question("new");
 		if(type == 1){
 			String sql = "select word_id id,word_text word,b.exp_id eid,"
-					+ "b.exp_content expample,b.standard_translation answer, a.pic_src img "
+					+ "b.exp_content example,b.standard_translation answer, a.pic_src img "
 					+ "from vocabulary_warehouse a,example_sentences b "
 					+ "where a.word_id=b.of_word and language_id = " 
 					+ language + " and of_bar = " 
@@ -145,15 +145,33 @@ public class ExerciseDao extends BaseDao{
 					q.setExampleSentence(rs.getString("example"));
 					q.setAnswer(rs.getString("answer"));
 					q.setImg(rs.getString("img"));
-					q.setType(randomType(2));
+//					int rtype = randomType(3);
+					q.setType(3);
+				}
+			} catch (SQLException e) {			
+				e.printStackTrace();
+			}
+			String option = "select exp_content,pic_src img "
+					+ "from vocabulary_warehouse a,example_sentences b "
+					+ "where a.word_id=b.of_word and language_id = "
+					+ language + " and b.allow_pic = 1 order by rand() limit 2;" ;
+			System.out.println(option);
+			ResultSet rsOption=super.executeQuery(option);
+			try {
+				if(rsOption.next()){					
+					q.setOption1(rsOption.getString("exp_content")+","+rsOption.getString("img"));
+				}
+				if(rsOption.next()){					
+					q.setOption2(rsOption.getString("exp_content")+","+rsOption.getString("img"));
 				}
 			} catch (SQLException e) {			
 				e.printStackTrace();
 			}
 		}else if(type == 2){
 //			type = 2 为普通题
-			String sql = "select word_id id,word_text word,b.exp_id eid,b.exp_content expample,b.standard_translation answer "
-					+ "from vocabulary_warehouse a,example_sentences b where language_id = " 
+			String sql = "select word_id id,word_text word,b.exp_id eid,b.exp_content example,"
+					+ "b.standard_translation answer "
+					+ "from vocabulary_warehouse a,example_sentences b where a.word_id=b.of_word and language_id = " 
 					+ language + " and of_bar = " 
 					+ barId + " and word_id = " 
 					+ wordId + " and b.allow_pic <> 1 order by rand() limit 1;";
@@ -166,10 +184,29 @@ public class ExerciseDao extends BaseDao{
 					q.setWord(rs.getString("word"));
 					q.setExampleSentence(rs.getString("example"));
 					q.setAnswer(rs.getString("answer"));
-					q.setType(randomType(2));
+					int rtype = randomType(2);
+					q.setType(rtype);
 				}
 			} catch (SQLException e) {			
 				e.printStackTrace();
+			}
+			if(q.getType()==1){
+				String option = "select word_text"
+						+ "from vocabulary_warehouse a,example_sentences b "
+						+ "where a.word_id=b.of_word and language_id = "
+						+ language + " and b.allow_pic = 1 order by rand() limit 2;" ;
+				System.out.println(option);
+				ResultSet rsOption=super.executeQuery(option);
+				try {
+					if(rsOption.next()){					
+						q.setOption1(rsOption.getString("exp_content"));
+					}
+					if(rsOption.next()){					
+						q.setOption2(rsOption.getString("exp_content"));
+					}
+				} catch (SQLException e) {			
+					e.printStackTrace();
+				}
 			}
 		}
 		return q;
@@ -188,31 +225,51 @@ public class ExerciseDao extends BaseDao{
         System.out.println(ret);
 		return ret;
 	}
-	public Bars lessonProgress(String language,String user_id,String lesson_id){
-		Bars bar = new Bars();
-		String sql = "select b.lesson_name name,a.passed_times passed,a.bar_num num,"
-				+ "a.progress progress,b.lesson_icon img "
-				+ "from v_lesson_user a,lesson_list b "
-				+ "where a.lesson_id = b.lesson_id and a.of_language=" 
-				+ language + " and a.user_id = " 
-				+ user_id + " and a.lesson_id= " 
-				+ lesson_id + ";";
+	/*
+	 * 随机抽取两道图片选项
+	 */
+	public List<Question> imgRandom(String language){
+		List<Question> list = new ArrayList<Question>();
+		String sql = "select word_id id,word_text word,b.exp_id eid,b.exp_content example,"
+				+ "b.standard_translation answer,a.pic_src img "
+				+ "from vocabulary_warehouse a,example_sentences b  "
+				+ "where a.word_id=b.of_word and language_id = " 
+				+ language + " and b.allow_pic = 1 order by rand() limit 1;";
 		System.out.println(sql);
 		ResultSet rs=super.executeQuery(sql);
 		try {
-			while(rs.next()){
-//				按id分组，变量barId为第一个成员的id，下面的成员与它对比
-//				如果和barId相同，则表示同一个bar，执行bar对象的赋值方法
-//				如果不同，则表示该bar已结束，直接进入下一循环，新增一个bar对象
-				bar.setLessonName(rs.getString("name"));
-				bar.setPassed(rs.getInt("passed"));
-				bar.setNumber(rs.getInt("num"));
-				bar.setProgress(rs.getDouble("progress"));
-				bar.setLessonImg(rs.getString("img"));
+			while(rs.next()){	
+				Question q = new Question("new");
+				q.setQuestionID(rs.getInt("eid"));
+				q.setWordId(rs.getInt("id"));
+				q.setWord(rs.getString("word"));
+				q.setExampleSentence(rs.getString("example"));
+				q.setAnswer(rs.getString("answer"));
+				q.setImg(rs.getString("img"));
+				q.setType(randomType(3));
+				list.add(q);
 			}
 		} catch (SQLException e) {			
 			e.printStackTrace();
 		}
-		return bar;
+		return list;
+	}
+	public int uploadToExp(String userId,String language) throws SQLException{
+//		SELECT * FROM bacaling.user_sr_static;
+		String sql = "update bacaling.user_sr_static set exp = exp+10 "
+				+ "where user_id = " + userId + " and language_id = " + language +";";
+		System.out.println(sql);
+		return super.executeUpdate(sql);
+	}
+	public int uploadToWordExercise(String userId,String language,String barId){
+		int ret = 0;
+//		SELECT * FROM bacaling.user_word_exercise_list;
+//		SELECT * FROM bacaling.user_word_list;
+		return ret;
+	}
+	public int uploadToLessonExercise(String userId,String language,String barId){
+		int ret = 0;
+//		SELECT * FROM bacaling.user_study_record;
+		return ret;
 	}
 }

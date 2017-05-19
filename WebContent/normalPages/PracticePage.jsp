@@ -6,7 +6,9 @@
     <link href="../css/bacaling-main.css" rel='stylesheet' type='text/css' />
     <link href="../css/bacaling-praticePage.css" rel='stylesheet' type='text/css' />
     <script type="text/javascript" src="../js/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="../js/jquery.voicerss-tts.min.js"></script>
     <script type="text/javascript" src="../js/bacaling.js"></script>
+    <script type="text/javascript" src="../js/bacaling-practice.js"></script>
     <title>Bacaling - Pleasure with languages</title>
 </head>
 <body>
@@ -24,7 +26,7 @@
         return;
    		}
    	%>
-<div id="loading">loading...</div>
+<!--<div id="loading">loading...</div>  -->
 <header>
 	<div id="head1" class="header-back1">
         <div class="header-back"></div>
@@ -82,133 +84,14 @@
 <div class="div-back">
     <div class="head">
         <span class="tn">Tips & notes</span>
-        <span class="quit">Quit</span>
+        <span class="quit"><a href="index.jsp">Quit</a></span>
     </div>
     <!--进度条-->
     <div class="progress-bar">
         <div class="bar"></div>
         <span></span>
         <div class="calculator">1</div>
-    </div>
-
-    <!--图片选择题-->
-    <div class="question-select-pic">
-        <h2 class="question">Select translation of "<span>the boy</span>"</h2>
-        <ul class="pic-group">
-            <li class="choice-item">
-                <div></div>
-                <!--<input type="radio" checked="checked" name="1" value="la manzana 1">-->
-                <span class="title">la manzana <span>1</span></span>
-            </li>
-            <li class="choice-item">
-                <div></div>
-                <!--<input type="radio" checked="checked" name="2" value="el niño 2">-->
-                <span class="title">el niño <span>2</span></span>
-            </li>
-            <li class="choice-item">
-                <div></div>
-                <!--<input type="radio" checked="checked" name="3" value="el pan 3">-->
-                <span class="title">el pan <span>3</span></span>
-            </li>
-        </ul>
-    </div>
-    <!--end of 图片选择题-->
-
-    <!--翻译句子题-->
-    <div class="question-translation">
-        <h2 class="question">Translate this text</h2>
-        <div class="main-question">
-            <div class="left">
-                <div class="media"></div>
-                <p><span>Una</span>&nbsp;<span>niña</span></p>
-            </div>
-            <div class="middle"></div>
-            <div class="right">
-                <textarea  name="translationAnswer">Type in English</textarea>
-            </div>
-        </div>
-    </div>
-    <!--end of 翻译句子题-->
-
-    <!--结束页-->
-
-    <!--end of 结束页-->
-    <div class="ending">
-        <h2>Lesson complete! +10 XP</h2>
-        <h3>You met your daily goal!</h3>
-        <div class="graphs">
-            <div class="roll">
-                <span class="fire"></span>
-                <h4><span>10</span>/<span>10</span></h4>
-                <h5>xp gained</h5>
-            </div>
-            <div class="line"></div>
-            <div class="graph"></div>
-        </div>
-    </div>
-    <div class="scroll-circle"></div>
-
-    <!--练习回顾-->
-    <div class="review">
-        <h2>Check out your scorecard!</h2>
-        <h3>Click the tiles below to reveal the solutions</h3>
-        <div class="card-group">
-            <div class="card-correct">
-                <h5>Select<br>translation of:</h5>
-                <span class="icon-correct-sm"></span>
-                <span>the man</span>
-            </div>
-            <div class="card-wrong">
-                <h5>Select<br>translation of:</h5>
-                <span class="icon-correct-sm"></span>
-                <span>the man</span>
-            </div>
-            <!--Translate this<br> text-->
-        </div>
-        <!--作答-->
-        <div class="pop-answer">
-            <div class="close"></div>
-            <p>YOUR RESPONSE</p>
-            <P>"<SPAN>the man</SPAN>"</P>
-            <p>CORRECT RESPONSE</p>
-            <p>"<span>the woman</span>"</p>
-        </div>
-    </div>
-    <!--end of 练习回顾-->
-    <!--end of 结束页-->
-
-    <!--底部-->
-    <!--默认底部-->
-        <div class="foot-default">
-        <div class="skip">Skip</div>
-        <div class="btn-green check">Check</div>
-    </div>
-    <!--正确底部-->
-    <div class="foot-correct">
-        <div class="icon-correct"></div>
-        <div class="correct-right">
-            <span>You are correct.</span>
-            <div class="btn-general report">Report a Problem</div>
-        </div>
-        <div class="btn-general continue">continue</div>
-    </div>
-    <!--错误底部-->
-    <div class="foot-wrong">
-        <div class="icon-wrong"></div>
-        <div class="wrong-right">
-            <h4>Correct solutions:</h4>
-            <span>la niña</span>
-            <div class="btn-general report">Report a Problem</div>
-        </div>
-        <div class="btn-general continue">continue</div>
-    </div>
-    <!--end of 错误底部-->
-    <!--最终底部-->
-    <div class="foot-final">
-        <div class="btn-general review">Review lesson</div>
-        <div class="btn-general continue">continue</div>
-    </div>
-    <!--end of 最终底部-->
+    </div>   
 </div>
 <!--end of 正文-->
 </body>
