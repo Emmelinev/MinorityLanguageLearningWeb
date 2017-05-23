@@ -31,6 +31,7 @@ $(document).ready(function() {
 	radioChange(); //监听radio值变化
 	getLevels(); //导航栏，用户等级列表
     getLevel();	 //导航栏图标
+    getMsgCount();
     checkboxChange(0);checkboxChange(1); //监听多选框值变化
     liRadioChange(0);liRadioChange(1);liRadioChange(2);liRadioChange(3); //监听list值变化
     checkPwd(); //监听密码输入值变化

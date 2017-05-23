@@ -26,10 +26,12 @@ public class UserDao extends BaseDao {
 		System.out.println(phonenum);
 		System.out.println(pwd);
 		System.out.println(sql);
-//		Object[] parm = new Object[2];
-//		parm[0] = phonenum;-
-//		parm[1] = phonenum;
-//		parm[2] = pwd;
+		return super.executeUpdate(sql);
+	}
+	public int userRecord(String userId) throws SQLException{
+		String sql = "insert into bacaling.user_log(user_id,login_time) values("
+				+userId+","+DateClass.getDateNow()+")";
+		System.out.println(sql);
 		return super.executeUpdate(sql);
 	}
 	public Client newUserReg(String phonenum, String pwd) throws SQLException{
@@ -40,10 +42,6 @@ public class UserDao extends BaseDao {
 		System.out.println(phonenum);
 		System.out.println(pwd);
 		System.out.println(sql);
-//		Object[] parm = new Object[2];
-//		parm[0] = phonenum;
-//		parm[1] = phonenum;
-//		parm[2] = pwd;
 		
 		int r=super.executeUpdate(sql);
 		if(r>0){

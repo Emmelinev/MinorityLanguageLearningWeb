@@ -21,15 +21,20 @@ public class SendMailUtil {
 
     public static String receiveMailAccount = "emmelinev@foxmail.com";
 
-    public static void sendMail() throws Exception {
+    public static void sendMail(int type) throws Exception {
         Properties props = new Properties();
         props.setProperty("mail.transport.protocol", "smtp");
         props.setProperty("mail.smtp.host", myEmailSMTPHost);
         props.setProperty("mail.smtp.auth", "true"); 
-        
+        String str = null;
+        if(type == 0){
+        	str = "<h1>Daily Spanish Learning Reminder.</h1><p>Forgot learning?</p>";
+        }else if(type == 1){
+        	str = "<h1>You just finished lesson 1 bar 1.</h1>";
+        }
         Session session = Session.getDefaultInstance(props);
         session.setDebug(true);
-        MimeMessage message = createSimpleMessage(session, myEmailAccount, receiveMailAccount);
+        MimeMessage message = createSimpleMessage(session, myEmailAccount, receiveMailAccount,str);
         Transport transport = session.getTransport();
         transport.connect(myEmailAccount, myEmailPassword);
         transport.sendMessage(message, message.getAllRecipients());
@@ -54,12 +59,12 @@ public class SendMailUtil {
      * @return
      * @throws Exception
      */
-    public static MimeMessage createSimpleMessage(Session session, String sendMail, String receiveMail) throws Exception {
+    public static MimeMessage createSimpleMessage(Session session, String sendMail, String receiveMail,String content) throws Exception {
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress(sendMail, "BACALING - MINORITY LANGUAGES LEARNING", "UTF-8"));
         message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "user", "UTF-8"));
         message.setSubject("Welcome", "UTF-8");
-        message.setContent("<h1>We are waiting for you :)</h1>", "text/html;charset=UTF-8");
+        message.setContent(content, "text/html;charset=UTF-8");
         message.setSentDate(new Date());
         message.saveChanges();
         return message;

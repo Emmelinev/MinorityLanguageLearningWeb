@@ -30,8 +30,18 @@ $(document).ready(function() {
     getLessonLevel();
     getWord();
     getLessons();
+    setStorage();
 });
-
+function setStorage(){
+	var param = {"user_id":"1"};
+	var servlet = "../SettingsServlet?method=8";
+	var json = ajaxFunc(param,servlet);
+	var storage=window.localStorage;	
+    storage.autoplay=json.autoplay;
+    storage.effect=json.effect;
+    storage.notice=json.notice;
+    storage.goal=json.goal;
+}
 
 function getLessonLevel(){
 	var param = {"user_id":"1"};

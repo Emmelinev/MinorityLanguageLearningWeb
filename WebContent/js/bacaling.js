@@ -104,7 +104,7 @@ function getMsgCount(){
 		$(".new-count").hide();
 		$(".div-alert").animate({"opacity":"0.5"},100); 
 	}
-	setTimeout("getMsgCount()",60000);  
+	setTimeout("getMsgCount()",20000);  
 }
 function getAudioNormal(word,language){
 	var lan = null;

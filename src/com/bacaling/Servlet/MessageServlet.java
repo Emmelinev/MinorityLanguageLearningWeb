@@ -89,8 +89,8 @@ public class MessageServlet extends HttpServlet {
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		int ret = msgDao.hasNewMsg(user_id);
-		
-		if(ret == 1){
+		System.out.println("ret--"+ret);
+		if(ret > 0){
 			json.put("valid",true);
 		}else if(ret == 0){
 			json.put("valid", false);

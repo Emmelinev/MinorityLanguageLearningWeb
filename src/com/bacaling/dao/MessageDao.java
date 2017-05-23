@@ -52,14 +52,8 @@ public class MessageDao extends BaseDao {
 	public int newMessage(String user_id, String content) throws SQLException{
 		Message msg = null;
 		String sql = "insert into " + 
-					 "message(send_id,rec_id,content_id,post_date) " + 
-					 "values('0','"+user_id+"','"+content+"','" + DateClass.getDateNow() + "');";
-//		System.out.println(phonenum);
-//		Object[] parm = new Object[2];
-//		parm[0] = phonenum;
-//		parm[1] = phonenum;
-//		parm[2] = pwd;
-//		String sql = "{call getNameSalByNo(?,?,?)}";
+					 "message(send_id,rec_id,content_id,status,post_date) " + 
+					 "values('0','"+user_id+"','"+content+"',0,'" + DateClass.getDateNow() + "');";
 		int r=super.executeUpdate(sql);
 		return r;
 	}
@@ -112,4 +106,11 @@ public class MessageDao extends BaseDao {
 		}
 		return ret;
 	}
+//	public int newMessage(String user_id,String message){
+//		int ret = 0;
+//		String sql = "insert into message(send_id,rec_id,content_id,status,post_date)"
+//				+ "values(0,"+user_id+","+message+",0,'"+DateClass.getDateNow()+"');";
+//		
+//		return ret;
+//	}
 }

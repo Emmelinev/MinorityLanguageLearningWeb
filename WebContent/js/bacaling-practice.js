@@ -37,6 +37,7 @@ function initial(){
 	console.log(answers);
 	console.log(types);
 	generateQuestions(0);
+	generateFoot(0);
 }
 function generateQuestions(key){	
 		var str = null;
@@ -50,7 +51,7 @@ function generateQuestions(key){
 				+ '</div><div class="middle"></div><div class="right">'
 				+ '<textarea name="translationAnswer" id="translation'
 				+ key +'">Type in English</textarea></div></div></div>';
-			$(".div-back").append(str);
+			$("#practice-content").append(str);
 			 $(".main-question p span").mouseover(function(){
 				 console.log($(this).html());
 				 var word = $(this).html();
@@ -86,7 +87,7 @@ function generateQuestions(key){
 			console.log(selector);
 			str = '<div class="question-missing"><h2 class="question">Select the missing word</h2>'
 				+ '<div class="main-question">'+selector+'</div></div>';
-			$(".div-back").append(str);
+			$("#practice-content").append(str);
 			break;
 		case 2: 
 //		    听写题
@@ -96,7 +97,7 @@ function generateQuestions(key){
 				+ '<div class="slow-speed">slow </div><input id="listening'
 				+ key +'" type="text" name="listenInput">'
 				+ '</div></div>';
-			$(".div-back").append(str);
+			$("#practice-content").append(str);
 			playAudio($(".main-question").attr("value"),"3",0);
 			$(".normal-speed").click(function(){
 				playAudio($(".main-question").attr("value"),"3",0);
@@ -121,7 +122,7 @@ function generateQuestions(key){
 				+ os[1][0] +' <span>2</span></span></li>'
 				+ '<li class="choice-item"><div class="p3"></div><span class="title">' 
 				+ os[2][0] + ' <span>3</span></span></li></ul></div>';
-			$(".div-back").append(str);
+			$("#practice-content").append(str);
 			$(".pic-group li .p1").css({"background":'url("../images/'+os[0][1]+'") no-repeat center',"background-size":"140px 140px"});
 			$(".pic-group li .p2").css({"background":'url("../images/'+os[1][1]+'") no-repeat center',"background-size":"140px 140px"});
 			$(".pic-group li .p3").css({"background":'url("../images/'+os[2][1]+'") no-repeat center',"background-size":"140px 140px"});
@@ -176,37 +177,43 @@ function playAudio(word,language,speed){
     });
 }
 function checkAnswer(currentCount){
-	if(types[currentCount]==0){
-		userAnswers[currentCount] = $("#translation"+currentCount).html();
+	var key = currentCount - 1;
+	if(types[key]==0){
+		userAnswers[key] = $("#translation"+key).val();
 	}
-	if(types[currentCount]==1){
-		userAnswers[currentCount] = $(".selector").find("option:selected").text();
+	if(types[key]==1){
+		userAnswers[key] = $(".selector").find("option:selected").text();
 	}
-	if(types[currentCount]==2){
-		userAnswers[currentCount] = $("#listening"+currentCount).val();
+	if(types[key]==2){
+		userAnswers[key] = $("#listening"+key).val();
 	}
-	if(types[currentCount]==3){
-		userAnswers[currentCount] = $("#choice-item-selected span").html();
+	if(types[key]==3){
+		userAnswers[key] = $("#choice-item-selected span").val();
 	}
-	console.log(userAnswer[currentCount]);
-	if(userAnswers[currentCount].toLowerCase() == currentCount[currentCount].toLowerCase()){
-		userAnswerFlag[currentCount] = 1;
-		return true;
+	console.log(userAnswers[key]);
+	console.log($("#translation"+key).val());
+	if(userAnswers[key].toLowerCase().replace(",","").replace(".","").replace(" ","") == answers[key].toLowerCase().replace(",","").replace(".","").replace(" ","")){
+		userAnswerFlag[key] = 1;
+		$(".foot-default").remove();
+		generateFoot(1);
+//		return true;
 	}else{
-		userAnswerFlag[currentCount] = 0;
-		return false;
+		userAnswerFlag[key] = 0;
+		$(".foot-default").remove();
+		generateFoot(2);
+//		return false;
 	}	
 }
 function passQ(key){
 	userAnswers[key] = "passed";
 	userAnswerFlag[key] = -1;
 }
-function generateFoot(type,key){
+function generateFoot(type){
 	var str = null;
 	if(type == 0){
 		str = '<div class="foot-default"><div class="skip">Skip</div>'
 			+ '<div class="btn-green check answer-check">Check</div></div>';
-		$(".div-back").append(str);
+		$("#practice-content").append(str);
 		 $(".answer-check").click(function(){
 			checkAnswer(currentCount);
 			var p = (currentCount+1)*10;
@@ -221,13 +228,16 @@ function generateFoot(type,key){
 			+ '<div class="correct-right"><span>You are correct.</span>'
 			+ '<div class="btn-general report">Report a Problem</div></div>'
 			+ '<div class="continue-practice-right btn-general continue">continue</div></div';
-		$(".div-back").append(str);
+		$("#practice-content").append(str);
 		 $(".continue-practice-right").click(function(){
 			 if(currentCount != 10){
+				 $("#practice-content").empty();
 				 generateQuestions(currentCount); 
+				 generateFoot(0);
 			 }else{
+				 $("#practice-content").empty();
 				 postAnswers();
-				 generateFoot(t,currentCount);
+				 generateFoot(3);
 				 currentCount = 0;
 			 }
 		 });
@@ -235,15 +245,18 @@ function generateFoot(type,key){
 	if(type == 2){
 		str = '<div class="foot-wrong"><div class="icon-wrong"></div>'
 			+ '<div class="wrong-right"><h4>Correct solutions:</h4><span>'
-			+ answers[key] +'</span><div class="btn-general report">Report a Problem</div>'
+			+ answers[currentCount-1] +'</span><div class="btn-general report">Report a Problem</div>'
 			+ '</div><div class="continue-practice-wrong btn-general continue">continue</div></div>';
-		$(".div-back").append(str);
+		$("#practice-content").append(str);
 		 $(".continue-practice-wrong").click(function(){
 			 if(currentCount != 10){
-				 generateQuestions(currentCount); 
+				 $("#practice-content").empty();
+				 generateQuestions(currentCount);
+				 generateFoot(0);
 			 }else{
+				 $("#practice-content").empty();
 				 postAnswers();
-				 generateFoot(t,currentCount);
+				 generateFoot(4);
 				 currentCount = 0;
 			 }
 		 });
@@ -251,7 +264,7 @@ function generateFoot(type,key){
 	if(type == 3){
 		str = '<div class="foot-final"><div class="btn-general review">Review lesson</div>'
 			+ '<div class="continue-quit btn-general continue">continue</div></div>';
-		$(".div-back").append(str);
+		$("#practice-content").append(str);
 		 $(".continue-quit").click(function(){
 			 location.href = "index.jsp";
 		 });

@@ -9,6 +9,7 @@ import com.bacaling.entity.Bars;
 import com.bacaling.entity.Lesson;
 import com.bacaling.entity.Question;
 import com.bacaling.entity.UserWord;
+import com.bacaling.util.DateClass;
 public class ExerciseDao extends BaseDao{
 	/*
 	 * 获取小节词汇信息
@@ -184,7 +185,7 @@ public class ExerciseDao extends BaseDao{
 					q.setWord(rs.getString("word"));
 					q.setExampleSentence(rs.getString("example"));
 					q.setAnswer(rs.getString("answer"));
-					int rtype = randomType(2);
+					int rtype = randomType(3);
 					q.setType(rtype);
 				}
 			} catch (SQLException e) {			
@@ -192,17 +193,17 @@ public class ExerciseDao extends BaseDao{
 			}
 			if(q.getType()==1){
 				String option = "select word_text"
-						+ "from vocabulary_warehouse a,example_sentences b "
+						+ " from vocabulary_warehouse a,example_sentences b "
 						+ "where a.word_id=b.of_word and language_id = "
 						+ language + " and b.allow_pic = 1 order by rand() limit 2;" ;
 				System.out.println(option);
 				ResultSet rsOption=super.executeQuery(option);
 				try {
 					if(rsOption.next()){					
-						q.setOption1(rsOption.getString("exp_content"));
+						q.setOption1(rsOption.getString("word_text"));
 					}
 					if(rsOption.next()){					
-						q.setOption2(rsOption.getString("exp_content"));
+						q.setOption2(rsOption.getString("word_text"));
 					}
 				} catch (SQLException e) {			
 					e.printStackTrace();
@@ -213,13 +214,13 @@ public class ExerciseDao extends BaseDao{
 	}
 	private int randomType(int word){
 		int ret = 0;
-		int max = 0;
+		int max = 3;
 		int min=0;
-		if(word == 1){
-			max= 3;
-		}else{
-			max = 2; 
-		}        
+//		if(word == 1){
+//			max= 3;
+//		}else{
+//			max = 3; 
+//		}        
         Random random = new Random();
         ret = random.nextInt(max)%(max-min+1) + min;
         System.out.println(ret);
@@ -261,15 +262,67 @@ public class ExerciseDao extends BaseDao{
 		System.out.println(sql);
 		return super.executeUpdate(sql);
 	}
-	public int uploadToWordExercise(String userId,String language,String barId){
+	public int uploadToInfo(String userId,String language) throws SQLException{
+//		SELECT * FROM bacaling.user_sr_static;
+		String log = "insert into bacaling.user_log(user_id,login_time) values("
+				+userId+",'"+DateClass.getDateNow()+"');";
+		super.executeUpdate(log);
+		int logged = 0;
+		String is_loged = "select DATEDIFF(login_time,'"+DateClass.getDateNow()+"') difff from user_log where user_id = "
+						+ userId + " order by login_time,";
+		System.out.println(is_loged);
+		ResultSet rs=super.executeQuery(is_loged);
+		try {
+			while(rs.next()){	
+				if(rs.getInt("difff")<1){
+					logged = 1;
+				}else{
+					logged = 0;
+				}
+			}
+		}catch (SQLException e) {			
+			e.printStackTrace();
+		}
+		
+		if(logged == 1){
+			String sql = "update bacaling.user_info set user_state = user_state + 1 "
+					+ "where user_id = " + userId+ ";";
+			System.out.println(sql);
+			return super.executeUpdate(sql);
+		}
+		return logged;
+		
+	}
+	public int uploadToWordExercise(String userId,String language,String wordId) throws SQLException{
 		int ret = 0;
-//		SELECT * FROM bacaling.user_word_exercise_list;
-//		SELECT * FROM bacaling.user_word_list;
+//		String uwe = null;
+		String[] words = wordId.split(",");
+		for(String i : words){
+			String uwe = "insert into bacaling.user_word_exercise_list"
+					+ "(user_id,word_id,exercise_time) values("
+					+ userId +","+i+",'" + DateClass.getDateNow()+"');";
+			System.out.println("uploadToWordExercise+"+uwe);
+			ret += super.executeUpdate(uwe);
+			super.executeCall("{call p_user_word("+userId+","+i+")}");
+			System.out.println("return1-"+ret);
+		}
+		
 		return ret;
 	}
-	public int uploadToLessonExercise(String userId,String language,String barId){
+	public int uploadToLessonExercise(String userId,String flags,String expIds,String types,String barId) throws SQLException{
 		int ret = 0;
-//		SELECT * FROM bacaling.user_study_record;
+		String [] exps = expIds.split(",");
+		String [] type = types.split(",");
+		String [] flag = flags.split(",");
+		for(int i = 0;i<10;i++){
+			String usr = "insert into bacaling.user_study_record"
+					+ "(user_id,bar_id,sentence_id,q_type,is_right)"
+					+ " values("+userId+","+barId+","+exps[i]+","+type[i]+","+flag[i]+");";
+			System.out.println("uploadToWordExercise+"+usr);
+			ret += super.executeUpdate(usr);
+			System.out.println("return1-"+ret);
+		}		
+//		SELECT;
 		return ret;
 	}
 }

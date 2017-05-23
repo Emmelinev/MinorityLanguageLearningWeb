@@ -9,6 +9,11 @@ $(document).ready(function() {
 	getLevels();
     getLevel();
     consLevelTable();
+    $(".div-alert").click(function(){
+    	$(".new-count").hide();
+    	getMessage();
+    	$(".message").slideToggle("fast");
+    });
 });
 function consLevelTable(){
 	var param = {"user_id":"1"};

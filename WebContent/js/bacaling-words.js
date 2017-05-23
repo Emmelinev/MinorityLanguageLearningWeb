@@ -15,14 +15,20 @@ $(document).ready(function() {
     var count_rows = 0;
     getLevels();
     getLevel();
+    getMsgCount();
+    $(".div-alert").click(function(){
+    	$(".new-count").hide();
+    	getMessage();
+    	$(".message").slideToggle("fast");
+    });
     var table_str = '<table id="words"><thead><tr><th type="text">Word</th><th type="text">Part of speech</th><th type="text">Last practiced</th><th type="number">Strength</th></tr></thead><tbody>';
     for(var key in data){
         var td_class = null;
         switch(data[key].strengthLevel)
         {
-	        case '4': td_class = '"icon-strength-level icon-strength-level-4"'; break;
-	        case '3': td_class = '"icon-strength-level icon-strength-level-3"'; break;
-	        case '2': td_class = '"icon-strength-level icon-strength-level-2"'; break;
+	        case 4: td_class = '"icon-strength-level icon-strength-level-4"'; break;
+	        case 3: td_class = '"icon-strength-level icon-strength-level-3"'; break;
+	        case 2: td_class = '"icon-strength-level icon-strength-level-2"'; break;
 	        default: td_class = '"icon-strength-level icon-strength-level-1"';
         }
 

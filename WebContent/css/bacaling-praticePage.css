@@ -113,20 +113,25 @@
         color: #3c3c3c;
         font-weight: 500;
     }
+    #practice-content{
+    	width:960px;
+    	height:auto;
+    	display:block;
+    }
     /*图形选择题*/
-    .div-back .question-select-pic{
+    #practice-content .question-select-pic{
         width: 80%;
         margin: 80px 800px 50px 40px;
         text-align: center;
         display: none;
     }
-    .div-back .question-select-pic .pic-group{
+    #practice-content .question-select-pic .pic-group{
         width: 100%;
         height: 200px;
         margin-left: 20px;
         margin-bottom: 20px;
     }
-    .div-back .question-select-pic .pic-group li{
+    #practice-content .question-select-pic .pic-group li{
         display: inline-block;
         /*box-sizing: content-box;*/
         width: 150px;
@@ -137,14 +142,14 @@
         border-radius: 10px;
         cursor: pointer;
     }
-    .div-back .question-select-pic .pic-group li:hover{
+    #practice-content .question-select-pic .pic-group li:hover{
         border-color: #63b4ab;
         color: #63b4ab;
     }
-    .div-back .question-select-pic .pic-group li:hover  .title:before{
+    #practice-content .question-select-pic .pic-group li:hover  .title:before{
         border-color: #63b4ab;
     }
-    .div-back .question-select-pic .pic-group li:hover  .title:after{
+    #practice-content .question-select-pic .pic-group li:hover  .title:after{
         content: "";
         width: 11px;
         height: 11px;
@@ -158,14 +163,14 @@
         z-index: 21;
         position: absolute;
     }
-    .div-back .question-select-pic .pic-group li:active{
+    #practice-content .question-select-pic .pic-group li:active{
         background-color: #63b4ab;
         color: #ffffff;
     }
-    .div-back .question-select-pic .pic-group li:active  .title:before{
+    #practice-content .question-select-pic .pic-group li:active  .title:before{
         border-color: #ffffff;
     }
-    .div-back .question-select-pic .pic-group li:active  .title:after{
+    #practice-content .question-select-pic .pic-group li:active  .title:after{
         content: "";
         width: 11px;
         height: 11px;
@@ -179,29 +184,29 @@
         z-index: 21;
         position: absolute;
     }
-    .div-back .question-select-pic .pic-group li div{
+    #practice-content .question-select-pic .pic-group li div{
         width: 140px;
         height: 140px;
         margin-left: 5px;
         background-color: #B0B0B0;
         border-radius: 10px;
     }
-    .div-back .question-select-pic .pic-group li .p1{
+    #practice-content .question-select-pic .pic-group li .p1{
        /* background: url("../images/man.PNG") no-repeat center;*/
        background-color: #fff;
         background-size: 140px 140px;
     }
-    .div-back .question-select-pic .pic-group li .p2{
+    #practice-content .question-select-pic .pic-group li .p2{
        /* background: url("../images/boy.PNG") no-repeat center;*/
        background-color: #fff;
         background-size: 140px 140px;
     }
-    .div-back .question-select-pic .pic-group li .p3{
+    #practice-content .question-select-pic .pic-group li .p3{
        /* background: url("../images/apple.PNG") no-repeat center;*/
        background-color: #fff;
         background-size: 140px 140px;
     }
-    .div-back .question-select-pic .pic-group li .title{
+    #practice-content .question-select-pic .pic-group li .title{
         margin: 10px 0 10px 0;
         display: block;
         font-size: 15px;
@@ -209,7 +214,7 @@
         text-align: center;
         position: relative;
     }
-    .div-back .question-select-pic .pic-group li .title:before{
+    #practice-content .question-select-pic .pic-group li .title:before{
         content: "";
         width: 15px;
         height: 15px;
@@ -223,21 +228,21 @@
         z-index: 20;
         position: absolute;
     }
-    .div-back .question-select-pic .pic-group li .title span{
+    #practice-content .question-select-pic .pic-group li .title span{
         float: right;
         margin-right: 10px;
     }
     /*翻译句子题*/
-    .div-back .question-translation{
+    #practice-content .question-translation{
         width: 90%;
         margin: 80px 800px 50px 40px;
         text-align: center;
         display: block;
     }
-    .div-back .question-translation .main-question{
+    #practice-content .question-translation .main-question{
         margin: 20px;
     }
-    .div-back .question-translation .main-question .left{
+    #practice-content .question-translation .main-question .left{
         width: 380px;
         height: 100px;
         border: 2px solid #f0f0f0;
@@ -246,7 +251,7 @@
         vertical-align: top;
         display: inline-block;
     }
-    .div-back .question-translation .main-question .left .media{
+    #practice-content .question-translation .main-question .left .media{
         width: 30px;
         height: 30px;
         margin: 10px;
@@ -255,7 +260,7 @@
         display: inline-block;
         vertical-align: top;
     }
-    .div-back .question-translation .main-question .left p{
+    #practice-content .question-translation .main-question .left p{
         margin: 10px;
         color: #3c3c3c;
         font-size: 18px;
@@ -263,13 +268,13 @@
         display: inline-block;
         vertical-align: top;
     }
-    .div-back .question-translation .main-question .left span{
+    #practice-content .question-translation .main-question .left span{
         text-decoration:underline;
         text-decoration-color: #3c3c3c;
         /*text-decoration: underline;*/
         cursor: pointer;
     }
-    .div-back .question-translation .main-question .middle{
+    #practice-content .question-translation .main-question .middle{
         width: 20px;
         height: 30px;
         margin: 0px 10px 0 10px;
@@ -277,7 +282,7 @@
         position: relative;
         vertical-align: top;
     }
-    .div-back .question-translation .main-question .middle:before,.middle:after{
+    #practice-content .question-translation .main-question .middle:before,.middle:after{
         content: "";
         width: 5px;
         height: 20px;
@@ -285,18 +290,18 @@
         border-radius: 3px;
         position: absolute;
     }
-    .div-back .question-translation .main-question .middle:before {
+    #practice-content .question-translation .main-question .middle:before {
         height: 18px;
         top:52px;
         left: 6px;
         transform: rotate(45deg);
     }
-    .div-back .question-translation .main-question .middle:after{
+    #practice-content .question-translation .main-question .middle:after{
         top:40px;
         left: 6px;
         transform: rotate(120deg);
     }
-    .div-back .question-translation .main-question .right{
+    #practice-content .question-translation .main-question .right{
         width: 380px;
         height: 80px;
         border: 2px solid #f0f0f0;
@@ -304,7 +309,7 @@
         display: inline-block;
         vertical-align: top;
     }
-    .div-back .question-translation .main-question .right textarea {
+    #practice-content .question-translation .main-question .right textarea {
         width: 99%;
         height: 99%;
         padding: 10px;
@@ -315,38 +320,38 @@
         vertical-align: top;
         overflow: hidden;
     }
-    .div-back .question-missing{
+    #practice-content .question-missing{
         width: 90%;
         height: 260px;
         margin: 80px 800px 50px 40px;
         text-align: center;
         display: none;
     }
-    .div-back .question-missing .main-question{
+    #practice-content .question-missing .main-question{
         margin: 20px;
         font-size: 25px;
     }
-    .div-back .question-missing select{
+    #practice-content .question-missing select{
         font-size: 28px;
         color: #3c3c3c;
         border: 2px solid #63b4ab;
         border-radius: 20px;
     }
-    .div-back .question-missing select option{
+    #practice-content .question-missing select option{
         font-size: 20px;
     }
-    .div-back .question-listening{
+    #practice-content .question-listening{
         width: 90%;
         height: 260px;
         margin: 80px 800px 50px 40px;
         text-align: center;
         display: none;
     }
-    .div-back .question-listening .main-question{
+    #practice-content .question-listening .main-question{
         margin: 20px;
         font-size: 25px;
     }
-    .div-back .question-listening .normal-speed{
+    #practice-content .question-listening .normal-speed{
         width: 120px;
         height: 120px;
         top: 190px;
@@ -361,7 +366,7 @@
         z-index: 10;
         cursor: pointer;
     }
-    .div-back .question-listening .slow-speed{
+    #practice-content .question-listening .slow-speed{
         width: 80px;
         height: 80px;
         top:70px;
@@ -375,7 +380,7 @@
         z-index: 11;
         cursor: pointer;
     }
-    .div-back .question-listening input{
+    #practice-content .question-listening input{
         width: 300px;
         height: 50px;
         font-size: 18px;
@@ -384,22 +389,22 @@
         border-radius: 5px;
         display: inline-block;
     }
-    .div-back .question-listening input:active{
+    #practice-content .question-listening input:active{
         box-shadow: 0px 0 10px #63b4ab;
     }
     /*默认底部*/
-    .div-back .foot-default,.foot-correct,.foot-wrong,.foot-final{
+    #practice-content .foot-default,.foot-correct,.foot-wrong,.foot-final{
         width: 100%;
         height: 120px;
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
     }
-    .div-back .foot-default{
+    #practice-content .foot-default{
         background-color: #cccccc;
         border: 1px solid #cccccc;
-        display: none;
+        display: block;
     }
-    .div-back .foot-default .skip,.check,.div-back .foot-final .review{
+    #practice-content .foot-default .skip,.check,#practice-content .foot-final .review{
         box-sizing: border-box;
         width: 150px;
         height: 44px;
@@ -413,32 +418,32 @@
         cursor: pointer;
         transition: all 0.5s;
     }
-    .div-back .foot-default .skip,.div-back .foot-final .review{
+    #practice-content .foot-default .skip,#practice-content .foot-final .review{
         background-color: #cccccc;
         border: 2px solid #B0B0B0;
     }
-    .div-back .foot-default .skip,.div-back .foot-final .review:hover{
+    #practice-content .foot-default .skip,#practice-content .foot-final .review:hover{
         background-color: #B0B0B0;
         color: #3c3c3c;
     }
-    .div-back .foot-default .check{
+    #practice-content .foot-default .check{
         float: right;
         background-color: #7eb530;
         border: 2px solid #7eb530;
         color: white;
     }
-    .div-back .foot-default .check,.div-back .continue:hover{
+    #practice-content .foot-default .check,#practice-content .continue:hover{
         background-color: #91cc3c;
         border: 2px solid #91cc3c;
     }
     /*正确底部*/
-    .div-back .foot-correct{
+    #practice-content .foot-correct{
         color: #7eb530;
         background-color: #def0a5;
         border: 1px solid #def0a5;
-        display: none;
+        display: block;
     }
-    .div-back .foot-correct .icon-correct{
+    #practice-content .foot-correct .icon-correct{
         width: 70px;
         height: 70px;
         border-radius: 35px;
@@ -447,33 +452,33 @@
         display: inline-block;
         position: relative;
     }
-    .div-back .foot-correct .icon-correct:before,:after{
+    #practice-content .foot-correct .icon-correct:before,:after{
         content: '';
         background-color: #7eb530;
         border-radius: 10px;
         display: block;
         position: absolute;
     }
-    .div-back .foot-correct .icon-correct:before{
+    #practice-content .foot-correct .icon-correct:before{
         width: 10px;
         height: 25px;
         left: 20px;
         top: 30px;
         transform: rotate(130deg);
     }
-    .div-back .foot-correct .icon-correct:after{
+    #practice-content .foot-correct .icon-correct:after{
         width: 10px;
         height: 40px;
         left: 37px;
         top: 15px;
         transform: rotate(40deg);
     }
-    .div-back .foot-correct .correct-right{
+    #practice-content .foot-correct .correct-right{
         margin: 20px;
         display: inline-block;
         vertical-align: top;
     }
-    .div-back .foot-correct .correct-right .report,.div-back .continue,.div-back .foot-wrong .wrong-right .report{
+    #practice-content .foot-correct .correct-right .report,#practice-content .continue,#practice-content .foot-wrong .wrong-right .report{
         width: 150px;
         margin: 20px 40px 0px 0px;
         border-radius: 30px;
@@ -481,10 +486,10 @@
         cursor: pointer;
         transition: all 0.5s;
     }
-    .div-back .foot-correct .correct-right{
+    #practice-content .foot-correct .correct-right{
         font-size: 20px;
     }
-    .div-back .foot-correct .correct-right .report{
+    #practice-content .foot-correct .correct-right .report{
         height: 25px;
         display: block;
         font-size: 13px;
@@ -493,11 +498,11 @@
         border: 2px solid #bcdb59;
         font-size: 15px;
     }
-    .div-back .foot-correct .correct-right .report:hover{
+    #practice-content .foot-correct .correct-right .report:hover{
         background-color: #daf096 ;
         border-color: #7eb530;
     }
-    .div-back  .continue {
+    #practice-content  .continue {
         height: 44px;
         float: right;
         display: inline-block;
@@ -510,13 +515,13 @@
         vertical-align: middle;
     }
     /*错误底部*/
-    .div-back .foot-wrong{
+    #practice-content .foot-wrong{
         color: #dd381d;
         background-color: #ffd4cc;
-        display: none;
+        display: block;
     }
     /*错误图标*/
-    .div-back .foot-wrong .icon-wrong{
+    #practice-content .foot-wrong .icon-wrong{
         width: 70px;
         height: 70px;
         border-radius: 35px;
@@ -525,7 +530,7 @@
         display: inline-block;
         position: relative;
     }
-    .div-back .foot-wrong .icon-wrong:before,:after{
+    #practice-content .foot-wrong .icon-wrong:before,:after{
         content: '';
         background-color: #dd381d;
         border-radius: 10px;
@@ -533,27 +538,27 @@
         /*display: none;*/
         position: absolute;
     }
-    .div-back .foot-wrong .icon-wrong:before{
+    #practice-content .foot-wrong .icon-wrong:before{
         width: 10px;
         height: 40px;
         left: 30px;
         top: 15px;
         transform: rotate(45deg);
     }
-    .div-back .foot-wrong .icon-wrong:after{
+    #practice-content .foot-wrong .icon-wrong:after{
         width: 10px;
         height: 40px;
         left: 30px;
         top: 15px;
         transform: rotate(135deg);
     }
-    .div-back .foot-wrong .wrong-right{
+    #practice-content .foot-wrong .wrong-right{
         font-size: 20px;
         margin: 20px;
         display: inline-block;
         vertical-align: top;
     }
-    .div-back .foot-wrong .wrong-right .report{
+    #practice-content .foot-wrong .wrong-right .report{
         height: 25px;
         display: block;
         margin-top: 5px;
@@ -563,45 +568,46 @@
         border: 2px solid #e3988c;
         font-size: 15px;
     }
-    .div-back .foot-wrong .wrong-right .report:hover{
+    #practice-content .foot-wrong .wrong-right .report:hover{
         background-color: #e8c1ba ;
         border-color: #dd381d;
     }
     /*底部*/
-    .div-back .foot-final{
+    #practice-content .foot-final{
         background-color: #cccccc;
         border: 1px solid #cccccc;
         /*display: none;*/
     }
     /*结束页*/
-    .div-back .ending{
+    #practice-content .ending{
         text-align: center;
         display: none;
     }
-    .div-back .ending h2{
+    #practice-content .ending h2{
         font-size: 35px;
-        margin-bottom: 10px;
+        margin-top: 50px;
     }
-    .div-back .ending h3{
+    #practice-content .ending h3{
         font-weight: 500;
         font-size: 25px;
     }
-    .div-back .ending .graphs{
+    #practice-content .ending .graphs{
         width: 90%;
         height: 100%;
         margin: 20px;
+        
     }
-    .div-back .ending .graphs .roll{
+    #practice-content .ending .graphs .roll{
         width: 200px;
         height: 200px;
         margin: 20px 40px;
         border-radius: 100px;
-        background-color: #63b4ab;
+        background-color:#63b4ab;
         display: inline-block;
         vertical-align: top;
         position: relative;
     }
-    .div-back .ending .graphs .roll:before{
+    #practice-content .ending .graphs .roll:before{
         content: "";
         width: 160px;
         height: 160px;
@@ -610,7 +616,7 @@
         border-radius: 80px;
         background-color: #ffffff;
     }
-    .div-back .ending .graphs .roll .fire{
+    #practice-content .ending .graphs .roll .fire{
         width: 30px;
         height: 30px;
         top:-10px;
@@ -619,7 +625,7 @@
         background-size:30px 30px;
         position: absolute;
     }
-    .div-back .ending .graphs .roll h4{
+    #practice-content .ending .graphs .roll h4{
         left: 60px;
         top:70px;
         font-size: 25px;
@@ -627,14 +633,14 @@
         font-weight: 600;
         position: absolute;
     }
-    .div-back .ending .graphs .roll h5{
+    #practice-content .ending .graphs .roll h5{
         left: 65px;
         top: 110px;
         font-size: 15px;
         font-weight: 500;
         position: absolute;
     }
-    .div-back .ending .graphs .line{
+    #practice-content .ending .graphs .line{
         width: 0px;
         height: 200px;
         margin: 20px 40px;
@@ -643,11 +649,12 @@
         vertical-align: top;
         opacity:0.8;
     }
-    .div-back .ending .graphs .graph{
+    #practice-content .ending .graphs .graph{
         width: 200px;
         height: 200px;
         margin: 20px 40px;
-        background-color: #7eb530;
+                background: url("../images/bird_win.png") center no-repeat;
+        background-size:200px 200px;
         display: inline-block;
         vertical-align: top;
     }
@@ -714,6 +721,7 @@
         top: 50px;
         left: 15%;
         padding: 30px;
+        overflow:auto;
         border-radius: 10px;
         background-color: #ffffff;
         box-shadow: 0 0 10px #d0d0d0;
@@ -743,6 +751,7 @@
         display: inline-block;
         vertical-align: top;
         cursor: pointer;
+        position:relative;
     }
     .review-panel .card-group .card-correct h5{
         font-size: 16px;
@@ -761,7 +770,7 @@
         width: 250px;
         height: 145px;
         box-sizing: border-box;
-        top: 250px;
+        bottom: -20px;
         left: 50px;
         padding: 20px;
         color: #3c3c3c;
@@ -770,6 +779,7 @@
         box-shadow: 0 0 10px #c0c0c0;
         position: absolute;
         display: none;
+        z-index:50;
     }
     /*.pop-answer:before,:after{*/
         /*content: "";*/
@@ -818,5 +828,31 @@
     }
     .close:after{
         transform: rotate(135deg);
+    }
+	.input-group{
+        display:block;
+    }
+    .input-div{
+        width:30px;
+        height:30px;
+        display:inline-block;
+        margin:5px;
+        color:#3b3b3b;
+        box-shadow: 0 0 5px #c0c0c0;
+        background-color:#f0f0f0;
+        border:transparent 1px solid;
+        border-radius:5px;
+        cursor:pointer;
+        line-height:30px;
+    }
+    .input-div:hover{
+        background-color:#e0e0e0;
+    }
+    .question-listening .input-group{
+	    margin-left:120px;
+        margin-top:20px;
+    }
+    .question-listening .input-div{
+    	font-size:15px;
     }
 }

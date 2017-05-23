@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bacaling.dao.ExerciseDao;
 import com.bacaling.dao.LessonDao;
+import com.bacaling.dao.MessageDao;
 import com.bacaling.dao.UserDao;
 import com.bacaling.dao.WordDao;
 import com.bacaling.entity.Bars;
@@ -76,11 +77,14 @@ public class ExerciseServlet extends HttpServlet {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		if(method==5){
 			try {
-				SendMailUtil.sendMail();
+				SendMailUtil.sendMail(0);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -203,16 +207,28 @@ public class ExerciseServlet extends HttpServlet {
 //					level 0
 					int word = randList_0.isEmpty() ? 0 : randList_0.get(randomNum(r0)).getWordId();
 					qList.add(ed.qaGeneration(language, barId,String.valueOf(word), 2));
-				}else{
+				}else if(!randList_0.isEmpty()){
 					int word = randList_0.isEmpty() ? 0 : randList_0.get(randomNum(r0)).getWordId();
+					qList.add(ed.qaGeneration(language, barId,String.valueOf(word), 2));
+				}else if(!randList_1.isEmpty()){
+					int word = randList_1.isEmpty() ? 0 : randList_1.get(randomNum(r1)).getWordId();
+					qList.add(ed.qaGeneration(language, barId,String.valueOf(word), 2));
+				}else if(!randList_2.isEmpty()){
+					System.out.println(r2);
+					int word = randList_2.isEmpty() ? 0 : randList_2.get(randomNum(r2)).getWordId();
+					qList.add(ed.qaGeneration(language, barId,String.valueOf(word), 2));
+				}else if(!randList_3.isEmpty()){
+					int word = randList_3.isEmpty() ? 0 : randList_3.get(randomNum(r3)).getWordId();
+					qList.add(ed.qaGeneration(language, barId,String.valueOf(word), 2));
+				}else if(!randList_4.isEmpty()){
+					int word = randList_4.isEmpty() ? 0 : randList_4.get(randomNum(r4)).getWordId();
 					qList.add(ed.qaGeneration(language, barId,String.valueOf(word), 2));
 				}
 				count++;
-			}
-
-			
+			}			
 		}else{
 //			先加载图题
+			List<Question> list = ed.imgRandom(language);
 			ArrayList<Integer> a = ed.newBarList(language, barId,1);
 			for(int i : a){
 				qList.add(ed.qaGeneration(language, barId,String.valueOf(i), 1));
@@ -221,7 +237,9 @@ public class ExerciseServlet extends HttpServlet {
 			for(int i : b){
 				qList.add(ed.qaGeneration(language, barId,String.valueOf(i), 2));
 			}
+			
 		}
+		
 		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
@@ -267,18 +285,31 @@ public class ExerciseServlet extends HttpServlet {
 		System.out.println(jsonArray);
 	}
 //	上传答题情况
-	private void uploadAnswers(HttpServletRequest request, HttpServletResponse response) throws SQLException{
+	private void uploadAnswers(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		ExerciseDao ed = new ExerciseDao();
+		MessageDao md = new MessageDao();
 		String language = String.valueOf(request.getSession().getAttribute("current_language"));
 		String userId = String.valueOf(request.getSession().getAttribute("user_id"));
 //		{"userAnswers":userAnswers,"types":types,"userAnswerFlag":userAnswerFlag,"expIds":expIds,"wordIds":wordIds,"barId":barId};
-		String[] userAnswers=request.getParameterValues("userAnswers");
-		String[] types=request.getParameterValues("types");
-		String[] userAnswerFlag=request.getParameterValues("userAnswerFlag");
-		String[] expIds=request.getParameterValues("expIds");
-		String[] wordIds=request.getParameterValues("wordIds");
+		String userAnswers=String.valueOf(request.getParameter("userAnswers"));
+		String types=String.valueOf(request.getParameter("types"));
+		String userAnswerFlag=String.valueOf(request.getParameter("userAnswerFlag"));
+		String expIds=String.valueOf(request.getParameter("expIds"));
+		String wordIds=String.valueOf(request.getParameter("wordIds"));
 		String barId = String.valueOf(request.getParameter("barId"));
 		
+		System.out.println("userAnswers:"+userAnswers);
+		System.out.println("types:"+types);
+		System.out.println("userAnswerFlag:"+userAnswerFlag);
+		System.out.println("expIds:"+expIds);
+		System.out.println("barId:"+barId);
+		System.out.println("wordIds:"+wordIds);
+
 		int up1 = ed.uploadToExp(userId, language);
+		int up2 = ed.uploadToWordExercise(userId, language, wordIds);
+		int up3 = ed.uploadToLessonExercise(userId, userAnswerFlag, expIds, types, barId);
+		int up4 = md.newMessage(userId, String.valueOf(3));
+		SendMailUtil.sendMail(1);
+		System.out.println("up1-"+up1+" up2-"+up2+" up3-"+up3);
 	}
 }
